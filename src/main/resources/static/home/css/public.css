@@ -15,7 +15,7 @@
 }
  .public-right{
     float:right;
-    margin-top:-80px;
+    margin-top:-120px;
 }
  .public-header-list{
      /*width:110px;*/
@@ -47,7 +47,7 @@
     height:25px;
     position:absolute;
     top:5px;
-    background:url(../images/call.png);
+    /*background:url(../images/call.png);*/
 }
 .public-header .item .home{
     display:inline-block;
@@ -55,7 +55,7 @@
     height:25px;
     position:absolute;
     top:5px;
-    background:url(../images/home.png);
+    /*background:url(../images/home.png);*/
 }
 .public-header .item .sc{
     display:inline-block;
@@ -63,17 +63,20 @@
     height:25px;
     position:absolute;
     top:5px;
-    background:url(../images/sc.png);
+    /*background:url(../images/sc.png);*/
 }
 .public-header .public-header-middle{
-    height:95px;
-    margin-top:10px;
+    height:130px;
+    margin-top:3px;
 	background-color: rgb(249,249,249);
 }
 .logo a{
-    width:100px;
-    height:95px;
-    background: url("../images/(22).png");
+    width:120px;
+    height:115px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url("../images/cps-logo.png");
+    /*background: no-repeat;*/
 }
 .public-header .public-search{
     position: relative;

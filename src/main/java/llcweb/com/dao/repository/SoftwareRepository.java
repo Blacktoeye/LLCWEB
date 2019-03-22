@@ -40,5 +40,5 @@ public interface SoftwareRepository extends JpaRepository<Software,Integer> {
      * @return java.util.List<llcweb.com.domain.models.Software>
      **/
     @Query(value="select * from software where state='发表' order by public_date desc limit ?1",nativeQuery = true)
-    List<Software> getSoftwares(int count);
+    List<Software> getLatest(int count);
 }

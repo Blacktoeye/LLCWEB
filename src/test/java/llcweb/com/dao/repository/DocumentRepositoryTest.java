@@ -1,6 +1,8 @@
 package llcweb.com.dao.repository;
 
+import llcweb.com.domain.User;
 import llcweb.com.domain.models.Document;
+import llcweb.com.domain.models.Users;
 import llcweb.com.service.DocumentService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 /**
@@ -34,6 +37,9 @@ public class DocumentRepositoryTest {
     @Autowired
     private DocumentService documentService;
 
+    @Autowired
+    private UsersRepository usersRepository;
+
     @Test
     public void add(){
         Document document=new Document();
@@ -47,14 +53,24 @@ public class DocumentRepositoryTest {
 
     @Test
     public void fuzzySearch(){
-        Page<Document> documents=documentRepository.fuzzySearch("haien",new PageRequest(0,10, Sort.Direction.DESC,"createDate"));
+        Page<Document> documents=documentRepository.fuzzySearch("haien","chen",new PageRequest(0,10, Sort.Direction.DESC,"createDate"));
         Assert.assertThat(documents.getTotalElements(),is(12L));
     }
 
     @Test
     public void findByAuthorId(){
         Page<Document> documents=documentRepository.findByAuthorId(1,new PageRequest(0,10, Sort.Direction.DESC,"createDate"));
+        System.out.println(documents.getTotalElements());
         Assert.assertThat(documents.getTotalElements(),is(3L));
+    }
+
+
+    @Test
+    public void selectByRole(){
+        Users users = usersRepository.findByUsername("chen");
+        Page<Document> documents=documentService.selectByRole(users,0,10,documentRepository);
+        System.out.println(documents.getTotalElements());
+        Assert.assertThat(documents.getTotalElements(),greaterThan(3L));
     }
 
 }

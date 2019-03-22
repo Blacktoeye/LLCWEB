@@ -102,7 +102,7 @@ $(document).ready(function () {
                         }
                     },
                     {
-                        data: "group",
+                        data: "model",
                         width: "100px"
                     },
                     {
@@ -147,6 +147,7 @@ $(document).ready(function () {
     $paperTable.on("click", ".btn-edit", function () {
         //编辑按钮
         var item = _table.row($(this).closest('tr')).data();
+        usersManage.edit(item);
         $(this).closest('tr').addClass("active").siblings().removeClass("active");
         //切换panel
         $("#add-panel").show().siblings(".panel").hide();
@@ -163,9 +164,7 @@ $(document).ready(function () {
     });
 
     $("#btn-add-user").click(function () {
-        $("#add-panel-title").text("添加项目记录");
-
-        $("#add-introduction").val('');
+        usersManage.add();
         $("#add-panel").slideToggle("fast");
         $("#add-panel").show().siblings(".panel").hide();
     });
@@ -228,29 +227,57 @@ var usersManage = {
         var document = getDocumentById(item.introduction,urlGetDocumentById);
         var introduction;
         if(document===null||document==undefined||document.content==null||document.content==undefined)
-            introduction=item.projectName+"<span style='color: red;'>该项目没有简介！</span>";
+            introduction=item.title+"<span style='color: red;'>该项目没有简介！</span>";
+        else introduction= document.content;
         $('#document-preview').html(introduction);
     },
-    edit: function (item) {
-        $("#add-panel-title").text("编辑项目记录");
-        $("#add-id").val(item.id);
+    add:function () {
+        $("#add-panel-title").text("添加活动");
+        $("#add-id").val(0);
+        $("#add-introduction").val();
 
+        $("#add-people_list").val();
+        $("#add-title").val();
+        $("#add-group").val();
+        $("#add-is_publish").val();
+        $("#add-activity_type").val();
+        $("#add-start_date").val();
+        $("#add-end_date").val();
+    },
+    edit: function (item) {
+        $("#add-panel-title").text("编辑活动");
+        $("#add-id").val(item.id);
         $("#add-introduction").val(item.introduction);
+
+        $("#add-people_list").val(item.peopleList);
+        $("#add-title").val(item.title);
+        $("#add-group").val(item.model);
+        $("#add-is_publish").val(item.isPublish);
+        $("#add-activity_type").val(item.activityType);
+        $("#add-start_date").val(dateToString(item.startDate));
+        $("#add-end_date").val(dateToString(item.endDate));
+        $("#add-introduction").selectpicker('refresh');
+        $("#add-group").selectpicker('refresh');
+        $("#add-is_publish").selectpicker('refresh');
         //更多
     },
     save: function () {
-        var project={};
-        project.id=$("#add-id").val();
+        var activity={};
+        activity.id=$("#add-id").val();
+        activity.peopleList=$("#add-people_list").val();
+        activity.title=$("#add-title").val();
+        activity.model=$("#add-group").val();
+        activity.isPublish=$("#add-is_publish").val();
+        activity.activityType=$("#add-activity_type").val();
 
+        activity.startDate=$("#add-start_date").val();
+        activity.endDate= $("#add-end_date").val();
 
-        project.startDate=$("#add-start_date").val();
-        project.endDate= $("#add-end_date").val();
-
-        project.introduction=$("#add-introduction").val();
-        saveFun(urlSave,project)
+        activity.introduction=$("#add-introduction").val();
+        saveFun(urlSave,activity)
     },
     delete: function (item) {
-        var message ="确定删除项目：“"+item.projectName+"”的信息?";
+        var message ="确定删除项目：“"+item.title+"”的信息?";
         deleteFun(message,urlDelete,item.id);
     }
 };

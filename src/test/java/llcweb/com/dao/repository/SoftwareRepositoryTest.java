@@ -31,7 +31,7 @@ public class SoftwareRepositoryTest {
 
     @Test
     public void getSoftwaresTest(){
-        List<Software> softwares=softwareRepository.getSoftwares(4);
+        List<Software> softwares=softwareRepository.getLatest(4);
         for (Software software:softwares){
             System.out.println(software.getTitle());
         }

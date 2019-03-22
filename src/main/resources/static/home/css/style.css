@@ -105,4 +105,50 @@ span.jPag-snext-img{
     background:transparent url(../images/snext.png) no-repeat center left;
             }
 
+.active-left{
+    background:#6ad;
+}
+.td-first{
+    text-align: right;
+    color: #685c18;
+}
+.td-last{
+    padding-left: 20px;
+    margin-left: 10px;
+    text-align: left;
+    font-size: 20px;
+    color: #010101;
+}
 
+.td-people-first{
+    width: 150px;
+    text-align: right;
+    color: #685c18;
+}
+.td-people-last{
+    padding-left: 10px;
+    text-align: left;
+    font-size: 15px;
+    color: #010101;
+}
+.li-page-index{
+
+}
+
+/*人才培养页面列表样式*/
+.main-student{
+    display: block;
+    width: 810px;
+}
+.main-student ul li {
+    text-align: center;
+    display: block;
+    margin-top:6px;
+    width: 256px;
+    float: left;
+    position: relative;
+}
+.main-student ul li img {
+    margin-left: 23px;
+    width: 200px;
+}

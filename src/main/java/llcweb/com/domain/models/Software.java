@@ -38,6 +38,25 @@ public class Software {
     //状态
     private String state;
 
+    private String publicMethod;
+    private String rightRange;
+
+    public String getPublicMethod() {
+        return publicMethod;
+    }
+
+    public void setPublicMethod(String publicMethod) {
+        this.publicMethod = publicMethod;
+    }
+
+    public String getRightRange() {
+        return rightRange;
+    }
+
+    public void setRightRange(String rightRange) {
+        this.rightRange = rightRange;
+    }
+
     public Software() {
     }
 

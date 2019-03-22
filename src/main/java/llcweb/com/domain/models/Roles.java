@@ -17,10 +17,17 @@ import java.io.Serializable;
 public class Roles implements Serializable {
    /** @pdOid f16a930e-44f7-408b-a69e-7ff0a4f31fe4 */
    @Id
-   public int rId;
-   public String rName;
-   public String rFlag;
+   private int rId;
+   private String rName;
+   private String rFlag;
 
+   public Roles(int rId, String rName, String rFlag) {
+      this.rId = rId;
+      this.rName = rName;
+      this.rFlag = rFlag;
+   }
+   public Roles() {
+   }
    public int getrId() {
       return rId;
    }

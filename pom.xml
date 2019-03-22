@@ -115,12 +115,6 @@
             <artifactId>spring-hateoas</artifactId>
             <version>0.23.0.RELEASE</version>
         </dependency>
-
-         <dependency>
-             <groupId>com.alibaba</groupId>
-             <artifactId>fastjson</artifactId>
-             <version>1.2.31</version>
-         </dependency>
  
         <!--解析Excel文档依赖-->
         <dependency>
@@ -141,27 +135,27 @@
              <groupId>org.springframework.boot</groupId>
              <artifactId>spring-boot-test</artifactId>
          </dependency>
-         <dependency>
-             <groupId>org.springframework</groupId>
-             <artifactId>spring-test</artifactId>
-             <version>RELEASE</version>
-             <scope>compile</scope>
-         </dependency>
+         <!--<dependency>-->
+             <!--<groupId>org.springframework</groupId>-->
+             <!--<artifactId>spring-test</artifactId>-->
+             <!--<version>RELEASE</version>-->
+             <!--<scope>compile</scope>-->
+         <!--</dependency>-->
 
-         <dependency>
-             <groupId>junit</groupId>
-             <artifactId>junit</artifactId>
-         </dependency>
-         <dependency>
-             <groupId>org.springframework.boot</groupId>
-             <artifactId>spring-boot-test</artifactId>
-         </dependency>
-         <dependency>
-             <groupId>org.springframework</groupId>
-             <artifactId>spring-test</artifactId>
-             <!--<version>RELEASE</version>--> <!--屏蔽最新版，否则测试抛异常-->
-             <scope>compile</scope>
-         </dependency>
+         <!--<dependency>-->
+             <!--<groupId>junit</groupId>-->
+             <!--<artifactId>junit</artifactId>-->
+         <!--</dependency>-->
+         <!--<dependency>-->
+             <!--<groupId>org.springframework.boot</groupId>-->
+             <!--<artifactId>spring-boot-test</artifactId>-->
+         <!--</dependency>-->
+         <!--<dependency>-->
+             <!--<groupId>org.springframework</groupId>-->
+             <!--<artifactId>spring-test</artifactId>-->
+             <!--&lt;!&ndash;<version>RELEASE</version>&ndash;&gt; &lt;!&ndash;屏蔽最新版，否则测试抛异常&ndash;&gt;-->
+             <!--<scope>compile</scope>-->
+         <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -170,6 +164,23 @@
             <scope>provided</scope>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-web</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,15 +1,17 @@
 package llcweb.com.controller.admin;
 
 import llcweb.com.dao.repository.PaperRepository;
+import llcweb.com.domain.entities.PageInfo;
 import llcweb.com.domain.entity.UsefulPaper;
 import llcweb.com.domain.models.Paper;
+import llcweb.com.domain.models.Project;
 import llcweb.com.service.PaperService;
 import llcweb.com.service.UsersService;
+import llcweb.com.tools.UsefulTools;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,7 +31,7 @@ import java.util.Map;
  *
  */
 
-@Controller
+@RestController
 @RequestMapping("/paper")
 public class PaperController {
 	private org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -50,21 +53,23 @@ public class PaperController {
 
 	/**
 	 * @Author haien
-	 * @Description 首页“专利”模块
+	 * @Description 首页“论文”模块
 	 * @Date 2018/10/7
 	 * @Param [count]
 	 * @return java.util.Map<java.lang.String,java.lang.Object>
 	 **/
 	@RequestMapping("/getLatest")
+	@ResponseBody
 	public Map<String,Object> getLatest(@RequestParam("count")Integer count){
 		Map<String,Object> map=new HashMap<>();
 		if(count==null||count.equals("")||count<=0){
 			map.put("result", 0);
 			map.put("message", "请正确指定读取数目！");
 		}else{
-			paperRepository.getLatest(count);
+			List<Paper> papers=paperRepository.getLatest(count);
 			map.put("result", 1);
 			map.put("message", "获取记录成功！");
+			map.put("data",papers);
 		}
 		return map;
 	}
@@ -228,17 +233,38 @@ public class PaperController {
     	paperRepository.save(paper);
     	
     	Paper newPaper = paperRepository.findOne(paper.getId());
-    	
-    	if(newPaper == null){
-        map.put("result", 1);
-        map.put("message", "成功保存项目！");
-        logger.info("成功保存项目！");
-    }else{
-        map.put("result", 0);
-        map.put("message", "保存项目失败！");
-        logger.error("保存项目失败！");
+		if(newPaper == null){
+			map.put("result", 1);
+			map.put("message", "成功保存项目！");
+			logger.info("成功保存项目！");
+		}else{
+			map.put("result", 0);
+			map.put("message", "保存项目失败！");
+			logger.error("保存项目失败！");
+		}
+		map.put("data",paper);
+		return map;
     }
-    map.put("data",paper);
-    return map;
-}
+
+	/**
+	 * @Author ricardo
+	 * @Description 分组获取项目
+	 * @Date 2018/10/10
+	 * @Param [count]
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
+	@RequestMapping("/getPage")
+	@ResponseBody
+	public Map<String,Object> getPage(@RequestParam("pageNum")int pageNum,@RequestParam("pageSize")int pageSize){
+		Map<String,Object> map=new HashMap<>();
+		logger.info(",pageNum="+pageNum+",pageSize="+pageSize);
+
+		Page<Paper> projectPage = paperService.getPage(pageNum-1,pageSize);
+		PageInfo pageInfo = new PageInfo(0,UsefulTools.paperToProductInfo(projectPage.getContent()),projectPage.getNumberOfElements());
+		pageInfo.setTotalPages(projectPage.getTotalPages());
+		map.put("result", 1);
+		map.put("message", "获取记录成功！");
+		map.put("data",pageInfo);
+		return map;
+	}
 }

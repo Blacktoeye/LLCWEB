@@ -1,6 +1,5 @@
 package llcweb.com.dao.repository;
 
-import java.util.List;
 import llcweb.com.domain.models.Patent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,9 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
-
-import llcweb.com.domain.models.Patent;
-import org.springframework.data.jpa.repository.Query;
 
 /**
  * Created by:Tong
@@ -34,7 +30,19 @@ public interface PatentRepository extends JpaRepository<Patent,Integer>{
 	 * @Param [count]
 	 * @return java.util.List<llcweb.com.domain.models.Patent>
 	 **/
-	@Query(value="select * from patent where state='发表' or state='受权' order by public_date desc limit ?1",nativeQuery=true)
+	@Query(value="select * from patent where state='授权' order by public_date desc limit ?1",nativeQuery=true)
 	List<Patent> getLatest(int count);
+//	/*
+//	 * 模糊查询
+//	 */
+//	@Query(value = "SELECT p from Patent p where p.title like %?1%"
+//				+ "or p.authorList like %?1%"
+//				+ "or p.belongProject like %?1%"
+//				+ "or p.appliNum like %?1%"
+//				+ "or p.publicNum like %?1%"
+//				+ "or p.agency like %?1%"
+//				+ "or p.appliPeople like %?1%"
+//				)
+//	Page<Patent> findByOneKey(String key, Pageable pageable);
 
 }

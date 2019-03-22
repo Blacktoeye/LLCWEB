@@ -23,7 +23,7 @@ var click = setInterval(function () {
 
     var timeStr = time.getFullYear() + '年' + (time.getMonth() + 1) + '月' + time.getDate() + '日 ' +
         hour + ':' + min + ':' + sec;
-    $("#clock").html(timeStr).css();
+    $("#clock").html(timeStr);
 }, 1000);
 
 $(document).ready(function () {

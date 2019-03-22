@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <!--<title>LLC实验室网站</title>-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
     <link rel="stylesheet" href="../../static/home/css/reset.css" type="text/css"
           th:href="@{/home/css/reset.css}">
     <link rel="stylesheet" href="../../static/home/css/public.css" type="text/css"
@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../../static/home/css/papers.css" type="text/css"
           th:href="@{/home/css/papers.css}"/>
     <link rel="stylesheet" href="../../static/home/css/team.css" th:href="@{/home/css/team.css}">
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -59,7 +60,7 @@
                                         </div> -->
                     <!--图片、老师名称、链接需要改变 -->
                     <ul id="ul-people-list" class="team_content" style="overflow:hidden;">
-                        <li>
+<!--                         <li>
                             <a href="ResearchProject/professor_demo.html">
                                 <img src="../../static/home/images/yicun.jpg" th:src="@{/home/images/yicun.jpg}"
                                      alt="教授A" width="120">
@@ -72,7 +73,7 @@
                                      alt="教授A" width="120">
                             </a>
                             <a href="ResearchProject/professor_demo.html" class="team_name"><h4>教授A</h4></a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -90,64 +91,41 @@
 <!--请求js-->
 <script>
     $(document).ready(function () {
-        //获取document对应的内容信息
+        //初始化页面
         var urlGetPeopleByPosition="/people/getByPosition";
-        var position = "教授";
-        initPeopleList(position,urlGetPeopleByPosition);
+        var position = '';
+        //获取document对应的内容信息，初始化
+        var url = location.href;
+        url = url.split("#");
+        var url1 = url[1].split(".");
+        var index = parseInt(url1[0]);
 
-        //监听请求更改
-        $("#btn-professor").click(function () {
-            position = "教授";
-            initPeopleList(position,urlGetPeopleByPosition);
+        if(index == 1)    position = '教授';
+        else if(index == 2)    position = '副教授';
+        else if(index == 3)    position = '讲师';
+        initPeopleList(position,urlGetPeopleByPosition,'/ResearchProject/professor_demo');
+
+        // 监听请求更改--左侧导航栏
+        $("a.ll_ref").click(function(){
+            var index = $(this).parent().index();//获取li的索引
+            //加载对应页面
+            if(index == 1)    position = '教授';
+            else if(index == 2)    position = '副教授';
+            else if(index == 3)    position = '讲师';
+            initPeopleList(position,urlGetPeopleByPosition,'/ResearchProject/professor_demo');
         });
-        $("#btn-Associate_professor").click(function () {
-            position = "副教授";
-            initPeopleList(position,urlGetPeopleByPosition);
+        //监听请求更改--二级菜单
+        $('.public-nav').find('li.item').eq(2).find('a.hon1').click(function(){
+            var index = $(this).parent().index()+1;
+            //加载对应页面
+            if(index == 1)    position = '教授';
+            else if(index == 2)    position = '副教授';
+            else if(index == 3)    position = '讲师';
+            initPeopleList(position,urlGetPeopleByPosition,'/ResearchProject/professor_demo');
         });
-        $("#btn-lecturer").click(function () {
-            position = "讲师";
-            initPeopleList(position,urlGetPeopleByPosition);
-        });
+
     });
-    function initPeopleList(position,urlGetPeopleByPosition) {
-        var peopleList = getPeopleByPosition(position,urlGetPeopleByPosition);
-        var htmlText= '';
-        for (var i=0;i<peopleList.length;i++){
-            var imgPath ='/custom/images/person-img.jpg';
-            if(peopleList[i].portrait!==undefined&&peopleList[i].portrait!==null&&peopleList[i].portrait!==0)
-                imgPath= '/image/getPath?id='+peopleList[i].portrait;
 
-            htmlText +='<li>' +
-                '<a href="/ResearchProject/professor_demo.html?id='+peopleList[i].id+'">' +
-                '   <img src="'+imgPath+
-                '" alt="'+peopleList[i].name+'" width="120"></a>' +
-                '<a href="/ResearchProject/professor_demo.html?id='+peopleList[i].id+
-                '" class="team_name"><h4>'+ peopleList[i].name+'</h4></a>' +
-                '</li>';
-        }
-        var root =$("#ul-people-list");
-        //清除内容
-        root.empty();
-        root.append(htmlText);
-    }
-    //根据id获取信息
-    function getPeopleByPosition(position,url) {
-        var document =null;
-        //设置同步
-        $.ajax({
-            type : "get",
-            url : url,
-            data :"position=" + position,
-            async : false,
-            success : function(data){
-                document = data.data;
-                if(data.result!==1){
-                    alert(data.message);
-                }
-            }
-        });
-        return document;
-    }
 </script>
 
 </body>

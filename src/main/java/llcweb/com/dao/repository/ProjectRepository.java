@@ -1,7 +1,6 @@
 package llcweb.com.dao.repository;
 
 
-import llcweb.com.domain.models.Activity;
 import llcweb.com.domain.models.Project;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +31,7 @@ public interface ProjectRepository extends JpaRepository<Project,Integer>{
      * @return java.util.List<llcweb.com.domain.models.Activity>
      **/
 	@Query(value="select * from project order by start_date desc limit ?1",nativeQuery = true)
-	List<Activity> getProjects(int count);
+	List<Project> getProjects(int count);
     
     /**
      * 实现模糊查询

@@ -55,4 +55,5 @@ public interface ActivityRepository extends JpaRepository<Activity,Integer> {
             "and is_publish=1 order by start_date desc limit ?2",nativeQuery = true)
     List<Activity> getActivities(String activityType,int count);
 
+    Page<Activity> findByActivityType(String activityType,Pageable pageable);
 }

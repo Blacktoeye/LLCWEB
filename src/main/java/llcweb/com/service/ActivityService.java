@@ -12,4 +12,6 @@ public interface ActivityService {
      * @return org.springframework.data.domain.Page<llcweb.com.domain.models.Activity>
      **/
     Page<Activity> activeSearch(Activity activity,int pageNum,int pageSize);
+
+    Page<Activity> getPage(String team,int pageNum,int pageSize);
 }

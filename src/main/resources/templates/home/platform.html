@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <!--<title>LLC实验室网站</title>-->
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+    th:href="@{/home/images/favicon.ico}"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../../static/home/css/reset.css" rel="stylesheet" th:href="@{/home/css/reset.css}">
+    <link href="../../static/home/css/public.css" rel="stylesheet" th:href="@{/home/css/public.css}">
+    <link href="../../static/home/css/index.css" rel="stylesheet" th:href="@{/home/css/index.css}">
+    <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
+    <meta name="keywords" content="jquery, plugin, pagination, fancy"/>
+    <title>科研成果——广东省信息物理融合系统重点实验室</title>
+    <link rel="stylesheet" href="../../static/home/css/header.css" type="text/css" th:href="@{/home/css/header.css}"/>
+    <link rel="stylesheet" href="../../static/home/css/sidebar.css" type="text/css" th:href="@{/home/css/sidebar.css}">
+    <link rel="stylesheet" href="../../static/home/css/meeting.css" type="text/css" th:href="@{/home/css/meeting.css}"/>
+    <link rel="stylesheet" href="../../static/home/css/style.css" type="text/css" th:href="@{/home/css/style.css}"/>
+    <link rel="stylesheet" href="../../static/home/css/papers.css" type="text/css" th:href="@{/home/css/papers.css}"/>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
+    <style>
+        /*人才培养页面列表样式*/
+        .main-platform{
+            display: block;
+            width: 900px;
+        }
+        .main-platform ul li {
+            text-align: center;
+            display: block;
+            margin-top:6px;
+            /*margin-left: 30px;*/
+            width: 450px;
+            float: left;
+            position: relative;
+        }
+        .main-platform ul li img {
+            /*margin-left: 30px;*/
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+<div th:include="template/header_template :: header_template"></div>
+<div class="middle">
+    <div class="container middle_container">
+        <div class="middle_content" style="margin-left: 100px;text-align: center;">
+
+            <div class="main-platform">
+                <ul>
+                    <li th:each="platform,iterStat : ${platformList}" >
+                        <ul>
+                            <li>
+                                <a target="_blank" th:href="${platform.address}">
+                                    <img src="/custom/images/person-img.jpg" th:src="${platform.coverImage}"/>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a style="width:400px;text-align:center;font-size: 25px;color: rgba(30,36,225,1);"
+                                   target="_blank" th:href="${platform.address}" th:text="${iterStat.count +'.'+platform.name}" >name</a>
+                            </li>
+                        </ul>
+                        <div>
+                            <hr style="height:1px;width:450px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top: 50px;">
+            <hr style="height:1px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/>
+        </div>
+    </div>
+</div>
+<div th:include="template/footer_template :: footer_template"></div>
+<script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
+        th:src="@{/home/js/jquery-1.12.4.min.js}"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../../static/home/Scripts/jquery.paginate.js" th:src="@{/home/Scripts/jquery.paginate.js}"></script>
+<script type="text/javascript" src="../../static/home/js/common.js"
+    th:src="@{/home/js/common.js}"></script>
+
+<script>
+    $(document).ready(function () {
+
+    });
+</script>
+</body>
+</html>

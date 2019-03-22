@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <!--<title>LLC实验室网站</title>-->
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="../../static/home/css/reset.css" rel="stylesheet" th:href="@{/home/css/reset.css}">
     <link href="../../static/home/css/public.css" rel="stylesheet" th:href="@{/home/css/public.css}">
@@ -27,74 +27,25 @@
     <!-- <h1><span>机构概况</span></h1> -->
     <ul id='resultType' class="tmo_list2">
         <li class="ll first"><span>科研成果</span></li>
-        <li class='ll'>
-            <a href='scientific_achievements.html' class='ll_ref' style="background:#6ad;">
-                <i></i>
-                <span>曾获奖项</span>
-            </a>
-        </li>
-        <li class='ll'>
-            <a href='achievement/scientific_achievements1.html' class='ll_ref'>
+        <li class='ll'  id="li-paper">
+            <a href='#' class='ll_ref'>
                 <i></i>
                 <span>发表论文</span>
             </a>
         </li>
-        <li class='ll'>
-            <a href='achievement/scientific_achievements2.html' class='ll_ref'>
+        <li class='ll'  id="li-patent">
+            <a href='#' class='ll_ref'>
                 <i></i>
                 <span>发表专利</span>
             </a>
         </li>
-        <li class='ll'>
-            <a href='achievement/scientific_achievements3.html' class='ll_ref'>
+        <li class='ll'  id="li-software">
+            <a href='#' class='ll_ref'>
                 <i></i>
                 <span>软件著作权</span>
             </a>
         </li>
     </ul>
-    <ul style="margin-left: 30px;margin-top: 40px;">
-        <li>
-            <span>时间</span>
-        </li>
-        <li>
-            <a href="#">
-                <span>2018以来</span><i style="margin-left: 70px;">(1013)</i>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span>2017以来</span><i style="margin-left: 70px;">(990)</i>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <span>2016以来</span><i style="margin-left: 70px;">(890)</i>
-            </a>
-        </li>
-        <!--<li><span>按时间段搜索</span></li>-->
-        <form>
-            <input data-nolog="1" pattern="[0-9]*" size="4" placeholder="年" maxlength="4" name="" value="" type="text">
-            &nbsp;-&nbsp;
-            <input data-nolog="1" pattern="[0-9]*" size="4" placeholder="年" maxlength="4" name="" value="" type="text">
-            <span class="leftnav_year_para" data-type="" data-cate="" data-level=""></span>
-            <span class="sc-btn leftnav_input_subspan" data-click="{'button_tp':'search_t'}">
-                        <input value="确认" class="leftnav_input_sub" type="submit"></span>
-        </form>
-        <!--<li class="ll">-->
-        <!--<a>-->
-        <!--<input type="text" id="end" size="14" style="height:20px;" placeholder="结束时间..."-->
-        <!--onkeydown='searchByEnter(event)'/>-->
-        <!--</a>-->
-        <!--</li>-->
-
-    </ul>
-
-
-
-
-
-
-
 </div>
 </body>
 </html>

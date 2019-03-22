@@ -1,180 +1,127 @@
-﻿<!DOCTYPE html>
-<!--本文件用于前端测试使用，后台已经解析路径"/test.html" 即可访问-->
-<html xmlns:th="http://www.thymeleaf.org">
+﻿<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<meta charset="utf-8">-->
+    <!--<title>Bootstrap 实例 - 警告框（Alert）插件事件</title>-->
+    <!--<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
+    <!--<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="father">-->
+<!--</div>-->
+<!--&lt;!&ndash;<div id="myAlert" class="alert alert-success">&ndash;&gt;-->
+    <!--&lt;!&ndash;<a href="#" class="close" data-dismiss="alert">&times;</a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<strong>成功！</strong>结果是成功的。&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--<script type="text/javascript">-->
+    <!--$(function(){-->
+<!--//        $("#myAlert").bind('closed.bs.alert', function () {-->
+<!--//            alert("警告消息框被关闭。");-->
+<!--//        });-->
+
+        <!--var str ="<div>son</div>";-->
+        <!--$("#father").append(str);-->
+    <!--});-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<meta charset="utf-8">-->
+    <!--<title>菜鸟教程(runoob.com)</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div id="p1">Hello World!</div>-->
+<!--<script>-->
+    <!--for (var i=0;i<100;i++){-->
+        <!--var element = document.createElement("div");-->
+        <!--element.className = "message";-->
+        <!--var textNode = document.createTextNode("Hello world!");-->
+        <!--element.appendChild(textNode);-->
+        <!--document.getElementById("p1").appendChild(element);-->
+    <!--}-->
+
+<!--</script>-->
+
+<!--<p>以上段落通过脚本修改文本。</p>-->
+
+<!--</body>-->
+<!--</html>-->
+
+<html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>计划管理</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet">
-    <link href="../static/assets/materialize/css/materialize.min.css"
-          th:href="@{assets/materialize/css/materialize.min.css}" rel="stylesheet"/>
-    <!-- Bootstrap Styles-->
-    <link href="../static/assets/css/bootstrap.css"
-          th:href="@{/assets/css/bootstrap.css}" rel="stylesheet"/>
-    <!-- FontAwesome Styles-->
-    <link href="../static/assets/font-awesome-4.7.0/css/font-awesome.css"
-          th:href="@{/assets/css/font-awesome.css}" rel="stylesheet"/>
-    <!-- Custom Styles-->
-    <link href="../static/assets/css/custom-styles.css"
-          th:href="@{/assets/css/custom-styles.css}" rel="stylesheet"/>
-    <!-- Google Fonts-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans'
-          th:href="@{http://fonts.googleapis.com/css?family=Open+Sans}" rel='stylesheet' type='text/css'/>
-
-    <!-- commom Styles-->
-    <link href="../static/custom/css/common.css"
-          th:href="@{/custom/css/common.css}" rel="stylesheet"/>
-
-    <link href="../static/assets/plugins/selector/css/bootstrap-select.min.css"
-          th:href="@{/assets/plugins/selector/css/bootstrap-select.min.css}" rel="stylesheet">
-    <style>
-        .special {
-            font-weight: bold !important;
-            color: #fff !important;
-            background: #bc0000 !important;
-            text-transform: uppercase;
-        }
-
-    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <title>带关闭按钮的浮动窗口</title>
 </head>
-
+<style type="text/css">
+    #fdck {border:1px solid #c0c0c0;margin:0 auto;padding:5px;background:#f0f0f0}
+</style>
 <body>
-
-<div id="wrapper">
-    <!-- top side start-->
-    <div  th:include="template/top_side_template :: topside"></div>
-    <!-- top side end-->
-    <!-- left side start-->
-    <nav class="navbar-default navbar-side" role="navigation"
-         th:include="template/left_side_template :: leftside"></nav>
-    <!-- left side end-->
-    <div id="page-wrapper">
-        <div id="header" class="header">
-            <ol class="breadcrumb">
-                <li><a href="#">计划监控</a></li>
-                <li class="active">计划管理</li>
-            </ol>
-        </div>
-
-        <div id="page-inner">
-            <div class="row" style="margin-top: -40px;">
-                <div class="col-md-12">
-                    <!--<iframe th:src="@{/iframe/workers.html}"-->
-                            <!--src="./iframe/plan.html" frameborder=0 allowfullscreen></iframe>-->
-                </div>
-                <div class="col-md-12">
-                    <div id="plan-panel">
-                        <!---->
-                        <!--计划详细信息面板-->
-                        <div class="col-md-10">
-                            <form class="form-inline" action="/image/upload">
-                                <div class="form-group">
-                                    <label for="description">图片描述:</label>
-                                    <input type="text" class="form-control" id="description" name="description" style="width: 1000px;">
-                                </div>
-                                <div class="form-group">
-                                    <label for="file">选择文件:</label>
-                                    <input  enctype="multipart/form-data" class="form-control" id="file" name="file" style="width: 1000px;">
-                                </div>
-                                <div class="form-group">
-                                    <label for="group">组别:</label>
-                                    <select id="group" name="group" class="form-control  selectpicker" title="选择组别">
-                                        <option value="1" data-content="<span class='label label-success'>无</span>">无
-                                        </option>
-                                        <option value="2" data-content="<span class='label label-success'>数据组</span>">
-                                            数据组
-                                        </option>
-                                        <option value="3" data-content="<span class='label label-success'>数据组</span>">
-                                            网络组
-                                        </option>
-                                        <option value="4" data-content="<span class='label label-danger'>机器人组</span>">
-                                            机器人组
-                                        </option>
-                                        <option value="5" data-content="<span class='label label-info'>太赫兹组</span>">
-                                            太赫兹组
-                                        </option>
-                                        <option value="6" data-content="<span class='label label-success'>数据组</span>">
-                                            高分高性能组
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group" style="margin-left: 20px;">
-                                    <button type="button" class="btn" id="btn-save-document"><i class="fa fa-save"></i>
-                                        上传
-                                    </button>
-                                </div>
-                                <div class="form-group" style="margin-left: 20px;">
-                                    <button type="button" class="btn btn-danger" id="btn-clear-document">
-                                        <i class="fa fa-trash-o"></i> 清空内容
-                                    </button>
-                                </div>
-                            </form>
-
-                        </div>
-                        <!--计划表格-->
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <select id="select-test" class="form-control selectpicker" title="请选择省份11111" multiple>
-
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <select class="selectpicker">
-                        <option data-content="<i class='fa fa-tasks'></i>Relish">Relish</option>
-                    </select>
-
-                </div>
-            </div>
-            <footer th:include="template/footer_template :: my_footer">
-            </footer>
-        </div>
-        <!-- /. PAGE INNER  -->
+<div id="my-window" style="position: absolute; left: 311; top: 815;visibility :hidden;" onmouseover="clearInterval(interval)" onmouseout="interval = setInterval('changePos()', delay)" align="middle">
+    <span style="CURSOR:hand;color:red;font-weight:bold;font-size:12px" onclick="clearInterval(interval);document.getElementById('my-window').style.visibility = 'hidden'">关闭</span>
+    <div id="fdck">
+        浮动测试TEST
     </div>
-    <!-- /. PAGE WRAPPER  -->
 </div>
-<!-- /. WRAPPER  -->
-<!-- JS Scripts-->
-<!-- jQuery Js -->
-<script src="../static/assets/js/jquery-1.10.2.js"
-        th:src="@{/assets/js/jquery-1.10.2.js}"></script>
-<!-- Bootstrap Js -->
-<script src="../static/assets/js/bootstrap.min.js"
-        th:src="@{/assets/js/bootstrap.min.js}"></script>
-<!--&lt;!&ndash; Metis Menu Js &ndash;&gt;-->
-<!--<script src="../static/assets/js/jquery.metisMenu.js"-->
-        <!--th:src="@{/assets/js/jquery.metisMenu.js}"></script>-->
-<!--&lt;!&ndash;通用 Custom Js &ndash;&gt;-->
-<!--<script src="../static/assets/js/custom-scripts.js"-->
-        <!--th:src="@{/assets/js/custom-scripts.js}"></script>-->
-<!--<script src="../static/custom/js/common.js"-->
-        <!--th:src="@{/custom/js/commom.js}"></script>-->
-
-<script src="../static/assets/plugins/selector/js/bootstrap-select.min.js"
-        th:src="@{/assets/plugins/selector/js/bootstrap-select.min.js}"></script>
-
-<script>
-
-    $(document).ready(function () {
-        //$("#select-test").empty();
-        var option="";
-        for (var i =0 ; i<5;i++){
-            option+= "<option"+ " value='"+i+ "' data-content=\"<span class='label "+
-                (i%2 ? "label-success'>" : "label-warning'>")+
-                "name"+i +"</span>\">"+"name"+i+ "</option>";
-
+<script language=javascript>
+    var xPos = 20;
+    var yPos = document.body.clientHeight;
+    var step = 1;
+    var delay = 30;
+    var height = 0;
+    var Hoffset = 0;
+    var Woffset = 0;
+    var yon = 0;
+    var xon = 0;
+    var pause = true;
+    var interval;
+    document.getElementById('my-window').style.top = yPos;
+    function changePos() {
+        width = document.body.clientWidth;
+        height = document.body.clientHeight;
+        Hoffset = document.getElementById('my-window').offsetHeight;
+        Woffset = document.getElementById('my-window').offsetWidth;
+        document.getElementById('my-window').style.left = xPos + document.body.scrollLeft;
+        document.getElementById('my-window').style.top = yPos + document.body.scrollTop;
+        if (yon) {
+            yPos = yPos + step;
         }
-        alert(option);
-        $("#select-test").prepend(option);
-        // 刷新
-        $('#select-test').selectpicker('refresh');
-
-    });
+        else {
+            yPos = yPos - step;
+        }
+        if (yPos < 0) {
+            yon = 1;
+            yPos = 0;
+        }
+        if (yPos >= (height - Hoffset)) {
+            yon = 0;
+            yPos = (height - Hoffset);
+        }
+        if (xon) {
+            xPos = xPos + step;
+        }
+        else {
+            xPos = xPos - step;
+        }
+        if (xPos < 0) {
+            xon = 1;
+            xPos = 0;
+        }
+        if (xPos >= (width - Woffset)) {
+            xon = 0;
+            xPos = (width - Woffset);
+        }
+    }
+    function start() {
+        document.getElementById('my-window').style.visibility = "visible";
+        interval = setInterval('changePos()', delay);
+    }
+    start();
 </script>
 </body>
-
 </html>

@@ -78,4 +78,11 @@ public class SoftwareServiceImpl implements SoftwareService {
         //查询
         return softwareRepository.findAll(specification,pageable);
     }
+
+    @Override
+    public Page<Software> getPage(int pageNum, int pageSize) {
+        Pageable pageable=new PageRequest(pageNum,pageSize, Sort.Direction.DESC,"appliDate");
+        Page<Software> projectPage= softwareRepository.findAll(pageable);
+        return projectPage;
+    }
 }

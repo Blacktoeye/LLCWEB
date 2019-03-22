@@ -60,6 +60,10 @@ $(document).ready(function () {
                 //空值的column会引发dataTable 报warning ：DataTables warning: table id=document-table - Requested unknown parameter 'author' for row 3.
                 columns: [
                     {
+                        data: "id",
+                        width: "80px"
+                    },
+                    {
                         //data: "originalName",
                         data: null,
                         defaultContent: ""
@@ -106,7 +110,7 @@ $(document).ready(function () {
                     if(path==null||path==undefined||path.length<3)path="#";
                     var $htmlText = $('<i class="fa fa-file"></i> &nbsp;&nbsp;'+
                         '<a style="text-decoration:none;" target="_blank" href="/'+path+'">'+data.originalName+'</a>');
-                    $('td', row).eq(0).append($htmlText);
+                    $('td', row).eq(1).append($htmlText);
 
                     //不使用render，改用jquery文档操作呈现单元格
                     var $btnCopy = $('<button class="btn btn-info btn-copy" type="button" data-toggle="tooltip"data-placement="bottom" title="复制图片地址"> <i class="fa fa-copy"></i> </button>');
@@ -114,7 +118,7 @@ $(document).ready(function () {
                     var $btnEdit = $(' <button class="btn btn-warning btn-edit" type="button" data-toggle="tooltip"data-placement="bottom" title="编辑"> <i class="fa fa-edit"></i> </button>');
                     var $btnDelete = $('<button class="btn btn-danger  btn-delete" type="button" data-toggle="tooltip"data-placement="bottom" title="删除"> <i class="fa fa-trash-o"></i> </button>');
 
-                    $('td', row).eq(6).append($btnCopy).append($btnDownload).append($btnEdit).append($btnDelete);
+                    $('td', row).eq(7).append($btnCopy).append($btnDownload).append($btnEdit).append($btnDelete);
 
                 },
                 "drawCallback": function (settings) {

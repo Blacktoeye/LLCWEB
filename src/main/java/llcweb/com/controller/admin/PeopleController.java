@@ -31,7 +31,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/people")
 public class PeopleController {
-    private static final Logger logger=LoggerFactory.getLogger(PeopleController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PeopleController.class);
 
     @Resource
     private UsersService usersService;
@@ -45,15 +45,15 @@ public class PeopleController {
     private ImageRepository imageRepository;
 
     /**
+     * @return java.util.Map<java.lang.String   ,   java.lang.Object>
      * @Author haien
      * @Description 搜索People
      * @Date 2018/10/3
      * @Param [request]
-     * @return java.util.Map<java.lang.String,java.lang.Object>
      **/
-    @RequestMapping(value="/page",method = RequestMethod.GET)
-    public Map<String,Object> page(HttpServletRequest request){
-        Map<String,Object> map=new HashMap<>();
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public Map<String, Object> page(HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<>();
 
         //直接返回前台
         String draw = request.getParameter("draw");
@@ -61,105 +61,102 @@ public class PeopleController {
         String startIndex = request.getParameter("startIndex");
         //数据长度
         String pageSize = request.getParameter("pageSize");
-        if(draw==null||startIndex==null||pageSize==null){
+        if (draw == null || startIndex == null || pageSize == null) {
             map.put("result", 0);
             map.put("message", "参数不完整！");
             return map;
         }
         int size = Integer.parseInt(pageSize);
         //页码
-        int currentPage = Integer.parseInt(startIndex)/size+1;
+        int currentPage = Integer.parseInt(startIndex) / size + 1;
 
-        String name=request.getParameter("name");
-        String grade1=request.getParameter("grade");
-        String position=request.getParameter("position");
-        int grade=0;
-        if(grade1!=null){
-            grade=Integer.parseInt(grade1);
+        String name = request.getParameter("name");
+        String grade1 = request.getParameter("grade");
+        String position = request.getParameter("position");
+        int grade = 0;
+        if (grade1 != null) {
+            grade = Integer.parseInt(grade1);
         }
-        People people=new People(name,position,grade);
+        People people = new People(name, position, grade);
 
-        logger.info("高级查询：size = "+size+",currentPage = "+currentPage);
+        logger.info("高级查询：size = " + size + ",currentPage = " + currentPage);
 
         //高级查询
-        Page<People> peoplePage=peopleService.activeSearch(people,currentPage-1,size);
+        Page<People> peoplePage = peopleService.activeSearch(people, currentPage - 1, size);
         //总记录数
         long total = peoplePage.getTotalElements();
-        logger.info("total="+total);
+        logger.info("total=" + total);
 
         map.put("draw", draw);
         map.put("result", 1);
-        if(0==total){
-            map.put("message", "未查询到相关人员！");
-        }else {
-            map.put("total", total);
-            map.put("pageData", peoplePage);
-            map.put("message", "成功获取分页数据！");
-        }
+        map.put("total", total);
+        map.put("pageData", peoplePage.getContent());
+        map.put("message", "成功获取分页数据！");
         return map;
     }
 
     /**
+     * @return java.util.Map<java.lang.String   ,   java.lang.Object>
      * @Author haien
      * @Description 保存人员资料
      * @Date 2018/10/4
      * @Param [request, response]
-     * @return java.util.Map<java.lang.String,java.lang.Object>
      **/
-    @RequestMapping(value="/save",method=RequestMethod.POST)
-    public Map<String,Object> save(HttpServletRequest request, HttpServletResponse response){
-        Map<String,Object> map=new HashMap<>();
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public Map<String, Object> save(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = new HashMap<>();
 
-        String id=request.getParameter("id");
-        String name=request.getParameter("name");
-        String portrait1=request.getParameter("portrait");
-        String position=request.getParameter("position");
-        String introduction1=request.getParameter("introduction");
-        String grade1=request.getParameter("grade");
-        String phone=request.getParameter("phone");
-        String email=request.getParameter("email");
-        String sex=request.getParameter("sex");
-        String adminPosition=request.getParameter("adminPosition");
-        String highestDegree=request.getParameter("highestDegree");
-        String researchField=request.getParameter("researchField");
-        String academicTitle=request.getParameter("academicTitle");
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String portrait1 = request.getParameter("portrait");
+        String position = request.getParameter("position");
+        String introduction1 = request.getParameter("introduction");
+        String grade1 = request.getParameter("grade");
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String sex = request.getParameter("sex");
+//        String adminPosition=request.getParameter("adminPosition");
+//        String highestDegree=request.getParameter("highestDegree");
+//        String academicTitle=request.getParameter("academicTitle");
+        String researchField = request.getParameter("researchField");
 
-        if(StringUtil.isNull(name)||StringUtil.isNull(portrait1)||
-                StringUtil.isNull(position)||StringUtil.isNull(introduction1)||
-                StringUtil.isNull(grade1)||StringUtil.isNull(phone)||
-                StringUtil.isNull(email)||StringUtil.isNull(sex)||
-                StringUtil.isNull(adminPosition)||StringUtil.isNull(highestDegree)||
-                StringUtil.isNull(researchField)||StringUtil.isNull(academicTitle)){
-            map.put("result", 0);
-            map.put("message", "人员保存失败,信息不完整！");
-            return map;
-        }
-        if(!ValidatorUtil.isMobile(phone)){
-            map.put("result", 0);
-            map.put("message", "手机号格式不正确！");
-            return map;
-        }
-        if(!ValidatorUtil.isEmail(email)){
-            map.put("result", 0);
-            map.put("message", "邮箱格式不正确！");
-            return map;
-        }
-        if(!sex.equals("男")||!sex.equals("女")){
-            map.put("result", 0);
-            map.put("message", "性别请选择男或女！");
-            return map;
-        }
+//        if(StringUtil.isNull(name)||StringUtil.isNull(portrait1)||
+//                StringUtil.isNull(position)||StringUtil.isNull(introduction1)||
+//                StringUtil.isNull(grade1)||StringUtil.isNull(phone)||
+//                StringUtil.isNull(email)||StringUtil.isNull(sex)||
+//                StringUtil.isNull(adminPosition)||StringUtil.isNull(highestDegree)||
+//                StringUtil.isNull(researchField)||StringUtil.isNull(academicTitle)){
+//            map.put("result", 0);
+//            map.put("message", "人员保存失败,信息不完整！");
+//            return map;
+//        }
 
-        int portrait=Integer.parseInt(portrait1);
-        int introduction=Integer.parseInt(introduction1);
-        int grade=Integer.parseInt(grade1);
+//        if(!ValidatorUtil.isMobile(phone)){
+//            map.put("result", 0);
+//            map.put("message", "手机号格式不正确！");
+//            return map;
+//        }
+//        if(!ValidatorUtil.isEmail(email)){
+//            map.put("result", 0);
+//            map.put("message", "邮箱格式不正确！");
+//            return map;
+//        }
+//        if(!sex.equals("男")||!sex.equals("女")){
+//            map.put("result", 0);
+//            map.put("message", "性别请选择男或女！");
+//            return map;
+//        }
 
-        People people=null;
+        int portrait = Integer.parseInt(portrait1);
+        int introduction = Integer.parseInt(introduction1);
+        int grade = Integer.parseInt(grade1);
+
+        People people = null;
         //更新
-        if(!StringUtil.isNull(id)&&Integer.parseInt(id)>0){
-            logger.info("更新人员--id="+id+"name="+name+"introduction="+introduction1);
+        if (!StringUtil.isNull(id) && Integer.parseInt(id) > 0) {
+            logger.info("更新人员--id=" + id + "name=" + name + "introduction=" + introduction1);
             people = peopleRepository.findOne(Integer.parseInt(id));
-            if(people==null){
+            if (people == null) {
                 map.put("result", 0);
                 map.put("message", "查无此人！");
                 return map;
@@ -167,7 +164,7 @@ public class PeopleController {
         }
         //添加
         else {
-            logger.info("新增人员--id="+id+"name="+name+"introduction="+introduction1);
+            logger.info("新增人员--id=" + id + "name=" + name + "introduction=" + introduction1);
             people = new People();
         }
 
@@ -179,12 +176,11 @@ public class PeopleController {
         people.setPhone(phone);
         people.setEmail(email);
         people.setSex(sex);
-        people.setAdminPosition(adminPosition);
-        people.setHighestDegree(highestDegree);
         people.setResearchField(researchField);
-        people.setAcademicTitle(academicTitle);
+//        people.setAdminPosition(adminPosition);
+//        people.setHighestDegree(highestDegree);
+//        people.setAcademicTitle(academicTitle);
         peopleRepository.save(people);
-
         map.put("result", 1);
         map.put("message", "成功保存人员！");
         logger.info("成功保存人员！");
@@ -193,17 +189,17 @@ public class PeopleController {
     }
 
     @RequestMapping("/delete")
-    public Map<String,Object> delete(@RequestParam("id")Integer id){
-        Map<String,Object> map=new HashMap<>();
+    public Map<String, Object> delete(@RequestParam("id") Integer id) {
+        Map<String, Object> map = new HashMap<>();
 
-        logger.info("删除人员：id="+id);
+        logger.info("删除人员：id=" + id);
 
-        People people=peopleRepository.findOne(id);
+        People people = peopleRepository.findOne(id);
         if (people == null) {
             map.put("result", 0);
             logger.info("删除人员失败");
             map.put("message", "删除人员失败！");
-        }else{
+        } else {
             peopleRepository.delete(id);
             documentRepository.delete(people.getIntroduction());
             imageRepository.delete(people.getPortrait());
@@ -218,13 +214,44 @@ public class PeopleController {
     /**
      * */
     @RequestMapping("/getByPosition")
-    public Map<String,Object> getByPosition(@RequestParam("position")String position){
-        Map<String,Object> map=new HashMap<>();
-        logger.info("getByPosition：position="+position);
-        List<People> peopleList=peopleRepository.findByPosition(position);
-        map.put("data",peopleList);
-        map.put("result",1);
-        map.put("message","获取成功！");
+    public Map<String, Object> getByPosition(@RequestParam("position") String position) {
+        Map<String, Object> map = new HashMap<>();
+        logger.info("getByPosition：position=" + position);
+        List<People> peopleList = peopleRepository.findByPosition(position);
+        map.put("data", peopleList);
+        map.put("result", 1);
+        map.put("message", "获取成功！");
+        return map;
+    }
+
+    /**
+     * */
+    @RequestMapping("/getByPositionAndGrade")
+    public Map<String, Object> getByPosition(@RequestParam("position") String position, @RequestParam("grade") int grade) {
+        Map<String, Object> map = new HashMap<>();
+        logger.info("getByPosition：position=" + position+"  grade="+grade);
+        List<People> peopleList;
+        if(grade>0) {
+            peopleList = peopleRepository.findByPositionAndGrade(position,grade);
+        }else {
+            peopleList = peopleRepository.findByPosition(position);
+        }
+        map.put("data", peopleList);
+        map.put("result", 1);
+        map.put("message", "获取成功！");
+        return map;
+    }
+
+    /**
+     * */
+    @RequestMapping("/getById")
+    public Map<String, Object> getById(@RequestParam("id") Integer id) {
+        Map<String, Object> map = new HashMap<>();
+        logger.info("getById：id=" + id);
+        People peopleList = peopleRepository.findById(id);
+        map.put("data", peopleList);
+        map.put("result", 1);
+        map.put("message", "获取成功！");
         return map;
     }
 }

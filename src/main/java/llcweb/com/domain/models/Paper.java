@@ -1,4 +1,4 @@
-package llcweb.com.domain.models; 
+package llcweb.com.domain.models;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,135 +9,143 @@ import java.util.Date;
  * @Date 2018/10/7
  **/
 @Entity
-@Table(name="paper")
+@Table(name = "paper")
 public class Paper {
-	   @Id
-	   @GeneratedValue
-	   private Integer id;
-	   
-	   //论文标题
-	   @Column(name = "title", length = 64)
-	   private String title;
-	   
-	   //发表日期
-	   @Column(name = "date")
-	   private Date date;
-	   
-	   //文章简介
-	   @Column(name = "introduction", length = 255)
-	   private String introduction;
-	   
-	   //作者姓名列表，对应people表的姓名，也可以是外面合作人员
-	    @Column(name = "author_list", length = 64)
-	    private String authorList;
-	    
-	    //原文链接
-	    @Column(name = "original_link", length = 64)
-	    private String originalLink;
-	    
-	    //源码链接
-	    @Column(name = "source_link", length = 64)
-	    private String sourceLink;
-	    
-	    //所属项目id
-	    @Column(name = "belong_project", length = 11)
-	    private String belongProject;
-	    
-	    //发表期刊
-	    @Column(name = "periodical", length = 64)
-	    private String periodical;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	    private String state;
+    //论文标题
+    @Column(name = "title", length = 64)
+    private String title;
 
-	public String getState() {
-		return state;
-	}
+    //发表日期
+    @Column(name = "date")
+    private Date date;
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    //文章简介
+    @Column(name = "introduction", length = 255)
+    private String introduction;
 
-	public Paper() {
-	}
+    //作者姓名列表，对应people表的姓名，也可以是外面合作人员
+    @Column(name = "author_list", length = 64)
+    private String authorList;
 
-	public Integer getId() {
-		return id;
-	}
+    //原文链接
+    @Column(name = "original_link", length = 64)
+    private String originalLink;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    //源码链接
+    @Column(name = "source_link", length = 64)
+    private String sourceLink;
 
-	public String getTitle() {
-		return title;
-	}
+    //所属项目id
+    @Column(name = "belong_project", length = 11)
+    private String belongProject;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    //发表期刊
+    @Column(name = "periodical", length = 64)
+    private String periodical;
+    private String periodicalType;
+    private String state;
 
-	public Date getDate() {
-		return date;
-	}
+    public String getPeriodicalType() {
+        return periodicalType;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setPeriodicalType(String periodicalType) {
+        this.periodicalType = periodicalType;
+    }
 
-	public String getIntroduction() {
-		return introduction;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public void setIntroduction(String introduction) {
-		this.introduction = introduction;
-	}
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	public String getAuthorList() {
-		return authorList;
-	}
+    public Paper() {
+    }
 
-	public void setAuthorList(String authorList) {
-		this.authorList = authorList;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getOriginalLink() {
-		return originalLink;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setOriginalLink(String originalLink) {
-		this.originalLink = originalLink;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getBelongProject() {
-		return belongProject;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setBelongProject(String belongProject) {
-		this.belongProject = belongProject;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public String getSourceLink() {
-		return sourceLink;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public void setSourceLink(String sourceLink) {
-		this.sourceLink = sourceLink;
-	}
+    public String getIntroduction() {
+        return introduction;
+    }
 
-	public String getPeriodical() {
-		return periodical;
-	}
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
 
-	public void setPeriodical(String periodical) {
-		this.periodical = periodical;
-	}
+    public String getAuthorList() {
+        return authorList;
+    }
 
-	@Override
-	public String toString() {
-		return "Paper [id=" + id + ", title=" + title + ", date=" + date + ", introduction=" + introduction
-				+ ", authorList=" + authorList + ", originalLink=" + originalLink + ", belongProject=" + belongProject
-				+ ", sourceLink=" + sourceLink + ", periodical=" + periodical + "]";
-	}
-	   
-	   
+    public void setAuthorList(String authorList) {
+        this.authorList = authorList;
+    }
+
+    public String getOriginalLink() {
+        return originalLink;
+    }
+
+    public void setOriginalLink(String originalLink) {
+        this.originalLink = originalLink;
+    }
+
+    public String getBelongProject() {
+        return belongProject;
+    }
+
+    public void setBelongProject(String belongProject) {
+        this.belongProject = belongProject;
+    }
+
+    public String getSourceLink() {
+        return sourceLink;
+    }
+
+    public void setSourceLink(String sourceLink) {
+        this.sourceLink = sourceLink;
+    }
+
+    public String getPeriodical() {
+        return periodical;
+    }
+
+    public void setPeriodical(String periodical) {
+        this.periodical = periodical;
+    }
+
+    @Override
+    public String toString() {
+        return "Paper [id=" + id + ", title=" + title + ", date=" + date + ", introduction=" + introduction
+                + ", authorList=" + authorList + ", originalLink=" + originalLink + ", belongProject=" + belongProject
+                + ", sourceLink=" + sourceLink + ", periodical=" + periodical + "]";
+    }
+
+
 }

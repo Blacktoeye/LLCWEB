@@ -1,21 +1,21 @@
 package llcweb.com.controller.admin;
 
 import llcweb.com.dao.repository.SoftwareRepository;
+import llcweb.com.domain.entities.PageInfo;
+import llcweb.com.domain.models.Patent;
 import llcweb.com.domain.models.Software;
 import llcweb.com.domain.models.Users;
 import llcweb.com.service.UsersService;
 import llcweb.com.service.SoftwareService;
 import llcweb.com.tools.StringUtil;
+import llcweb.com.tools.UsefulTools;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -256,7 +257,7 @@ public class SoftwareController {
      * @Param [activityType, count]
      * @return java.util.Map<java.lang.String,java.lang.Object>
      **/
-    @RequestMapping("/getSoftwares")
+    @RequestMapping("/getLatest")
     public Map<String,Object> getSoftwares(@RequestParam("count")Integer count){
         Map<String,Object> map=new HashMap<>();
 
@@ -264,10 +265,34 @@ public class SoftwareController {
             map.put("result", 0);
             map.put("message", "请正确指定读取数目！");
         }else{
-            softwareRepository.getSoftwares(count);
+            List<Software> softwares=softwareRepository.getLatest(count);
             map.put("result", 1);
             map.put("message", "获取记录成功！");
+            map.put("data",UsefulTools.softwareToProductInfo(softwares));
         }
+        return map;
+    }
+
+    /**
+     * @Author ricardo
+     * @Description 分组获取项目
+     * @Date 2018/10/10
+     * @Param [count]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     **/
+    @RequestMapping("/getPage")
+    @ResponseBody
+    public Map<String,Object> getPage(@RequestParam("pageNum")int pageNum,@RequestParam("pageSize")int pageSize){
+        Map<String,Object> map=new HashMap<>();
+        logger.info(",pageNum="+pageNum+",pageSize="+pageSize);
+
+        Page<Software> projectPage = softwareService.getPage(pageNum-1,pageSize);
+        PageInfo pageInfo = new PageInfo(0,UsefulTools.softwareToProductInfo(projectPage.getContent()),projectPage.getNumberOfElements());
+        pageInfo.setTotalPages(projectPage.getTotalPages());
+
+        map.put("result", 1);
+        map.put("message", "获取记录成功！");
+        map.put("data",pageInfo);
         return map;
     }
 }

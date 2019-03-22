@@ -13,10 +13,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -189,7 +196,7 @@ public class AdminPageController {
         ModelAndView modelAndView = new ModelAndView("admin/document_edit");
         Document document;
 		//新建
-        if(id==null){
+        if(id==null||id<=0){
             //用于前端读取数据
             document = new Document();
             document.setTitle("新建文档");
@@ -206,4 +213,6 @@ public class AdminPageController {
         modelAndView.addObject("document", document);
         return modelAndView;
     }
+
+
 }

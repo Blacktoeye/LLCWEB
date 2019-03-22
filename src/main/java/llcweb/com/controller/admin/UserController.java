@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -76,4 +77,25 @@ public class UserController {
         return map;
     }
 
+    @RequestMapping(value = "/isCurrentUserHasRole",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> delete(@RequestParam("role")String role){
+        Map<String,Object> map=new HashMap<>();
+
+        logger.info("isCurrentUserHasRole：role="+role);
+        boolean hasRole = usersService.hasRole(role);
+
+        if (!hasRole) {
+            map.put("result", 0);
+            map.put("data", 0);
+            logger.info("没有该权限");
+            map.put("message", "没有该权限！");
+        }else{
+            logger.info("有该权限");
+            map.put("result", 1);
+            map.put("data", 1);
+            map.put("message", "有该权限！");
+        }
+        return map;
+    }
 }

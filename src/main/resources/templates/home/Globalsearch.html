@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<title>LLC实验室网站</title>-->
+    <meta name="description" content="广东省信息物理融合系统重点实验室"/>
+    <meta name="keywords" content="广东省信息物理融合系统重点实验室,信息物理融合系统, 信息物理融合系统重点实验室"/>
+    <title>全站搜索——广东省信息物理融合系统重点实验室</title>
+
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
+
+    <link rel="stylesheet" type="text/css" href="../../static/home/search/css/bootstrap.css"
+          th:href="@{/home/search/css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css" href="../../static/home/search/css/style.css"
+          th:href="@{/home/search/css/style.css}"/>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
+</head>
+<body>
+
+<div id="top-image">
+    <div id="content" class="container center-block">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>站内搜索</h1>
+                <div class="input-group input-group-lg"><span class="input-group-addon" id="sizing-addon1"><span
+                        class="glyphicon glyphicon-plus" aria-hidden="true"></span></span>
+                    <input type="text" class="form-control" placeholder="站内搜索功能还未上线，敬请期待！" aria-describedby="sizing-addon1">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">搜索</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../static/home/search/js/jquery.min.js"
+        th:src="@{/home/search/js/jquery.min.js}"></script>
+<script type="text/javascript" src="../../static/home/search/js/ios-parallax.js"
+        th:src="@{/home/search/js/ios-parallax.js}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#top-image').iosParallax({
+            movementFactor: 50
+        });
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LLCWEB管理平台</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}" rel="stylesheet">
+    <link href="../../static/assetss/materialize/css/materialize.min.css" th:href="@{/assetss/materialize/css/materialize.min.css}" media="screen,projection" rel="stylesheet" />
+    <!-- Bootstrap Styles-->
+    <link href="../../static/assetss/css/bootstrap.css" th:href="@{/assetss/css/bootstrap.css}" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="../../static/assetss/font-awesome-4.7.0/css/font-awesome.css" th:href="@{/assetss/font-awesome-4.7.0/css/font-awesome.css}" rel="stylesheet" />
+
+    <!-- Custom Styles-->
+    <link href="../../static/assetss/css/custom-styles.css" th:href="@{/assetss/css/custom-styles.css}" rel="stylesheet" />
+    <!--//Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' th:href="@{http://fonts.googleapis.com/css?family=Open+Sans}" rel='stylesheet' type='text/css' />
+    <link href="../../static/custom/css/common.css" th:href="@{/custom/css/common.css}" rel="stylesheet" />
+    <link href="../../static/assetss/plugins/selector/css/bootstrap-select.min.css" th:href="@{/assetss/plugins/selector/css/bootstrap-select.min.css}" rel="stylesheet">
+</head>
+
+
+<body>
+    <div id="wrapper">
+        <!-- top side start-->
+        <div th:include="admin/template/top_side_template :: admin_topside"></div>
+        <!-- top side end-->
+        <!-- left side start-->
+        <nav class="navbar-default navbar-side" role="navigation" th:include="admin/template/left_side_template :: leftside"></nav>
+        <!-- left side end-->
+        <div id="page-wrapper">
+            <div id="header" class="header">
+                <!--<h3 class="page-header">-->
+                <!--Dashboard-->
+                <!--</h3>-->
+                <ol class="breadcrumb">
+                    <li><a href="index.html">人员信息</a></li>
+                    <li class="active">访客留言</li>
+                </ol>
+            </div>
+            <div id="page-inner">
+                <div class="panel panel-default" style="margin-top: -30px;">
+                    <div class="panel-body">
+                        <!--view panel 展示人员对应的信息-->
+                        <div id="view-panel" class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">留言详细信息</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">访客名：</label>
+                                                <div class="col-sm-4">
+                                                    <p id="view-name" class="form-control-static"></p>
+                                                </div>
+                                                <label class="col-sm-2 control-label">留言内容：</label>
+                                                <div class="col-sm-4">
+                                                    <p id="view-content" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">联系方式：</label>
+                                                <div class="col-sm-4">
+                                                    <p id="view-concact" class="form-control-static"></p>
+                                                </div>
+                                                <label class="col-sm-2 control-label">留言时间：</label>
+                                                <div class="col-sm-4">
+                                                    <p id="view-date" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form class="form-inline" role="form" style="float: right;">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="search-name">输入访客名</label>
+                                        <input type="text" class="form-control" id="search-name" placeholder="请输入访客名">
+                                        <button type="button" class="btn btn-info" id="btn-advanced-search"><i class="fa fa-search"></i> 查询</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover" id="comment-table">
+                                        <thead>
+                                            <tr>
+                                                <th>编号</th>
+                                                <th>访客名</th>
+                                                <th>留言内容</th>
+                                                <th>联系方式</th>
+                                                <th>留言时间</th>
+                                                <th>是否已查看</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tb-body">
+                                            <tr>
+                                                <td>dfsdg</td>
+                                                <td>sdfagh</td>
+                                                <td>asdfasdfsdfasf</td>
+                                                <td>项目负责人</td>
+                                                <td>2018-10-01</td>
+                                                <td>回复内容</td>
+                                                <td>
+                                                    <button class="btn btn-danger  btn-delete" type="button" data-toggle="tooltip" data-placement="bottom" title="删除"> <i class="fa fa-trash-o"></i> </button></td>
+                                            </tr>
+                                            <tr>
+                                                <td>dfsdfjfh</td>
+                                                <td>sdfasfh</td>
+                                                <td>asfasdf</td>
+                                                <td>角色权限</td>
+                                                <td>2018-10-02</td>
+                                                <td>回复内容</td>
+                                                <td>操作</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <footer th:include="admin/template/footer_template :: admin_footer">
+                </footer>
+            </div>
+
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="../../static/assetss/js/jquery-1.10.2.js" th:src="@{/assetss/js/jquery-1.10.2.js}"></script>
+    <!-- Bootstrap Js -->
+    <script src="../../static/assetss/js/bootstrap.min.js" th:src="@{/assetss/js/bootstrap.min.js}"></script>
+    <script src="../../static/assetss/materialize/js/materialize.min.js" th:src="@{/assetss/materialize/js/materialize.min.js}"></script>
+    <!-- Metis Menu Js -->
+    <script src="../../static/assetss/js/jquery.metisMenu.js" th:src="@{/assetss/js/jquery.metisMenu.js}"></script>
+    <!-- DATA TABLE SCRIPTS -->
+    <script src="../../static/assetss/js/dataTables/jquery.dataTables.js" th:src="@{/assetss/js/dataTables/jquery.dataTables.js}"></script>
+    <script src="../../static/assetss/js/dataTables/dataTables.bootstrap.js" th:src="@{/assetss/js/dataTables/dataTables.bootstrap.js}"></script>
+    <!-- lhgdialog -->
+    <script src="../../static/assetss/plugins/lhgdialog/lhgdialog.min.js" th:src="@{/assetss/plugins/lhgdialog/lhgdialog.min.js}"></script>
+    <!-- SpinJS-->
+    <script src="../../static/assetss/plugins/spin-2.1.0/jquery.spin.merge.js" th:src="@{/assetss/plugins/spin-2.1.0/jquery.spin.merge.js}"></script>
+    <script src="../../static/assetss/plugins/selector/js/bootstrap-select.min.js" th:src="@{/assetss/plugins/selector/js/bootstrap-select.min.js}"></script>
+    <!-- <script src="../../static/assetss/Amaze UI/js/amazeui.min.js" th:src="@{/assetss/Amaze UI/js/amazeui.min.js}"></script> -->
+    <script src="../../static/custom/js/common.js" th:src="@{/custom/js/common.js}"></script>
+    <script src="../../static/custom/js/system_comments.js" th:src="@{/custom/js/system_comments.js}"></script>
+    <!--<![endif]-->
+</body>
+
+</html>

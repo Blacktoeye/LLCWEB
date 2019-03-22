@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <!--<title>LLC实验室网站</title>-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
     <link href="../../static/home/css/reset.css" rel="stylesheet"
     th:href="@{/home/css/reset.css}">
     <link href="../../static/home/css/public.css" rel="stylesheet"
@@ -31,6 +31,7 @@
      th:href="@{/home/css/team.css}">
     <link rel="stylesheet" href="../../static/home/css/article.css" type="text/css"
       th:href="@{/home/css/article.css}">
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -46,13 +47,7 @@
                     <li class='ll'>
                         <a href='Cultural_activity.html' class='ll_ref'>
                             <i></i>
-                            <span>往届回访</span>
-                        </a>
-                    </li>
-                    <li class='ll'>
-                        <a href='Cultural_activity.html' class='ll_ref'>
-                            <i></i>
-                            <span>部门聚会</span>
+                            <span>团队活动</span>
                         </a>
                     </li>
                 </ul>
@@ -63,54 +58,40 @@
                     <ul id="crumbs">
                         <li><a href="index.html">首页</a></li>
                         <li><span>&nbsp;/&nbsp;</span></li>
-                        <li><a href="Cultural_activity.html">文化活动</a></li>
-<!--                         <li><span>&nbsp;/&nbsp;</span></li>
-                        <li><span>教授</span></li>
-                        <li style="float:right;">
-                            <a href="Research Team.html" style="font-size:12px;color:#2c76c7;">«返回</a>
-                        </li>
- -->                    </ul>
+                        <li><a href="Cultural_activity.html">团队活动</a></li>
+                 </ul>
                 </div>
-                <!-- 时间戳 -->
-                <div class="team_head">
-                    <div class="team_circle"></div>
-                    <div class="team_line" style="width:100px;"></div>
-                    <span>往届回访</span>
-                    <div class="team_line" style="width:500px;"></div>
-                </div>
-                <div style="width:816px;position:relative;">
-                    <div class="show_life">
-                        <div>
-                            <a href="Cultural_activity/revisit_demo.html">
-                                <img alt="往届师兄师姐回访" src="../../static/home/images/labBrief.JPG" width="250"
-                                 th:src="@{/home/images/labBrief.JPG}">
-                            </a>
-                        </div>
-                        <a href="Cultural_activity/revisit_demo.html">往届师兄师姐回访</a>
-                    </div>
-<!--                     <a href="revisit.html" class="more_pic"></a> -->
-                </div>
-                <div class="team_head">
-                    <div class="team_circle"></div>
-                    <div class="team_line" style="width:100px;"></div>
-                    <span>游玩活动</span>
-                    <div class="team_line" style="width:500px;"></div>
-                </div>
-                <div style="width:816px;position:relative;">
-                    <div class="show_life">
-                        <div>
-                            <a href="Cultural_activity/play_demo.html">
-                                <img alt="外环步行活动" src="../../static/home/images/we2.jpg" width="250"
-                                 th:src="@{/home/images/we2.jpg}">
-                            </a>
-                        </div>
-                        <a href="Cultural_activity/play_demo.html">外环步行活动</a>
-                    </div>
-<!--                     <a href="play.html" class="more_pic"></a> -->
-                </div>
+                <div class="outline_r">
+                    <div class="project_content">
+                        <ul class="news_list margin20" id="ul-projects">
+                            <li>
+                                <a target="_blank" href="Project/projectIndexPage.html?id=2">智能制造物联网的数据感知、传输和海量数据处理</a>
+                                <span>[2013-01-03]</span>
+                            </li>
+                            <li>
+                                <a target="_blank" href="Project/projectIndexPage.html?id=20">体系结构级GPU功耗建模及软件低功耗优化</a>
+                                <span>[2011-01-01]</span>
+                            </li>
 
+                        </ul>
+                    </div>
+                    <div class="demo">
+                        <ul class="pagination" id="ul-pages">
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+
+                    </div>
+                </div>
             </div>
         </div>
+        <div style="margin-top: 50px;">
+            <hr style="height:1px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/>
+        </div>
+
     </div>
 </div>
 
@@ -122,6 +103,85 @@
 <script type="text/javascript" src="../../static/home/js/common.js"
     th:src="@{/home/js/common.js}"></script>
 
+<!--请求js-->
+<script>
+    var urlGetPage="/activity/getPage";
+    var myModel = "团队建设";
+    $(document).ready(function () {
+        //获取对应的内容信息
+        var pages = getActivityByModel(myModel,1,10,urlGetPage);
+        //console.log(pages);
+        fillPage("#ul-projects",pages.tPage);
+        fillPages("#ul-pages",pages.totalPages);
+
+        //监听请求更改
+        $("#all-project").click(function () {
+            listenFun("团队建设",1);
+        });
+
+    });
+
+    function fillPages(ul_id,totalPages) {
+        var father = $(ul_id);
+        father.empty();
+        var str = "<li><a href=\"#\">&laquo;</a></li>";
+        father.append(str);
+
+        for (var i = 1;i<=totalPages;i++){
+            str = "<li><a id='btn-a-"+i+"' class='li_page' href=\"#"+i+"\">"+i+"</a></li>";
+            father.append(str);
+            //
+            var pid = "#btn-a-"+i;
+            $(pid).click(function(){
+                var id=$(this).attr("id");
+                var strId = id.split("-");
+                var pageIndex = parseInt(strId[2]);
+                var pages = getProjectByModel(myModel,pageIndex,10,urlGetPage);
+                fillPage("#ul-projects",pages.tPage);
+            });
+        }
+        str = "<li><a href=\"#\">&raquo;</a></li>";
+        father.append(str);
+    }
+
+    function listenFun(proType,pageIndex) {
+        myModel = proType;
+        var pages = getProjectByModel(proType,pageIndex,10,urlGetPage);
+        fillPage("#ul-projects",pages.tPage);
+        fillPages("#ul-pages",pages.totalPages);
+    }
+
+    function fillPage(id,data) {
+        var father = $(id);
+        father.empty();
+        for(var i = 0 ; i < data.length; i++){
+            var date = new Date(data[i].date);
+            var str = "<li>\n" +
+                "      <a target=\"_blank\" href=\"/achievement/activity.html?id="+data[i].id+"\">"+data[i].title+"</a>\n" +
+                "      <span>["+date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"]</span>\n" +
+                "      </li>";
+            father.append(str);
+        }
+    }
+    //根据分组获取信息
+    function getActivityByModel(model,pageNum,pageSize,url) {
+        var document =null;
+        //设置同步
+        $.ajax({
+            type : "get",
+            url : url,
+            data :"activityType=" + model+"&pageNum="+pageNum+"&pageSize="+pageSize,
+            async : false,
+            success : function(data){
+                document = data.data;
+                if(data.result!==1){
+                    //alert(data.message);
+                }
+            }
+        });
+        return document;
+    }
+</script>
 
 </body>
 </html>

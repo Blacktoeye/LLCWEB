@@ -77,7 +77,7 @@ $(document).ready(function () {
                     {
 
                         data: "title",
-                        width: "300px",
+                        //width: "300px",
                         className: "ellipsis",	//文字过长时用省略号显示，CSS实现
                         render: CONSTANT.DATA_TABLES.RENDER.ELLIPSIS//会显示省略号的列，需要用title属性实现划过时显示全部文本的效果
                     },
@@ -93,20 +93,19 @@ $(document).ready(function () {
                         data: "model",
                         width: "80px",
                         render: function (data, type, row, meta) {
-                            return data===null?"":data;
+                            return data===null?"":drawModel(data);
                         }
                     },
                     {
                         data: "createDate",
-                        width: "80px",
+                        width: "100px",
                         render: function (data, type, row, meta) {
                             return dateToString(data);
                         }
-
                     },
                     {
                         data: "modifyDate",
-                        width: "80px",
+                        width: "100px",
                         render: function (data, type, row, meta) {
                             return dateToString(data);
                         }
@@ -115,7 +114,7 @@ $(document).ready(function () {
                     {
                         className: "td-operation",
                         data: null,
-                        //width: "80px",
+                        width: "100px",
                         defaultContent: "",
                         orderable: false
                     }
@@ -131,8 +130,9 @@ $(document).ready(function () {
                      $('td', row).eq(6).addClass("text-warning");
 
                     //不使用render，改用jquery文档操作呈现单元格
-                    var $btnEdit = $('<button type="button" class="btn btn-small btn-warning btn-edit">修改</button>');
-                    var $btnDelete = $('<button style="margin-left: 20px;" type="button" class="btn btn-small btn-danger btn-delete">删除</button>');
+                    var $btnEdit = $(' <button class="btn btn-warning btn-edit" type="button" data-toggle="tooltip"data-placement="bottom" title="编辑"> <i class="fa fa-edit"></i> </button>');
+                    var $btnDelete = $('<button class="btn btn-danger  btn-delete" type="button" data-toggle="tooltip"data-placement="bottom" title="删除"> <i class="fa fa-trash-o"></i> </button>');
+
                     $('td', row).eq(7).append($btnEdit).append($btnDelete);
 
                 },
@@ -176,7 +176,7 @@ $(document).ready(function () {
     });
     $("#btn-add-document").click(function () {
         //转跳到文档编辑界面 ,新增文档传入id为0
-        window.location.href=urlEditDocumentById+"?id=0";
+        window.open(urlEditDocumentById+"?id=0");
     });
 
 });
@@ -210,7 +210,7 @@ var documentManage = {
     editDocument: function (item) {
         //$.dialog.tips("edit test");
         //转跳到文档编辑界面 ,新增文档传入id为0
-        window.location.href=urlEditDocumentById+"?id="+item.id;
+        window.open(urlEditDocumentById+"?id="+item.id);
     },
 
     deleteDocument: function (item) {

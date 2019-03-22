@@ -1,18 +1,20 @@
-
 /**
  * Created by ricardo on 2018/8/10.
  * 通用css文件，全局
  */
 
+
 /*页面顶部hr标签样式*/
-.top-hr{
-    height:3px;
-    border:none;
-    border-top:3px double #000000;
+
+.top-hr {
+    height: 3px;
+    border: none;
+    border-top: 3px double #000000;
 }
-iframe{
+
+iframe {
     margin: 10px 0 20px 0;
     min-height: 900px;
     max-height: 1500px;
-    width:100%;
+    width: 100%;
 }

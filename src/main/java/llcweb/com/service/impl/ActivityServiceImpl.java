@@ -80,4 +80,18 @@ public class ActivityServiceImpl implements ActivityService {
         //查询
         return activityRepository.findAll(specification,pageable);
     }
+
+    @Override
+    public Page<Activity> getPage(String activityType, int pageNum, int pageSize) {
+        //按时间排序
+        Pageable pageable=new PageRequest(pageNum,pageSize, Sort.Direction.DESC,"startDate");
+        Page<Activity> projectPage=null;
+
+        if(StringUtil.isNull(activityType) ||"all".equals(activityType)){
+            projectPage = activityRepository.findAll(pageable);
+        }else{
+            projectPage = activityRepository.findByActivityType(activityType,pageable);
+        }
+        return projectPage;
+    }
 }

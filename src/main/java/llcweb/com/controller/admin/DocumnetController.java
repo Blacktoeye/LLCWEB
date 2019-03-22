@@ -86,10 +86,12 @@ public class DocumnetController {
                 logger.info("无关键词搜索--默认按权限获取文档");
                 documentPage=documentService.selectByRole(user,currentPage-1,size,documentRepository);
             }
-            //日志
-            logger.info("模糊查询---关键词："+searchValue);
-            Pageable pageable=new PageRequest(currentPage-1,size, Sort.Direction.DESC,"createDate");
-            documentPage = documentRepository.fuzzySearch(searchValue,pageable);
+            else{
+                //日志
+                logger.info("模糊查询---关键词："+searchValue);
+                Pageable pageable=new PageRequest(currentPage-1,size, Sort.Direction.DESC,"createDate");
+                documentPage = documentRepository.fuzzySearch(searchValue,user.getUsername(),pageable);
+            }
         }
         //高级查找
         else{
@@ -127,7 +129,7 @@ public class DocumnetController {
             else {
                 //日志
                 logger.info("---高级查询---");
-                UsefulDocument document = new UsefulDocument(author, title, model, infor,
+                UsefulDocument document = new UsefulDocument(user.getUsername(), title, model, infor,
                                                             firstDate, lastDate);
                 documentPage = documentService.activeSearch(document, currentPage - 1, size,documentRepository);
             }
@@ -191,7 +193,7 @@ public class DocumnetController {
         String group = request.getParameter("group");
 
         if(StringUtil.isNull(content)||StringUtil.isNull(title)||
-                StringUtil.isNull(infor)||StringUtil.isNull(group)){
+               StringUtil.isNull(group)){
             map.put("result", 0);
             map.put("message", "文档保存失败,信息不完整！");
             return map;
@@ -231,12 +233,14 @@ public class DocumnetController {
             document.setAuthor(userName);
             document.setAuthorId(userId);
 
-            documentRepository.save(document);
+            Document document1 = documentRepository.save(document);
             map.put("result", 1);
+            map.put("data", document1.getId().intValue());
             map.put("message", "成功保存文档！");
             logger.info("成功保存文档！");
         }else{
             map.put("result", 0);
+            map.put("data", 0);
             map.put("message", "文档更新失败,请确认文档是否存在！");
             logger.error("保存文档失败！");
         }

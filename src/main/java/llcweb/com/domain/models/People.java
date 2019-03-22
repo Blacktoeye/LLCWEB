@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * Module:  People.java
  * Author:  Ricardo
  * Purpose: Defines the Class People
- ***********************************************************************
+ ***********************************************************************/
 import javax.persistence.*;
 
 @Entity

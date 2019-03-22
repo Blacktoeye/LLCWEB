@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <!--<title>LLC实验室网站</title>-->
+    <link rel="shortcut icon" href="../../../static/home/images/favicon.ico"
+    th:href="@{/home/images/favicon.ico}"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../../../static/home/css/reset.css" rel="stylesheet" th:href="@{/home/css/reset.css}">
+    <link href="../../../static/home/css/public.css" rel="stylesheet" th:href="@{/home/css/public.css}">
+    <link href="../../../static/home/css/index.css" rel="stylesheet" th:href="@{/home/css/index.css}">
+    <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
+    <meta name="keywords" content="jquery, plugin, pagination, fancy"/>
+    <title>开放会议——广东省信息物理融合系统重点实验室</title>
+    <link rel="stylesheet" href="../../../static/home/css/header.css" type="text/css" th:href="@{/home/css/header.css}"/>
+    <link rel="stylesheet" href="../../../static/home/css/sidebar.css" type="text/css" th:href="@{/home/css/sidebar.css}">
+    <link rel="stylesheet" href="../../../static/home/css/meeting.css" type="text/css" th:href="@{/home/css/meeting.css}"/>
+    <link rel="stylesheet" href="../../../static/home/css/style.css" type="text/css" th:href="@{/home/css/style.css}"/>
+    <link rel="stylesheet" href="../../../static/home/css/papers.css" type="text/css" th:href="@{/home/css/papers.css}"/>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
+</head>
+<body>
+
+<div th:include="template/header_template :: header_template"></div>
+
+<div class="middle">
+    <div class="container middle_container">
+        <div class="middle_content">
+
+            <div  style="margin-left: 35px;margin-top:20px;border-style: groove;">
+                <div style="text-align: center;">
+                    <h3 th:text="${activity.title}">无线传感网络自适应目标跟踪节点调度算法</h3>
+                    <table style="margin-left: 30%;margin-top: 10px;">
+                        <tbody>
+                        <tr>
+                            <td class="td-first">记录人:</td>
+                            <td class="td-last" th:text="${activity.author}">作者(date)</td>
+                        </tr>
+                        <tr>
+                            <td class="td-first">参与人员:</td>
+                            <td class="td-last" th:text="${activity.peopleList}">作者(author)</td>
+                        </tr>
+                        <tr>
+                            <td class="td-first">开始时间:</td>
+                            <td class="td-last" th:text="${activity.startDate}">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td-first">结束时间:</td>
+                            <td class="td-last" th:text="${activity.endDate}">作者(date)</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="padding-left: 5px;padding-right: 5px;">
+                    <div id="div-introduction">
+                        专利简介
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        &nbsp;
+        <div style="margin-top: 50px;"><hr style="height:1px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/></div>
+    </div>
+</div>
+<div  th:include="template/footer_template :: footer_template"></div>
+<script type="text/javascript" src="../../../static/home/js/jquery-1.12.4.min.js" th:src="@{../home/js/jquery-1.12.4.min.js}"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../static/home/Scripts/jquery.paginate.js" th:src="@{../home/Scripts/jquery.paginate.js}"></script>
+<script src="../../../static/home/js/common.js" th:src="@{../home/js/common.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    //拿到模型列表
+    var activity = /*[[${activity}]]*/ 2;
+    /*]]>*/
+
+    document.title = activity.activityType;
+</script>
+<script>
+
+    $(document).ready(function () {
+        //获得简介内容
+        var urlGetDocumentById="/document/getDocumentById";
+        var document = getDocumentById(activity.introduction,urlGetDocumentById);
+        var content = document.content;
+        if(content==null||content==undefined)$("#div-introduction").html("<p style='color: #e1261a;'>未获取到简介！</p>");
+        $("#div-introduction").html(document.content);
+    });
+</script>
+
+</body>
+</html>

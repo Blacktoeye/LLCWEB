@@ -3,12 +3,11 @@ package llcweb.com.service;
 import java.util.List;
 import java.util.Map;
 
+import llcweb.com.domain.models.*;
 import org.springframework.data.domain.Page;
 
 import llcweb.com.domain.entity.UsefulPaper;
 import llcweb.com.domain.models.Paper;
-import llcweb.com.domain.models.Paper;
-import llcweb.com.domain.models.Users;
 
 public interface PaperService {
 	/**
@@ -29,5 +28,7 @@ public interface PaperService {
 
 
 	 List<UsefulPaper> papersToUsefulPaper(List<Paper> paperList);
+
+	Page<Paper> getPage(int pageNum, int pageSize);
 
 }

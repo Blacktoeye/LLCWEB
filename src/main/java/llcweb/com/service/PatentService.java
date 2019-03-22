@@ -3,6 +3,7 @@ package llcweb.com.service;
 import java.util.List;
 import java.util.Map;
 
+import llcweb.com.domain.models.Paper;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +27,6 @@ public interface PatentService {
 	 // Page<Patent> getPage(int pageNum, int pageSize, Patent patent);
  
 	 //Page<Patent> selectAll(Users user, int pageNum, int pageSize);
+
+	 Page<Patent> getPage(int pageNum, int pageSize);
 }

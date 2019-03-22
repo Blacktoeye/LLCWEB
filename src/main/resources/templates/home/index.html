@@ -6,8 +6,8 @@
     <!--<title>LLC实验室网站</title>-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
     th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}"/>
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
     <link href="../../static/home/css/reset.css" rel="stylesheet"
           th:href="@{/home/css/reset.css}"/>
     <link href="../../static/home/css/public.css" rel="stylesheet"
@@ -16,10 +16,19 @@
           th:href="@{/home/css/index.css}"/>
     <title>广东省信息物理融合系统重点实验室</title>
     <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
-            th:src="@{home/js/jquery-1.12.4.min.js}"></script>
+            th:src="@{/home/js/jquery-1.12.4.min.js}"></script>
    <!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
+    http://gdauto.gdut.edu.cn
 </head>
+
+<style type="text/css">
+    #fdck {border:1px solid #c0c0c0;margin:0 auto;padding:5px;background:#f0f0f0}
+</style>
+
 <body>
+
+
 <div th:include="template/header_template :: header_template"></div>
 <div class="index-main">
     <div class="index-notice">
@@ -43,24 +52,15 @@
     </div>
     <div class="index-container">
         <div class="index-newarticle">
-            <!--<div class="index-col-31  border active">-->
-            <!--<img src="images/pic.jpg" width="635" height="280">-->
-            <!--</div>-->
-            <!--<div class="index-col-31  border">-->
-            <!--<img src="images/pic.jpg" width="635" height="280">-->
-            <!--</div>-->
-            <!--<div class="index-col-31  border">-->
-            <!--&lt;!&ndash;<img src="images/pic.jpg" width="635" height="280">&ndash;&gt;-->
-            <!--<img src="images/pic.jpg" width="635" height="280">-->
-            <!--</div>-->
+
             <div class="lunbo">
                 <ul id="orgin">
-                    <li><img src="../../static/home/images/labBrief.JPG" alt="" style="width: 638px;height: 380px;"
-							 th:src="@{/home/images/labBrief.JPG}"></li>
-                    <li><img src="../../static/home/images/we2.jpg" alt="" style="width: 638px;height: 380px;"
-							 th:src="@{/home/images/we2.jpg}"></li>
-                    <li><img src="../../static/home/images/image1.jpg" alt="" style="width: 638px;height: 380px;"
-							 th:src="@{/home/images/image1.jpg}"></li>
+                    <li><img src="../../static/home/images/background.jpg" alt="" style="width: 638px;height: 380px;"
+							 th:src="@{/home/images/background.jpg}"></li>
+                    <li><img src="../../static/home/images/web4.jpg" alt="" style="width: 638px;height: 380px;"
+							 th:src="@{/home/images/web4.jpg}"></li>
+                    <li><img src="../../static/home/images/web5.jpg" alt="" style="width: 638px;height: 380px;"
+							 th:src="@{/home/images/web5.jpg}"></li>
                 </ul>
                 <ul id="controls">
                     <li class="start"></li>
@@ -71,18 +71,26 @@
         </div>
         <div class="index-col-3 m115 border">
             <div class="index-col-title">
-                <div class="title-left"><span>中心动态</span></div>
-                <div class="title-right"><i></i></div>
+
+                <div class="title-left">
+                    <i style="border-left: 2px solid #bc0e05; height:20px;"></i>
+                    <span style="font-size: 16px;margin-left: 5px;color: #010101;"><b>科学研究</b></span>
+
+                </div>
+
+                <div class="title-right">
+                    <a  target="_blank"  th:href="@{/Research_Project.html}">
+                        <span style="font-size: 12px;">更多&gt;&gt;</span>
+                        <!--<img src="../../static/home/images/arrow-red-right.png" th:src="@{/home/images/arrow-red-right.png}">-->
+                    </a>
+                </div>
             </div>
-            <ul class="index-col-list list1">
-                <li class="item"><i></i><a href="">LLC实验室召开项目总结报告会LLc实验室学术研究会</a><span class="item-time">04/03</span>
+            <ul id="ul-project" class="index-col-list list1">
+                <li class="item item1"><i></i><a href="">LLC实验室召开项目总结报告会</a><span class="item-time">04/03</span>
                 </li>
-                <li class="item"><i></i><a href="">LLC实验室召开项目总结报告会</a><span class="item-time">04/03</span></li>
-                <li class="item"><i></i><a href="">LLC实验室召开项目总结报告会</a><span class="item-time">04/03</span></li>
-                <li class="item"><i></i><a href="">LLC实验室召开项目总结报告会</a><span class="item-time">04/03</span></li>
-                <li class="item"><i></i><a href="">LLC实验室召开项目总结报告会</a><span class="item-time">04/03</span></li>
-                <li class="item"><i></i><a href="">LLC实验室召开项目总结报告会</a><span class="item-time">04/03</span></li>
-                <li class="item"><i></i><a href="">LLC实验室召开项目总结报告会</a><span class="item-time">04/03</span></li>
+                <li class="item item1"><i></i><a href="">LLC实验室召开项目总结报告会</a><span class="item-time">04/03</span></li>
+                <li class="item item1"><i></i><a href="">LLC实验室召开项目总结报告会</a><span class="item-time">04/03</span></li>
+                <li class="item item1"><i></i><a href="">LLC实验室召开项目总结报告会</a><span class="item-time">04/03</span></li>
             </ul>
         </div>
     </div>
@@ -142,106 +150,100 @@
 <!--二级菜单栏-->
 <div class="clearfix"></div>
 
-
 <div class="index-fun mt10">
-    <div class="index-menu border">
-        <ul>
-            <li class="item"><i class="people"></i><a href>导师风采</a></li>
-            <li class="item"><i class="file"></i><a href>文件管理中心</a></li>
-            <li class="item"><i class="char"></i><a href>研究资料中心</a></li>
-            <li class="item"><i class="cg"></i><a href>最新成果展示</a></li>
+    <div class="index-menu border" style="border-top: 3px solid #bc0e05;border-radius: 5px;">
+        <ul style="margin-top: 15px;">
+
+            <li onclick="fourOnClick('/Research_Team.html')" style="cursor:pointer;background-color: #13cfbd;" class="item item1">
+                <i class="people"></i>
+                <a href="/Research_Team.html" th:href="@{/Research_Team.html}">导师风采</a>
+            </li>
+            <li onclick="fourOnClick('/login')"  style="cursor:pointer;background-color: #ff8838;" class="item item1">
+                <i class="file"></i><a href="/login" th:href="@{/login}">文件管理中心</a>
+            </li>
+            <li onclick="fourOnClick('/login')"  style="cursor:pointer;background-color: #ff7a59;" class="item item1">
+                <i class="char"></i><a href="/Research_Team.html" th:href="@{/login}">研究资料中心</a>
+            </li>
+            <li onclick="fourOnClick('/platform.html')"  style="cursor:pointer;background-color: #035ba6;" class="item item1">
+                <i class="cg"></i><a href="/platform.html" th:href="@{/platform.html}">项目平台展示</a>
+            </li>
         </ul>
         <div class="index-contact">
             <i></i>
             <div class="contact-text">
-                <p>电子邮箱：llcheng@gdut.edu.cn</p>
-                <p>联系电话：+86-20-3922465</p>
+                <p style="color: #035ba6;">电子邮箱：llcheng@gdut.edu.cn</p>
+                <p style="color: #035ba6;">联系电话：+86-20-39322465</p>
             </div>
         </div>
     </div>
-    <div class="index-fun-article border m110">
-        <div class="fun-article-title">
+
+    <div class="index-fun-article border m110" style="border-radius: 5px;">
+        <div class="fun-article-title" style="background-color:rgba(153,153,153,0.08);">
             <div class="title-left">
-                <span style="font-size: 20px;margin-left: -33px;">学术交流</span>
-                <i style="margin: 1px 610px;"></i>
-                <div class="title-bg"></div>
+                <!--<div align="left" style="padding-bottom: 5px;margin-top:9px; height:20px;border-left: 2px solid #bc0e05;">-->
+                    <!--<b style="font-size: 16px;">学术交流</b>-->
+                <!--</div>-->
+
+                <i style="border-left: 2px solid #bc0e05; height:20px;"></i>
+                <span style="font-size: 16px;margin-left: 10px;color: #010101;"><b>学术交流</b></span>
+                <!--<i style="margin: 1px 610px;"></i>-->
+                <!--<div class="title-bg"></div>-->
             </div>
-            <div class="title-right"><i></i></div>
+
+            <div class="title-right" >
+                <a  style="display:inline-block;margin-left: 600px;" target="_blank"  th:href="@{/Academic_communication.html}">
+                    <span style="font-size: 12px;">更多&gt;&gt;</span>
+                    <!--<img src="../../static/home/images/arrow-red-right.png" th:src="@{/home/images/arrow-red-right.png}">-->
+                </a>
+            </div>
         </div>
         <div class="fun-article-left fl">
-            <img src="../../static/home/images/list-pic.png" alt title
-				 th:src="@{home/images/list-pic.png}">
+            <img style="height: 200px;width: 320px;" src="../../static/home/images/zuhui.jpg" alt title
+                 th:src="@{/home/images/zuhui.jpg}">
         </div>
-        <ul class="index-fun-list fr">
-            <li class="item">
+        <ul id="ul-academic-exchange" class="index-fun-list fr index-col-list">
+            <li class="item item1">
                 <i></i>
                 <a href>科研交流促进项目开发</a>
                 <span class="item-time">04/18</span>
             </li>
-            <li class="item">
-                <i></i>
-                <a href>科研交流促进项目开发</a>
-                <span class="item-time">04/18</span>
-            </li>
-            <li class="item">
-                <i></i>
-                <a href>科研交流促进项目开发</a>
-                <span class="item-time">04/18</span>
-            </li>
-            <li class="item">
-                <i></i>
-                <a href>科研交流促进项目开发LLc实验室学术研究会</a>
-                <span class="item-time">04/18</span>
-            </li>
-            <li class="item">
-                <i></i>
-                <a href>科研交流促进项目开发</a>
-                <span class="item-time">04/18</span>
-            </li>
-            <li class="item">
-                <i></i>
-                <a href>科研交流促进项目开发</a>
-                <span class="item-time">04/18</span>
-            </li>
+
         </ul>
     </div>
 </div>
 <!--<div class="clearfix"></div>-->
 
+
 <div class="index-category-new mt15">
-    <div class="index-col-3 border m110">
+    <div id="paper" class="index-col-3 border m110 products" >
         <div class="col-title">
             <span class="title-text fl">论文</span>
-            <div class="col-more fr"><a href><i></i></a></div>
+            <div class="col-more fr">
+                <a target="_blank"  th:href="@{/scientific_achievements.html}">
+                    <!--<img src="../../static/home/images/arrow-red-right.png" th:src="@{/home/images/arrow-red-right.png}">-->
+                    <span style="font-size: 12px;">更多&gt;&gt;</span>
+                </a>
+                <!--<i></i>-->
+            </div>
         </div>
         <div class="col-list clearfix">
-            <div class="index-lately">
+            <div id="div-first-paper" class="index-lately">
                 <div class="lately-date fl">
                     <span class="date-day">19</span>
                     <span class="date-other">2018-04</span>
                 </div>
-                <div class="lately-cont">
+                <div class="lately-cont item1">
                     <p class="lately-title"><a>LLC实验室学术研究会</a></p>
-                    <span class="lately-des">LLC实验室学术研究会</span>
                 </div>
             </div>
-            <ul class="index-col-list list3">
-                <li class="item">
+            <ul id="ul-paper" class="index-col-list list3">
+                <li class="item item1">
                     <i></i>
+
                     <a href>LLc实验室学术研究会LLc实验室学术研究会LLc实验室学术研究会</a>
                     <span class="item-time">04/19</span>
                 </li>
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
+                <li class="item item1">
                     <i></i>
                     <a href>LLc实验室学术研究会</a>
                     <span class="item-time">04/19</span>
@@ -249,37 +251,32 @@
             </ul>
         </div>
     </div>
-    <div class="index-col-3 border m110">
+    <div id="patent" class="index-col-3 border m110 products">
         <div class="col-title"><span class="title-text fl">专利</span></div>
-        <div class="col-more fr"><a href><i></i></a></div>
+        <div class="col-more fr">
+            <a target="_blank"  th:href="@{/scientific_achievements.html}">
+                <span style="font-size: 12px;">更多&gt;&gt;</span>
+                <!--<img src="../../static/home/images/arrow-red-right.png" th:src="@{/home/images/arrow-red-right.png}">-->
+            </a>
+            <!--<i></i>-->
+        </div>
         <div class="col-list clearfix">
-            <div class="index-lately">
+            <div  id="div-first-patent" class="index-lately">
                 <div class="lately-date fl">
                     <span class="date-day">19</span>
                     <span class="date-other">2018-04</span>
                 </div>
-                <div class="lately-cont">
+                <div class="lately-cont item1">
                     <p class="lately-title"><a>LLc实验室学术研究会</a></p>
-                    <span class="lately-des">LLc实验室学术研究会</span>
                 </div>
             </div>
-            <ul class="index-col-list list3">
-                <li class="item">
+            <ul id="ul-patent"  class="index-col-list list3">
+                <li class="item item1">
                     <i></i>
                     <a href>LLc实验室学术研究会</a>
                     <span class="item-time">04/19</span>
                 </li>
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
+                <li class="item item1">
                     <i></i>
                     <a href>LLc实验室学术研究会LLc实验室学术研究会</a>
                     <span class="item-time">04/19</span>
@@ -287,205 +284,232 @@
             </ul>
         </div>
     </div>
-    <div class="index-col-3 border m110">
+
+
+
+
+    <div id="copyright" class="index-col-3 border m110 products" >
         <div class="col-title"><span class="title-text fl">软件著作权</span></div>
-        <div class="col-more fr"><a
-                href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html"><i></i></a>
-        </div>
-        <div class="col-list clearfix">
-            <ul class="index-col-list list-num">
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会LLc实验室学术研究会LLc实验室学术研究会LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-            </ul>
+        <div class="col-more fr">
+            <a target="_blank"  th:href="@{/scientific_achievements.html}">
+                <span style="font-size: 12px;">更多&gt;&gt;</span>
+                <!--<img src="../../static/home/images/arrow-red-right.png" th:src="@{/home/images/arrow-red-right.png}">-->
+            </a>
+            <!--<i></i>-->
         </div>
 
-
-    </div>
-</div>
-<div style="margin: auto;width: 1107px;float: none;"><img src="../../static/home/images/ad-banner.jpg" style="margin-bottom: 8px;margin-top: 8px;"
-														  th:src="@{home/images/ad-banner.jpg}"></div>
-<div class="index-category-new mt15">
-    <div class="index-col-3 border m110">
-        <div class="col-title">
-            <span class="title-text fl">会议纪要</span>
-            <div class="col-more fr"><a href><i></i></a></div>
-        </div>
         <div class="col-list clearfix">
-            <div class="index-lately">
+            <div id="div-first-software"  class="index-lately">
                 <div class="lately-date fl">
                     <span class="date-day">19</span>
                     <span class="date-other">2018-04</span>
                 </div>
-                <div class="lately-cont">
+                <div class="lately-cont item1">
                     <p class="lately-title"><a>LLC实验室学术研究会</a></p>
                     <span class="lately-des">LLC实验室学术研究会</span>
                 </div>
             </div>
-            <ul class="index-col-list list3">
-                <li class="item">
+            <ul id="ul-software"  class="index-col-list list3">
+                <li class="item item1">
                     <i></i>
-                    <a href>LLc实验室学术研究会LLc实验室学术研究会LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会</a>
+                    <a href>LLc实验室学术研究会LLc实验室</a>
                     <span class="item-time">04/19</span>
                 </li>
             </ul>
         </div>
-    </div>
-    <div class="index-col-3 border m110">
-        <div class="col-title"><span class="title-text fl">文体活动</span></div>
-        <div class="col-more fr"><a href><i></i></a></div>
-        <div class="col-list clearfix">
-            <div class="index-lately">
-                <div class="lately-date fl">
-                    <span class="date-day">19</span>
-                    <span class="date-other">2018-04</span>
-                </div>
-                <div class="lately-cont">
-                    <p class="lately-title"><a>LLc实验室学术研究会</a></p>
-                    <span class="lately-des">LLc实验室学术研究会</span>
-                </div>
-            </div>
-            <ul class="index-col-list list3">
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href>LLc实验室学术研究会LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="index-col-3 border m110">
-        <div class="col-title"><span class="title-text fl">开放课题</span></div>
-        <div class="col-more fr"><a
-                href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html"><i></i></a>
-        </div>
-        <div class="col-list clearfix">
-            <ul class="index-col-list list-num">
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-                <li class="item">
-                    <i></i>
-                    <a href="file:///C:/Users/ke/Documents/WeChat%20Files/HK13537237768/Files/LLCWeb1/LLCWeb/index.html">LLc实验室学术研究会LLc实验室学术研究会LLc实验室学术研究会LLc实验室学术研究会</a>
-                    <span class="item-time">04/19</span>
-                </li>
-            </ul>
-        </div>
-
-
     </div>
 </div>
+<!--这是干什么用的-->
+<!--<div style="margin: auto;width: 1107px;float: none;"><img src="../../static/home/images/ad-banner.jpg" style="margin-bottom: 8px;margin-top: 8px;"-->
+                                                          <!--th:src="@{/home/images/ad-banner.jpg}"></div>-->
+<div class="index-category-new mt15">
+    <div class="index-col-3 border m110 " id="dynamic" style="border-top: 3px solid #bc0e05;border-radius: 5px;">
+        <div class="col-title">
+            <span class="title-text fl">中心动态</span>
+            <div class="col-more fr">
+                <a target="_blank" href="#">
+                    <span style="font-size: 12px;">更多&gt;&gt;</span>
+                    <!--<img src="../../static/home/images/arrow-red-right.png" th:src="@{/home/images/arrow-red-right.png}">-->
+                </a>
+                <!--<i></i>-->
+            </div>
+        </div>
+        <div class="col-list clearfix">
+            <ul id="ul-activity" class="index-col-list list-num">
+                <li class="item item1">
+                    <i></i>
+                    <a href="##">LLc实验室学术研究会</a>
+                    <span class="item-time">04/19</span>
+                </li>
+                <li class="item item1">
+                    <i></i>
+                    <a href="##">LLc实验室学术研究会</a>
+                    <span class="item-time">04/19</span>
+                </li>
+                <li class="item item1">
+                    <i></i>
+                    <a href="##">LLc实验室学术研究会LLc实验室学术研究会LLc实验室学术研究会LLc实验室学术研究会</a>
+                    <span class="item-time">04/19</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="index-col-3 border m110" style="border-top: 3px solid #bc0e05;border-radius: 5px;">
+        <div class="col-title"><span class="title-text fl">文体活动</span></div>
+        <div class="col-more fr">
+            <a target="_blank"  th:href="@{/Cultural_activity.html}">
+                <span style="font-size: 12px;">更多&gt;&gt;</span>
+                <!--<img src="../../static/home/images/arrow-red-right.png" th:src="@{/home/images/arrow-red-right.png}">-->
+            </a>
+            <!--<i></i>-->
+        </div>
+        <div class="col-list clearfix">
+            <ul id="ul-activity2" class="index-col-list list-num">
+                <li class="item item1">
+                    <i></i>
+                    <a href="##">LLc实验室学术研究会</a>
+                    <span class="item-time">04/19</span>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-
+    <div class="index-col-3 border m110" style="border-top: 3px solid #bc0e05;border-radius: 5px;">
+        <div class="col-title"><span class="title-text fl">开放课题</span></div>
+        <div class="col-more fr">
+            <a target="_blank"  th:href="@{/Research_Project.html}">
+                <span style="font-size: 12px;">更多&gt;&gt;</span>
+                <!--<img src="../../static/home/images/arrow-red-right.png" th:src="@{/home/images/arrow-red-right.png}">-->
+            </a>
+            <!--<i></i>-->
+        </div>
+        <div class="col-list clearfix">
+            <ul  id="ul-open-project" class="index-col-list list-num">
+                <li class="item item1">
+                    <i></i>
+                    <a href="##">LLc实验室学术研究会</a>
+                    <span class="item-time">04/19</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="clearfix"></div>
 <div class="public-friendlinks">
     <div class="public-container">
-        <p class="title"><img src="../../static/home/images/73edb0a0ead09dbc7375c7e80178d51.png"
-							  th:src="@{home/images/73edb0a0ead09dbc7375c7e80178d51.png}">友情链接:</p>
+        <p class="title"><img src="../../static/home/images/friendly-link.png"
+							  th:src="@{/home/images/friendly-link.png}">友情链接:</p>
         <p class="links">
-            <a href="http://www.gdut.edu.cn/"><img src="../../static/home/images/_20180828233811.png"
-												   th:src="@{home/images/_20180828233811.png}"></a>
-            <a href="http://automation.gdut.edu.cn/"><img src="../../static/home/images/_201808282338111.png"
-														  th:src="@{home/images/_201808282338111.png}"></a>
-            <a href="http://jsjxy.gdut.edu.cn/"><img src="../../static/home/images/_201808282338112.png"
-													 th:src="@{home/images/_201808282338112.png}"></a>
-            <a href="http://yjs.gdut.edu.cn/"><img src="../../static/home/images/_201808282338113.png"
-												   th:src="@{home/images/_201808282338113.png}"></a>
+            <a href="http://www.gdut.edu.cn/">
+                <img src="../../static/home/images/gdut.png" th:src="@{/home/images/gdut.png}">
+            </a>
+            <a href="http://automation.gdut.edu.cn/">
+                <img src="../../static/home/images/gdut-auto.png" th:src="@{home/images/gdut-auto.png}">
+            </a>
+            <a href="http://jsjxy.gdut.edu.cn/">
+                <img src="../../static/home/images/gdut-jsj.png" th:src="@{home/images/gdut-jsj.png}">
+            </a>
+            <a href="http://yjs.gdut.edu.cn/">
+                <img src="../../static/home/images/gdut-yjs.png" th:src="@{home/images/gdut-yjs.png}">
+            </a>
         </p>
-
-
-        .
     </div>
 </div>
 
-<div th:include="template/footer_template :: footer_template"></div>
+<div style="margin-top: 1px;">
+    <hr style="height:1px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/>
+</div>
 
-</body>
+
+<!--浮动窗口效果-->
+<div id="imgDiv" style="position:absolute;left:50px;top:60px;border: solid 3px;border-color: #035ba6;text-align: center;">
+    <div id="a" style="font-size:16px; width:35px;height:20px;position:absolute;left:0px;top:-22px;background:salmon;text-align: center;">关闭</div>
+    <a href="https://g.eqxiu.com/s/zLPiIPxz" th:href="@{https://g.eqxiu.com/s/zLPiIPxz}"target="_blank"style="text-align: center;">
+        <h3 style="color: rgba(225,38,26,1);">广东省信息物理融合系统重点实验室招聘研究生啦！</h3>
+        <img src="../../static/home/images/zhaosheng.png" th:src="@{/home/images/zhaosheng.png}" border="1" />
+    </a>
+    <p style="color: rgba(30,36,225,1)">(扫码查看或点击转跳)</p>
+</div>
+
+
+<div th:include="template/footer_template :: footer_template"></div>
 <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
-        th:src="@{home/js/jquery-1.12.4.min.js}"></script>
+        th:src="@{/home/js/jquery-1.12.4.min.js}"></script>
 <script type="text/javascript" src="../../static/home/js/common.js"
         th:src="@{/home/js/common.js}"></script>
+<script type="text/javascript" src="../../static/home/page_js/index.js"
+        th:src="@{/home/page_js/index.js}"></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    //拿到模型列表
+    var isFloat = /*[[${isFloat}]]*/ 2;
+    /*]]>*/
+</script>
 <script>
-    (function () {
+
+    //隐藏浮动窗口div
+    if(isFloat==='0'||isFloat===0)document.getElementById('imgDiv').style.visibility = "hidden";
+    //进行浮动动画
+    var xin = true,
+        yin = true;
+    var step = 1;
+    var delay = 10;
+    var $obj;
+    $(function() {
+        $obj = $("#imgDiv");
+        var time = window.setInterval("move()", delay);
+        $obj.mouseover(function() {
+            clearInterval(time)
+        });
+        $obj.mouseout(function() {
+            time = window.setInterval("move()", delay)
+        });
+    });
+
+    function move() {
+        var left = $obj.offset().left;
+        var top = $obj.offset().top;
+        var L = T = 0; //左边界和顶部边界
+        var R = $(window).width() - $obj.width(); // 右边界
+        var B = $(window).height() - $obj.height(); //下边界
+
+        //难点:怎样判断广告的4个边框有没有超出可视化范围!
+        if (left < L) {
+            xin = true; // 水平向右移动
+        }
+        if (left > R) {
+            xin = false;
+        }
+        if (top < T) {
+            yin = true;
+        }
+        if (top > B) {
+            yin = false;
+        }
+        //根据有没有超出范围来确定广告的移动方向
+        left += step * (xin == true ? 1 : -1);
+        top  += step * (yin == true ? 1 : -1);
+        // 给div 元素重新定位
+        $obj.offset({
+            top: top,
+            left: left
+        })
+    }
+    //关闭
+    $(function() {
+        $("#a").click(function() {
+            var b = $("#a").parent();
+            $(b).remove();
+        })
+    })
+</script>
+<script>
+
+    function fourOnClick(url) {
+        window.open(url);
+    }
+    $(function () {
         var area = document.getElementById('con');
         area.scrollTop = 0;
         var con1 = document.getElementById('con1');
@@ -507,7 +531,7 @@
         //为对象设置绑定鼠标滑过
         area.onmouseover = function () {
             clearInterval(timer);
-        }
+        };
         //为对象绑定鼠标划出
         area.onmouseout = function () {
             timer = setInterval(scrollUp, 70);
@@ -519,7 +543,7 @@
         if (node.substr(0, 1) == "#") {
             return document.getElementById(node.substr(1));
         }
-    }
+    };
     var banner = g("#orgin");
     var controls = g("#controls");
     var controlsLis = controls.getElementsByTagName("li");
@@ -552,7 +576,8 @@
             num++;
         }, 4000)
     }
-
     autoPlay();
 </script>
+
+</body>
 </html>
