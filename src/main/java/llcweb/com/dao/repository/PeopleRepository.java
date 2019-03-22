@@ -31,7 +31,7 @@ public interface PeopleRepository extends JpaRepository<People,Integer>{
     /**
      *根据年级查询
      */
-    People findByGrade(String grade);
+    People findByGrade(int grade);
     /**
      *根据加入年份查询
      */
