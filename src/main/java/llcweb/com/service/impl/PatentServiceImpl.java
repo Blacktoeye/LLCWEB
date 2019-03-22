@@ -176,6 +176,13 @@ public class PatentServiceImpl implements PatentService {
 		return null;
 	}
 
+	@Override
+	public Page<Patent> getPage(int pageNum, int pageSize) {
+		Pageable pageable=new PageRequest(pageNum,pageSize, Sort.Direction.DESC,"appliDate");
+		Page<Patent> projectPage= patentRepository.findAll(pageable);
+		return projectPage;
+	}
+
 	/*	*//**
 	 * 分页
 	 *//*

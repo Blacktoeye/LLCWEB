@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 /**
@@ -69,4 +70,15 @@ public class ImageRepositoryTest {
         Page<Image> imageList=imageRepository.fuzzySearch("haien",new PageRequest(0,10, Sort.Direction.DESC,"date"));
         Assert.assertThat(imageList.getTotalElements(),is(10L));
     }
+
+    @Test
+    public void findByModel(){
+        Page<Image> imageList=imageRepository.findByModel("数据组",new PageRequest(0,15));
+        System.out.println(imageList.getTotalElements());
+        Assert.assertThat(imageList.getTotalElements(),greaterThan(3L));
+        for (Image image: imageList){
+            System.out.println(image);
+        }
+    }
+
 }

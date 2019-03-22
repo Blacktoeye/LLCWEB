@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <!--<title>LLC实验室网站</title>-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
 
     <link rel="stylesheet" href="../../static/home/css/reset.css" type="text/css"
           th:href="@{/home/css/reset.css}">
@@ -15,10 +15,6 @@
           th:href="@{/home/css/public.css}">
     <link href="../../static/home/css/index.css" rel="stylesheet"
           th:href="@{/home/css/index.css}">
-    <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
-            th:src="@{home/js/jquery-1.12.4.min.js}"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
     <meta name="keywords" content="jquery, plugin, pagination, fancy"/>
     <title>学术交流——广东省信息物理融合系统重点实验室</title>
@@ -32,7 +28,7 @@
           th:href="@{/home/css/style.css}"/>
     <link rel="stylesheet" href="../../static/home/css/papers.css" type="text/css"
           th:href="@{/home/css/papers.css}"/>
-
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -49,79 +45,128 @@
                         <li><span>&nbsp;/&nbsp;</span></li>
                         <li><a href="Academic_communication.html">学术交流</a></li>
                         <li><span>&nbsp;/&nbsp;</span></li>
-                        <li><a href="Academic_communication.html">学术活动</a></li>
+                        <li><a href="Academic_communication.html">开放会议</a></li>
                     </ul>
                 </div>
                 <div class="outline_r">
                     <div class="project_content">
-                        <ul class="news_list margin20">
+                        <ul class="news_list margin20" id="ul-projects">
                             <li>
-                                <a target="_blank" href="communication/communicationIndexPage.html?id=2">科学交流促进开发</a>
-                                <span>[2018-01-03]</span>
+                                <a target="_blank" href="Project/projectIndexPage.html?id=2">智能制造物联网的数据感知、传输和海量数据处理</a>
+                                <span>[2013-01-03]</span>
                             </li>
                             <li>
-
-                                <a target="_blank" href="communication/communicationIndexPage.html?id=4">科学交流促进开发</a>
-                                <span>[2017-12-03]</span>
-                            </li>
-                            <li>
-
-                                <a target="_blank" href="communication/communicationIndexPage.html?id=7">科学交流促进开发</a>
-                                <span>[2015-01-03]</span>
-                            </li>
-                            <li>
-
-                                <a target="_blank" href="communication/communicationIndexPage.html?id=8">科学交流促进开发</a>
+                                <a target="_blank" href="Project/projectIndexPage.html?id=20">体系结构级GPU功耗建模及软件低功耗优化</a>
                                 <span>[2011-01-01]</span>
                             </li>
-                            <li>
 
-                                <a target="_blank" href="communication/communicationIndexPage.html?id=18">科学交流促进开发</a>
-                                <span>[2011-01-01]</span>
-                            </li>
-                            <li>
-
-                                <a target="_blank" href="communication/communicationIndexPage.html?id=19">科学交流促进开发</a>
-                                <span>[2011-01-01]</span>
-                            </li>
-                            <li>
-
-                                <a target="_blank" href="communication/communicationIndexPage.html?id=20">科学交流促进开发</a>
-                                <span>[2011-01-01]</span>
-                            </li>
-                            <li>
-
-                                <a target="_blank" href="communication/communicationIndexPage.html?id=21">科学交流促进开发</a>
-                                <span>[2011-01-01]</span>
-                            </li>
                         </ul>
                     </div>
                     <div class="demo">
-                        <div id="demo4" class="jPaginate" style="padding-left: 58px;">
-                            <div class="jPag-control-back">
-                                <a class="jPag-first" style="color: rgb(121, 181, 227);">First</a>
-                                <span class="jPag-sprevious">«</span>
-                            </div>
-                            <div style="overflow: hidden; width: 22px;">
-                                <ul class="jPag-pages" style="width: 20px;">
-                                    <li><span class="jPag-current" style="color: rgb(37, 115, 175);">1</span></li>
-                                </ul>
-                            </div>
-                            <div class="jPag-control-front" style="left: 84px;">
-                                <span class="jPag-snext">»</span>
-                                <a class="jPag-last" style="color: rgb(121, 181, 227);">Last</a>
-                            </div>
-                        </div>
+                        <ul class="pagination" id="ul-pages">
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+
                     </div>
                 </div>
-
             </div>
+        </div>
+        <div style="margin-top: 50px;">
+            <hr style="height:1px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/>
         </div>
     </div>
 </div>
 
 <div th:include="template/footer_template :: footer_template"></div>
+<script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
+        th:src="@{home/js/jquery-1.12.4.min.js}"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/home/js/common.js"
+    th:src="@{/home/js/common.js}"></script>
 
+<!--请求js-->
+<script>
+    var urlGetPage="/activity/getPage";
+    var myModel = "开放会议";
+    $(document).ready(function () {
+        //获取对应的内容信息
+        var pages = getActivityByModel(myModel,1,10,urlGetPage);
+        //console.log(pages);
+        fillPage("#ul-projects",pages.tPage);
+        fillPages("#ul-pages",pages.totalPages);
+
+        //监听请求更改
+        $("#all-project").click(function () {
+            listenFun("开放会议",1);
+        });
+
+    });
+
+    function fillPages(ul_id,totalPages) {
+        var father = $(ul_id);
+        father.empty();
+        var str = "<li><a href=\"#\">&laquo;</a></li>";
+        father.append(str);
+
+        for (var i = 1;i<=totalPages;i++){
+            str = "<li><a id='btn-a-"+i+"' class='li_page' href=\"#"+i+"\">"+i+"</a></li>";
+            father.append(str);
+            //
+            var pid = "#btn-a-"+i;
+            $(pid).click(function(){
+                var id=$(this).attr("id");
+                var strId = id.split("-");
+                var pageIndex = parseInt(strId[2]);
+                var pages = getProjectByModel(myModel,pageIndex,10,urlGetPage);
+                fillPage("#ul-projects",pages.tPage);
+            });
+        }
+        str = "<li><a href=\"#\">&raquo;</a></li>";
+        father.append(str);
+    }
+
+    function listenFun(proType,pageIndex) {
+        myModel = proType;
+        var pages = getProjectByModel(proType,pageIndex,10,urlGetPage);
+        fillPage("#ul-projects",pages.tPage);
+        fillPages("#ul-pages",pages.totalPages);
+    }
+
+    function fillPage(id,data) {
+        var father = $(id);
+        father.empty();
+        for(var i = 0 ; i < data.length; i++){
+            var date = new Date(data[i].date);
+            var str = "<li>\n" +
+                "      <a target=\"_blank\" href=\"/achievement/activity.html?id="+data[i].id+"\">"+data[i].title+"</a>\n" +
+                "      <span>["+date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"]</span>\n" +
+                "      </li>";
+            father.append(str);
+        }
+    }
+    //根据分组获取信息
+    function getActivityByModel(model,pageNum,pageSize,url) {
+        var document =null;
+        //设置同步
+        $.ajax({
+            type : "get",
+            url : url,
+            data :"activityType=" + model+"&pageNum="+pageNum+"&pageSize="+pageSize,
+            async : false,
+            success : function(data){
+                document = data.data;
+                if(data.result!==1){
+                    //alert(data.message);
+                }
+            }
+        });
+        return document;
+    }
+</script>
 </body>
 
 </html>

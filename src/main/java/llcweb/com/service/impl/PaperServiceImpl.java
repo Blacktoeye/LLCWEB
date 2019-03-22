@@ -10,6 +10,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import llcweb.com.tools.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,7 +28,7 @@ import llcweb.com.service.PaperService;
 
 @Service
 public class PaperServiceImpl implements PaperService {
-	
+
 	@Autowired
 	private PaperRepository paperRepository;
 	
@@ -108,6 +109,14 @@ public class PaperServiceImpl implements PaperService {
 	@Override
 	public List<UsefulPaper> papersToUsefulPaper(List<Paper> paperList) {
 		return null;
+	}
+
+	@Override
+	public Page<Paper> getPage(int pageNum, int pageSize) {
+		//按时间排序
+		Pageable pageable=new PageRequest(pageNum,pageSize, Sort.Direction.DESC,"date");
+		Page<Paper> projectPage= paperRepository.findAll(pageable);
+		return projectPage;
 	}
 
 	/*	*//**

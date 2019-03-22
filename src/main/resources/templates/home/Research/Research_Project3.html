@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <title>科学研究——广东省信息物理融合系统重点实验室</title>
-    <link rel="shortcut icon" href="../../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
+    <link rel="shortcut icon" href="../../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="../../../static/home/css/reset.css" rel="stylesheet"
           th:href="@{/home/css/reset.css}">
@@ -13,9 +13,6 @@
           th:href="@{/home/css/public.css}">
     <link href="../../../static/home/css/index.css" rel="stylesheet"
           th:href="@{/home/css/index.css}">
-    <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
-            th:src="@{home/js/jquery-1.12.4.min.js}"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
     <meta name="keywords" content="jquery, plugin, pagination, fancy"/>
     <link rel="stylesheet" href="../../../static/home/css/header.css" type="text/css"
@@ -26,10 +23,9 @@
           th:href="@{/home/css/meeting.css}"/>
     <link rel="stylesheet" href="../../../static/home/css/style.css" type="text/css"
           th:href="@{/home/css/style.css}"/>
-
 </head>
 <body>
-<div th:include="template/header_templateS :: header_templateS"></div>
+<div th:include="template/header_template :: header_template"></div>
 <div class="meetingpage">
      <div class="container middle_container">
         <div class="middle_content">
@@ -135,21 +131,10 @@
 
 
 <div th:include="template/footer_template :: footer_template"></div>
-
+<script type="text/javascript" src="../../../static/home/js/jquery-1.12.4.min.js" th:src="@{../home/js/jquery-1.12.4.min.js}"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../static/home/js/common.js" th:src="@{../home/js/common.js}"></script>
 
 </body>
-    <!--二级菜单栏-->
-    <script>
-     $(function(){
-             $(".public-nav li:has(ul)").hover(function() {
-             $(this).find("a:first").css("background-color","#00428f");
-                 $(this).find(".subnav").css("display","block");
-
-         },function() {
-             $(this).find("a:first").css("background-color","#035ba6");
-             $(this).find(".subnav").css("display","none");
-         })
-     });
-    </script>
 
 </html>

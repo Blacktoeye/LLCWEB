@@ -1,19 +1,25 @@
 package llcweb.com.controller;
 
-import llcweb.com.dao.repository.DocumentRepository;
-import llcweb.com.dao.repository.UsersRepository;
-import llcweb.com.domain.models.Users;
+import llcweb.com.dao.repository.*;
+import llcweb.com.domain.models.*;
 import llcweb.com.service.UsersService;
+import llcweb.com.tools.RandomValidateCodeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *@Author: Ricardo
@@ -27,9 +33,75 @@ public class WebPageController {
 
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
     private DocumentRepository documentRepository;
     @Autowired
     private UsersService usersService;
+    @Autowired
+    private ProjectRepository projectRepository;
+
+    @Autowired
+    private PaperRepository paperRepository;
+    @Autowired
+    private PatentRepository patentRepository;
+    @Autowired
+    private SoftwareRepository softwareRepository;
+    @Autowired
+    private ImageRepository imageRepository;
+
+    @Autowired
+    private PeopleRepository peopleRepository;
+
+    @Autowired
+    private ActivityRepository activityRepository;
+
+    @Autowired
+    private PlatformRepository platformRepository;
+    @Autowired
+    private ParamsRepository paramsRepository;
+
+    /**
+     * 生成验证码
+     */
+    @RequestMapping(value = "/getVerify")
+    @ResponseBody
+    public void getVerify(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            response.setContentType("image/jpeg");//设置相应类型,告诉浏览器输出的内容为图片
+            response.setHeader("Pragma", "No-cache");//设置响应头信息，告诉浏览器不要缓存此内容
+            response.setHeader("Cache-Control", "no-cache");
+            response.setDateHeader("Expire", 0);
+            RandomValidateCodeUtil randomValidateCode = new RandomValidateCodeUtil();
+            randomValidateCode.getRandcode(request, response);//输出验证码图片方法
+        } catch (Exception e) {
+            logger.error("获取验证码失败>>>>   ", e);
+        }
+    }
+
+    /**
+     * 忘记密码页面校验验证码
+     */
+    @RequestMapping(value = "/checkVerify", method = RequestMethod.POST, headers = "Accept=application/json")
+    @ResponseBody
+    public boolean checkVerify(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        try{
+            //从session中获取随机数
+            //String inputStr = requestMap.get("inputStr").toString();
+            String inputStr = request.getParameter("inputStr");
+            String random = (String) session.getAttribute("RANDOMVALIDATECODEKEY");
+            if (random == null) {
+                return false;
+            }
+            if (random.equals(inputStr)) {
+                return true;
+            } else {
+                return false;
+            }
+        }catch (Exception e){
+            logger.error("验证码校验失败", e);
+            return false;
+        }
+    }
 
     //测试页面
     @RequestMapping("/test.html")
@@ -46,6 +118,11 @@ public class WebPageController {
     @RequestMapping({"/","/index.html","/index","/main","/main.html"})
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView("home/index");
+
+        Params params = paramsRepository.findByName("index-float-window");
+        if(params!=null){
+            modelAndView.addObject("isFloat",params.getValue());
+        }
         return modelAndView;
     }
     @ResponseBody
@@ -60,6 +137,14 @@ public class WebPageController {
         ModelAndView modelAndView = new ModelAndView("home/Academic_communication");
         return modelAndView;
     }
+    @RequestMapping({"/achievement/activity.html","/achievement/activity"})
+    public ModelAndView activity(@RequestParam("id")int id){
+        ModelAndView modelAndView = new ModelAndView("home/achievement/activity");
+
+        modelAndView.addObject("activity", activityRepository.findOne(id));
+        return modelAndView;
+    }
+
     @RequestMapping({"/Academic_conference.html","/Academic_conference"})
     public ModelAndView Academic_conference(){
         ModelAndView modelAndView = new ModelAndView("home/Academic_conference");
@@ -120,8 +205,10 @@ public class WebPageController {
 
 
     @RequestMapping({"/project_brief","/project_brief.html"})
-    public ModelAndView project_brief(){
+    public ModelAndView project_brief(@RequestParam("id")int projectId){
         ModelAndView modelAndView = new ModelAndView("home/project_brief");
+        Project project = projectRepository.findOne(projectId);
+        modelAndView.addObject("project", project);
         return modelAndView;
     }
     @RequestMapping({"/Research_Project.html","/Research_Project"})
@@ -140,7 +227,7 @@ public class WebPageController {
         return modelAndView;
     }
 
-    //
+    //招聘
     @RequestMapping({"/Talent_recruitment.html","/Talent_recruitment"})
     public ModelAndView Talent_recruitment(){
         ModelAndView modelAndView = new ModelAndView("home/Talent_recruitment");
@@ -156,9 +243,20 @@ public class WebPageController {
         ModelAndView modelAndView = new ModelAndView("home/Talent_recruitment2");
         return modelAndView;
     }
+    //人才培养
     @RequestMapping({"/Talent_training.html","/Talent_training"})
-    public ModelAndView Talent_training(){
+    public ModelAndView Talent_training(@RequestParam("position") String position, @RequestParam("grade") int grade){
         ModelAndView modelAndView = new ModelAndView("home/Talent_training");
+        logger.info("getByPosition：position=" + position+"  grade="+grade);
+        List<People> peopleList;
+        if(grade>0) {
+            peopleList = peopleRepository.findByPositionAndGrade(position,grade);
+        }else {
+            peopleList = peopleRepository.findByPosition(position);
+        }
+        modelAndView.addObject("peopleList",peopleList);
+        modelAndView.addObject("position",position);
+        modelAndView.addObject("grade",grade);
         return modelAndView;
     }
     @RequestMapping({"/Team_introduction.html","/Team_introduction"})
@@ -166,31 +264,34 @@ public class WebPageController {
         ModelAndView modelAndView = new ModelAndView("home/Team_introduction");
         return modelAndView;
     }
-    @RequestMapping({"/Untitled-1.html","/Untitled-1"})
-    public ModelAndView Untitled_1(){
-        ModelAndView modelAndView = new ModelAndView("home/Untitled-1");
-        return modelAndView;
-    }
-
 
 
     //以下为子文件夹的页面映射函数
     /**
-     * achievement
+     * achievement 论文专利软著等展示页面，根据id展示
      * **/
     @RequestMapping({"/achievement/scientific_achievements1.html","/achievement/scientific_achievements1"})
-    public ModelAndView scientific_achievements1(){
+    public ModelAndView scientific_achievements1(@RequestParam("id")int id){
         ModelAndView modelAndView = new ModelAndView("home/achievement/scientific_achievements1");
+
+        modelAndView.addObject("paper", paperRepository.findOne(id));
         return modelAndView;
     }
     @RequestMapping({"/achievement/scientific_achievements2.html","/achievement/scientific_achievements2"})
-    public ModelAndView scientific_achievements2(){
+    public ModelAndView scientific_achievements2(@RequestParam("id")int id){
         ModelAndView modelAndView = new ModelAndView("home/achievement/scientific_achievements2");
+
+        Patent patent = patentRepository.findOne(id);
+        modelAndView.addObject("image",imageRepository.findOne(patent.getSourceFile()));
+        modelAndView.addObject("patent", patent);
         return modelAndView;
     }
     @RequestMapping({"/achievement/scientific_achievements3.html","/achievement/scientific_achievements3"})
-    public ModelAndView scientific_achievements3(){
+    public ModelAndView scientific_achievements3(@RequestParam("id")int id){
         ModelAndView modelAndView = new ModelAndView("home/achievement/scientific_achievements3");
+        Software software = softwareRepository.findOne(id);
+        modelAndView.addObject("image",imageRepository.findOne(software.getSourceFile()));
+        modelAndView.addObject("software", software);
         return modelAndView;
     }
     /**
@@ -271,8 +372,14 @@ public class WebPageController {
         return modelAndView;
     }
     @RequestMapping({"/ResearchProject/professor_demo.html","/ResearchProject/professor_demo"})
-    public ModelAndView professor_demo(){
+    public ModelAndView professor_demo(@RequestParam("id")int id){
         ModelAndView modelAndView = new ModelAndView("home/ResearchProject/professor_demo");
+
+        People people = peopleRepository.findOne(id);
+        Image image = imageRepository.findOne(people.getPortrait());
+        modelAndView.addObject("people",people);
+        modelAndView.addObject("image",image);
+
         return modelAndView;
     }
 
@@ -284,14 +391,36 @@ public class WebPageController {
         ModelAndView modelAndView = new ModelAndView("home/Talent/doctor_demo");
         return modelAndView;
     }
+
+    //研究生个人介绍页面
     @RequestMapping({"/Talent/graduate_demo.html","/Talent/graduate_demo"})
-    public ModelAndView graduate_demo(){
+    public ModelAndView graduate_demo(@RequestParam("id")int id){
         ModelAndView modelAndView = new ModelAndView("home/Talent/graduate_demo");
+        People people = peopleRepository.findOne(id);
+        Image image = imageRepository.findOne(people.getPortrait());
+        modelAndView.addObject("people",people);
+        modelAndView.addObject("image",image);
         return modelAndView;
     }
     @RequestMapping({"/Talent/post_demo.html","/Talent/post_demo"})
     public ModelAndView post_demo(){
         ModelAndView modelAndView = new ModelAndView("home/Talent/post_demo");
+        return modelAndView;
+    }
+    //平台展示页面
+    @RequestMapping({"/platform.html","/platform"})
+    public ModelAndView platform(){
+        ModelAndView modelAndView = new ModelAndView("home/platform");
+        List<Platform> platformList = platformRepository.findByIsPublish(1);
+        modelAndView.addObject("platformList",platformList);
+        return modelAndView;
+    }
+
+    //搜索页面
+    @RequestMapping({"/Globalsearch.html","/Globalsearch"})
+    public ModelAndView Globalsearch(@RequestParam(value="keyWord",required = false)String keyWord){
+        ModelAndView modelAndView = new ModelAndView("home/Globalsearch");
+        logger.info("keyWord = "+keyWord);
         return modelAndView;
     }
 }

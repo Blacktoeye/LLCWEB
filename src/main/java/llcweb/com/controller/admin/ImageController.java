@@ -233,8 +233,9 @@ public class ImageController {
             String searchValue=request.getParameter("fuzzy");
 
             //空搜
-            if(searchValue==null){
+            if(StringUtil.isNull(searchValue)){
                 //imagePage=imageService.selectByRole(user,currentPage-1,size);
+                logger.debug("空搜 StringUtil.isNull(searchValue)");
                 imagePage=imageService.selectByRole(user,currentPage-1,size,imageRepository);
             }
 
@@ -273,8 +274,12 @@ public class ImageController {
                 imagePage=imageService.selectByRole(user,currentPage-1,size,imageRepository);
             }
 
-            UsefulImage image=new UsefulImage(author, model, description, firstDate, lastDate);
-            imagePage = imageService.activeSearch(image,currentPage-1,size,imageRepository);
+            //以下代码无法实现权限控制
+            else{
+                UsefulImage image=new UsefulImage(user.getUsername(), model, description, firstDate, lastDate);
+                imagePage = imageService.activeSearch(image,currentPage-1,size,imageRepository);
+            }
+
         }
 
         //总记录数

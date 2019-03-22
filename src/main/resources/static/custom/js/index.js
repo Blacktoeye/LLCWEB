@@ -7,8 +7,14 @@
 *     事件监听-->
 *
 **/
+var urlIsCurrentUserHasRole = "/users/isCurrentUserHasRole";
+var hasRole = isCurrentUserHasRole(urlIsCurrentUserHasRole,"ADMIN");
+setCookie("hasRole", hasRole, 7);
 
 $(document).ready(function () {
+
+
+    hiddenAll();
     $("[name='my-task-switch']").bootstrapSwitch({
         onText:"完成",
         offText:"未完成",

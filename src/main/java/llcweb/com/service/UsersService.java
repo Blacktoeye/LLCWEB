@@ -2,9 +2,12 @@ package llcweb.com.service;
 
 
 import llcweb.com.domain.entity.UsefulUsers;
+import llcweb.com.domain.models.Roles;
 import llcweb.com.domain.models.Users;
 import llcweb.com.tools.PageParam;
 import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 /**
  * Created by:Ricardo
@@ -18,11 +21,11 @@ public interface UsersService {
     /*
      *添加信息
      */
-    void add();
+    void add(Users user,List<Roles> roles);
     /*
      *更新信息
      */
-    void updateById(int id);
+    void updateById(Users user);
     /*
      *根据id查找
      */
@@ -41,4 +44,7 @@ public interface UsersService {
     Users getCurrentUser();
 
     Page<Users> findAll(UsefulUsers document, int pageNum, int pageSize);
+
+    //判断用户是否包含某个权限(大写英文 roles的flag)
+    boolean hasRole(String strRole);
 }

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>广东省信息物理融合系统重点实验室官网</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
+
+    <link href="../../static/home/css/reset.css" rel="stylesheet"
+          th:href="@{/home/css/reset.css}">
+    <link href="../../static/home/css/public.css" rel="stylesheet"
+          th:href="@{/home/css/public.css}">
+    <link href="../../static/home/css/index.css" rel="stylesheet"
+          th:href="@{/home/css/index.css}">
+    <!-- 	 <link href="css/font-awesome.css" rel="stylesheet" > -->
+    <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
+            th:src="@{/home/js/jquery-1.12.4.min.js}"></script>
+    <!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<body>
+<div th:fragment="header_template">
+    <div class="public-header">
+        <div class="public-header-top">
+            <div class="public-container">
+                <div class="public-left">
+                    <p>欢迎访问广东省信息物理融合系统重点实验室官网!</p>
+                </div>
+                <ul class="public-header-list">
+                    <li><a target="_blank" href="/admin/index.html">登录</a></li>
+                    <li><a target="_blank" href="/contact_us.html">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="public-header-middle public-container clearfix">
+            <div class="public-left">
+                <div class="logo">
+                    <a href=""></a>
+                </div>
+            </div>
+            <div class="public-middle" style="width: 800px;margin-top: 20px; margin-left: 120px;">
+                <div style="font-size: 31px;color: #035ba6;">广东省信息物理融合系统重点实验室</div>
+                <div style="font-size: 17.7px;margin-top: 10px;color: #035ba6;">智能制造信息物理融合系统集成技术国家地方联合工程研究中心</div>
+
+            </div>
+            <div class="public-right">
+                <div class="public-search" style="margin-right: 40px;">
+                    <input id="btn-global-search-input"  type="text" class="public-input-text">
+                    <input id="btn-global-search" type="submit" class="public-input-btn" value>
+                </div>
+            </div>
+        </div>
+        <div class="public-nav">
+            <ul>
+                <li class="item">
+                    <a href="/index.html" class="hon">首页</a>
+                </li>
+                <li class="item">
+                    <a target="_blank" href="/Team_introduction#1.html" class="hon">实验室概况</a>
+                    <ul class="subnav">
+                        <li><a href="/Team_introduction#1.html" class="hon1">团队简介</a></li>
+                        <li><a href="/Team_introduction#2.html" class="hon1">项目简介</a></li>
+
+                    </ul>
+                </li>
+                <li class="item">
+                    <a target="_blank" href="/Research_Team.html" class="hon">科研团队</a>
+                    <ul class="subnav">
+                        <li><a href="/Professor#1.html" class="hon1">教授</a></li>
+                        <li><a href="/Professor#2.html" class="hon1">副教授</a></li>
+                        <li><a href="/Professor#3.html" class="hon1">讲师</a></li>
+
+                    </ul>
+                </li>
+                <li class="item">
+                    <a target="_blank" href="/Research_Project.html" class="hon">科学研究</a>
+
+                </li>
+                <li class="item">
+                    <a target="_blank" href="/Academic_communication.html" class="hon">学术交流</a>
+                </li>
+                <li class="item">
+                    <a target="_blank" href="/scientific_achievements.html" class="hon">科研成果</a>
+                </li>
+                <li class="item">
+                    <a target="_blank" href="/Talent_training.html?position=博士后&grade=-1" class="hon">人才培养</a>
+                    <ul class="subnav">
+                        <li><a href="/Talent_training.html?position=博士后&grade=-1" class="hon1">博士后</a></li>
+                        <li><a href="/Talent_training.html?position=博士&grade=0" class="hon1">博士</a></li>
+                        <li><a href="/Talent_training.html?position=研究生&grade=2016" class="hon1">研究生</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a target="_blank" href="/Cultural_activity.html" class="hon">文化活动</a>
+                </li>
+                <li class="item">
+                    <a target="_blank" href="/Talent_recruitment.html" class="hon">人才招聘</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
+        th:src="@{/home/js/jquery-1.12.4.min.js}"></script>
+<script>
+    $(function () {
+        var area = document.getElementById('con');
+        area.scrollTop = 0;
+        var con1 = document.getElementById('con1');
+        var con2 = document.getElementById('con2');
+
+        con2.innerHTML = con1.innerHTML;
+
+        function scrollUp() {
+            if (area.scrollTop >= con1.offsetHeight) {
+                area.scrollTop = 0;
+            } else {
+                area.scrollTop++;
+            }
+        }
+
+        var timer = null;
+        clearInterval(timer);
+        timer = setInterval(scrollUp, 70);
+        //为对象设置绑定鼠标滑过
+        area.onmouseover = function () {
+            clearInterval(timer);
+        }
+        //为对象绑定鼠标划出
+        area.onmouseout = function () {
+            timer = setInterval(scrollUp, 70);
+        }
+    })();
+</script>
+<script>
+    var g = function (node) {
+        if (node.substr(0, 1) == "#") {
+            return document.getElementById(node.substr(1));
+        }
+    }
+    var banner = g("#orgin");
+    var controls = g("#controls");
+    var controlsLis = controls.getElementsByTagName("li");
+    var timer = null;//设置定时器
+    var num = 0;
+    for (var i = 0; i < controlsLis.length; i++) {
+        controlsLis[i].index = i;
+        controlsLis[i].onclick = function () {
+            clearInterval(timer);
+            for (var j = 0; j < controlsLis.length; j++) {
+                controlsLis[j].className = ''//把所有的控制按钮颜色都去掉
+            }
+            this.className = 'start';//当前点击的按钮变色
+            banner.style.left = -635 * this.index + "px";
+            num = this.index;
+            autoPlay();
+        }
+    }
+
+    function autoPlay() {
+        timer = setInterval(function () {
+            if (num > 2) {
+                num = 0;
+            }
+            for (var j = 0; j < controlsLis.length; j++) {
+                controlsLis[j].className = ''//把所有的控制按钮颜色都去掉
+            }
+            controlsLis[num].className = 'start';
+            banner.style.left = -635 * num + "px";
+            num++;
+        }, 4000)
+    }
+
+    autoPlay();
+</script>
+<script>
+    $(function () {
+        $(".public-nav li:has(ul)").hover(function () {
+            $(this).find("a:first").css("background-color", "#00428f");
+            $(this).find(".subnav").css("display", "block");
+
+        }, function () {
+            $(this).find("a:first").css("background-color", "#035ba6");
+            $(this).find(".subnav").css("display", "none");
+        })
+    });
+
+</script>
+</body>
+
+</html>

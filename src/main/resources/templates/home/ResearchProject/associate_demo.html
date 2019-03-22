@@ -4,15 +4,13 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no"/>
     <!--<title>LLC实验室网站</title>-->
-    <link rel="shortcut icon" href="../../../static/home/images/bitbug_favicon.ico"
-    th:href="@{/home/images/bitbug_favicon.ico}"/>
+    <link rel="shortcut icon" href="../../../static/home/images/favicon.ico"
+    th:href="@{/home/images/favicon.ico}"/>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="../../../static/home/css/reset.css" rel="stylesheet" th:href="@{/home/css/reset.css}">
     <link href="../../../static/home/css/public.css" rel="stylesheet" th:href="@{/home/css/public.css}">
     <link href="../../../static/home/css/index.css" rel="stylesheet" th:href="@{/home/css/index.css}">
-   <script type="text/javascript" src="../../../static/home/js/jquery-1.12.4.min.js" th:src="@{/js/jquery-1.12.4.min.js}"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-     <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
+    <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
     <meta name="keywords" content="jquery, plugin, pagination, fancy"/>
     <title>科研团队——广东省信息物理融合系统重点实验室</title>
     <link rel="stylesheet" href="../../../static/home/css/header.css" type="text/css" th:href="@{/home/css/header.css}"/>
@@ -22,10 +20,9 @@
     <link rel="stylesheet" href="../../../static/home/css/papers.css" type="text/css" th:href="@{/home/css/papers.css}"/>
     <link rel="stylesheet" href="../../../static/home/css/team.css" th:href="@{/home/css/team.css}">
     <link rel="stylesheet" href="/../../../static/home/css/article.css" th:href="@{/home/css/article.css}">
-    <script src="../../../static/home/Scripts/jquery.paginate.js" th:href="@{/Scripts/jquery.paginate.js}"></script>
 </head>
 <body>
-<div class="public-header" th:include="template/header_templateS :: header_templateS">
+<div class="public-header" th:include="template/header_template :: header_template">
 </div>
 <div class="middle">
     <div class="container middle_container">
@@ -80,36 +77,28 @@
                                 <table style="table-layout:fixed;">
                                     <tbody>
                                         <tr>
-                                            <td>姓名(Name)</td>
-                                            <td>XXX</td>
+                                            <td>姓名(Name):<span>XXX</span></td>
                                         </tr>
                                         <tr>
-                                            <td>性别(Sex)</td>
-                                            <td>XXX</td>
+                                            <td>性别(Sex):<span>XXX</span></td>
                                         </tr>
                                         <tr>
-                                            <td>职称(Title)</td>
-                                            <td>XXX</td>
+                                            <td>职称(Title):<span>XXX</span></td>
                                         </tr>
                                         <tr>
-                                            <td>行政职务(Administrative post)</td>
-                                            <td>XXX</td>
+                                            <td>行政职务(Administrative post):<span>XXX</span></td>
                                         </tr>
                                         <tr>
-                                            <td>最高学历(Highest degree)</td>
-                                            <td>XXX</td>
+                                            <td>最高学历(Highest degree):<span>XXX</span></td>
                                         </tr>
                                         <tr>
-                                            <td>研究领域(Research field)</td>
-                                            <td>XXX</td>
+                                            <td>研究领域(Research field):<span>XXX</span></td>
                                         </tr>
                                         <tr>
-                                            <td>学术头衔(Academic title)</td>
-                                            <td>XXX</td>
+                                            <td>学术头衔(Academic title):<span>XXX</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Email地址(E-mail address)</td>
-                                            <td>XXX</td>
+                                            <td>Email地址(E-mail address):<span>XXX</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -152,23 +141,11 @@
     </div>
 </div>
 
-<div th:include="template/footer_template :: footer_template">
-
-</div>
-
+<div th:include="template/footer_template :: footer_template"></div>
+<script type="text/javascript" src="../../../static/home/js/jquery-1.12.4.min.js" th:src="@{../home/js/jquery-1.12.4.min.js}"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../static/home/Scripts/jquery.paginate.js" th:src="@{../home/Scripts/jquery.paginate.js}"></script>
+<script src="../../../static/home/js/common.js" th:src="@{../home/js/common.js}"></script>
 
 </body>
-    <!--二级菜单栏-->
-    <script>
-     $(function(){
-             $(".public-nav li:has(ul)").hover(function() {
-             $(this).find("a:first").css("background-color","#00428f");
-                 $(this).find(".subnav").css("display","block");
-
-         },function() {
-             $(this).find("a:first").css("background-color","#035ba6");
-             $(this).find(".subnav").css("display","none");
-         })
-     });
-    </script>
 </html>

@@ -9,20 +9,24 @@ import javax.persistence.Table;
  * Module:  People.java
  * Author:  Ricardo
  * Purpose: Defines the Class People
- ***********************************************************************/@Entity
-@Table(name="people")public class People {
+ ***********************************************************************/
+import javax.persistence.*;
 
+@Entity
+@Table(name = "people")
+public class People {
+    /**
+     * 人物id
+     **/
     @Id
     @GeneratedValue
     private int id;
-/**
+
+    /**
+
      * 人物姓名
      */
     private String name;
-
-    private String phone;
-    private String email;
-    private String researchField;
 
     /**
      * 人物头像路径(关联image表)
@@ -30,7 +34,7 @@ import javax.persistence.Table;
     private int portrait;
 
     /**
-     * 职位，教授、副教授、讲师、博士后、博士、硕士，本科生
+     * 职称，教授、副教授、讲师、博士后、博士、硕士，本科生
      */
     private String position;
 
@@ -43,6 +47,43 @@ import javax.persistence.Table;
      * 对于本科生、硕士生、博士生是届数；讲师，教授，等是加入年份
      */
     private int grade;
+
+    /**
+     * 手机
+     */
+    @Column(length = 11)
+    private String phone;
+
+    /**
+     * 邮箱
+     */
+    @Column(length = 30)
+    private String email;
+
+    /**
+     * 性别
+     */
+    private String sex;
+
+    /**
+     * 行政职务
+     */
+    private String adminPosition;
+
+    /**
+     * 最高学历
+     */
+    private String highestDegree;
+
+    /**
+     * 研究领域
+     */
+    private String researchField;
+
+    /**
+     * 学术头衔
+     */
+    private String academicTitle;
 
     public People() {
 
@@ -109,6 +150,7 @@ import javax.persistence.Table;
     public void setGrade(int grade) {
         this.grade = grade;
     }
+
     public String getPhone() {
         return phone;
     }
@@ -125,6 +167,30 @@ import javax.persistence.Table;
         this.email = email;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getAdminPosition() {
+        return adminPosition;
+    }
+
+    public void setAdminPosition(String adminPosition) {
+        this.adminPosition = adminPosition;
+    }
+
+    public String getHighestDegree() {
+        return highestDegree;
+    }
+
+    public void setHighestDegree(String highestDegree) {
+        this.highestDegree = highestDegree;
+    }
+
     public String getResearchField() {
         return researchField;
     }
@@ -132,4 +198,14 @@ import javax.persistence.Table;
     public void setResearchField(String researchField) {
         this.researchField = researchField;
     }
+
+    public String getAcademicTitle() {
+        return academicTitle;
+    }
+
+    public void setAcademicTitle(String academicTitle) {
+        this.academicTitle = academicTitle;
+    }
 }
+
+

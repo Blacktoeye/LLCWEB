@@ -3,25 +3,19 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-    <!--<title>LLC实验室网站</title>-->
+    <title>科学研究——广东省信息物理融合系统重点实验室</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
-
-    <link rel="stylesheet" href="../../static/home/css/reset.css" type="text/css"
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
+    <link href="../../static/home/css/reset.css" rel="stylesheet"
           th:href="@{/home/css/reset.css}">
-
     <link href="../../static/home/css/public.css" rel="stylesheet"
           th:href="@{/home/css/public.css}">
     <link href="../../static/home/css/index.css" rel="stylesheet"
           th:href="@{/home/css/index.css}">
-    <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
-            th:src="@{home/js/jquery-1.12.4.min.js}"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
     <meta name="keywords" content="jquery, plugin, pagination, fancy"/>
-    <title>实验室概况——广东省信息物理融合系统重点实验室</title>
+    <title>科学研究——广东省信息物理融合系统重点实验室</title>
     <link rel="stylesheet" href="../../static/home/css/header.css" type="text/css"
           th:href="@{/home/css/header.css}"/>
     <link rel="stylesheet" href="../../static/home/css/sidebar.css" type="text/css"
@@ -30,74 +24,128 @@
           th:href="@{/home/css/meeting.css}"/>
     <link rel="stylesheet" href="../../static/home/css/style.css" type="text/css"
           th:href="@{/home/css/style.css}"/>
-    <link rel="stylesheet" href="../../static/home/css/papers.css" type="text/css"
-          th:href="@{/home/css/papers.css}"/>
-
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
 </head>
 <body>
-<div class="public-header" th:include="template/header_template"></div>
-<div class="middle">
+
+
+<div th:include="template/header_template :: header_template"></div>
+<div class="meetingpage">
     <div class="container middle_container">
         <div class="middle_content">
-            <div class="middle_l" id="temlate_middle">
-                <!-- <h1><span>机构概况</span></h1> -->
-                <ul id='resultType' class="tmo_list2">
-                    <li class="ll first"><span>实验室概况</span></li>
-                    <li class='ll'>
-                        <a href='Team_introduction.html' class='ll_ref'>
-                            <i></i>
-                            <span>团队简介</span>
-                        </a>
-                    </li>
-                    <li class='ll'>
-                        <a href='Institutional_profile.html' class='ll_ref'>
-                            <i></i>
-                            <span>机构简介</span>
-                        </a>
-                    </li>
-                    <li class='ll'>
-                        <a href='project_brief.html' class='ll_ref' style="background:#6ad;">
-                            <i></i>
-                            <span>项目简介</span>
-                        </a>
-                    </li>
-                </ul>
+            <div style="text-align: center;">
+                <h1 th:text="${project.projectName}"></h1>
+                <!--<div align="center">-->
+                    <!--<table >-->
+                        <!--<thead>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                        <!--<tr>-->
+                            <!--<td><h3>项目编号：</h3></td>-->
+                            <!--<td><span th:text="${project.requireNum}"></span></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td><h3>开始时间：</h3></td>-->
+                            <!--<td><sapn th:text="${project.startDate}"></sapn></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td><h3 >结束时间：</h3></td>-->
+                            <!--<td><sapn th:text="${project.endDate}"></sapn></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td><h3 >研究领域：</h3></td>-->
+                            <!--<td><span th:text="${project.researchField}"></span></td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
 
+                <!--<h3>项目编号：<span th:text="${project.requireNum}"></span></h3>-->
+                <!--<h3>开始时间：<sapn th:text="${project.startDate}"></sapn></h3>-->
+                <!--<h3 >结束时间：<sapn th:text="${project.endDate}"></sapn></h3>-->
+                <!--<h3 >研究领域：<span th:text="${project.researchField}"></span></h3>-->
             </div>
-            <div class="middle_r">
-                <div class="crumb">
-                    <ul id="crumbs">
-                        <li><a href="index.html">首页</a></li>
-                        <li><span>&nbsp;/&nbsp;</span></li>
-                        <li><a href="Team_introduction.html">实验室概况</a></li>
-						<li><span>&nbsp;/&nbsp;</span></li>
-                        <li><a href="project_brief.html">项目简介</a></li>
-                    </ul>
-                </div>
+            <!--项目简介-->
+            <!--<div id="document-preview" style="max-width: 900px;margin-left: 100px;"></div>-->
+            <div style="margin-top:30px; margin-left: 100px;width: 1000px;height: 800px;" id="example1"></div>
+        </div>
 
-				<div style="width: 300px;"><img src="../../static/home/images/3.png" th:src="@{home/images/3.png}" style="margin-top: 50px;width: 700px;"></div>
-
-
-
-            </div>
+        <div style="margin-top: 50px;">
+            <hr style="height:1px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/>
         </div>
     </div>
 </div>
-<div class="public-footer" th:include="template/footer_template"></div>
 
+<div th:include="template/footer_template :: footer_template"></div>
+<div class="clearfix"></div>
+<script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
+        th:src="@{/home/js/jquery-1.12.4.min.js}"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/home/js/pdfobject.min.js"
+        th:src="@{/home/js/pdfobject.min.js}"></script>
+
+<script type="text/javascript" src="../../static/home/js/common.js"
+        th:src="@{/home/js/common.js}"></script>
+<!--请求js-->
+
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    //拿到模型列表
+    var project = /*[[${project}]]*/ 2;
+    /*]]>*/
+</script>
+
+<script>
+
+    $(document).ready(function () {
+//        //获得简介内容
+//        var urlGetDocumentById="/document/getDocumentById";
+//        var document = getDocumentById(project.introduction,urlGetDocumentById);
+//        var content = document.content;
+//        if(content==null||content==undefined)alert("未获取到简介！请检查数据！");
+//        $("#document-preview").html(document.content);
+
+        var pdffile = "/home/pdf-error.pdf";
+        var urlGetDocumentById="/file/getFile";
+        var file = getFileById(project.introduction,urlGetDocumentById);
+        var path = file.path;
+        if(path==null||path==undefined||path.length<1)alert("未获取到简介！");
+        else {
+
+            pdffile = path;
+            var options = {
+                pdfOpenParams: {
+                    pagemode: "thumbs",
+                    navpanes: 0,
+                    toolbar: 0,
+                    statusbar: 0
+                }
+            };
+            PDFObject.embed(pdffile, "#example1",options);
+        }
+    });
+
+    //根据id获取document信息
+    function getFileById(id,urlGetFileById) {
+        var file =null;
+        //设置同步
+        $.ajax({
+            type : "get",
+            url : urlGetFileById,
+            data :"id=" + id,
+            async : false,
+            success : function(data){
+                file = data.data;
+                if(data.result!==1){
+                    alert(data.message);
+                }
+            }
+        });
+        return file;
+    }
+
+</script>
 
 </body>
-    <!--二级菜单栏-->
-    <script>
-     $(function(){
-             $(".public-nav li:has(ul)").hover(function() {
-             $(this).find("a:first").css("background-color","#00428f");
-                 $(this).find(".subnav").css("display","block");
-
-         },function() {
-             $(this).find("a:first").css("background-color","#035ba6");
-             $(this).find(".subnav").css("display","none");
-         })
-     });
-    </script>
 </html>

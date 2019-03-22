@@ -95,7 +95,7 @@ li.first span:hover{
 
 .ll_ref i{
     display: inline-block;
-    background: url(images/point.png) no-repeat;
+    /*background: url(images/point.png) no-repeat;*/
     width: 15px;
     height: 15px;
     float: left;

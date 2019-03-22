@@ -34,7 +34,7 @@ public class Activity {
    //活动类型：活动、会议、通知和招聘
    @Column(length = 30)
    private String activityType;
-   //专指通知和招聘信息是否发布,用0/1表示
+   //专指通知和招聘信息是否要发布,0/1
    private int isPublish;
 
    public Activity() {

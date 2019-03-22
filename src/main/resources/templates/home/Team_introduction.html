@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <!--<title>LLC实验室网站</title>-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
-
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
     <link rel="stylesheet" href="../../static/home/css/reset.css" type="text/css"
           th:href="@{/home/css/reset.css}">
     <link href="../../static/home/css/public.css" rel="stylesheet"
@@ -27,7 +26,7 @@
           th:href="@{/home/css/style.css}"/>
     <link rel="stylesheet" href="../../static/home/css/papers.css" type="text/css"
           th:href="@{/home/css/papers.css}"/>
-
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
 </head>
 <body>
 <div class="public-header" th:include="template/header_template :: header_template">
@@ -41,77 +40,110 @@
                 <ul id='resultType' class="tmo_list2">
                     <li class="ll first"><span>实验室概况</span></li>
                     <li class='ll'>
-                        <a href='Team_introduction.html' class='ll_ref' style="background:#6ad;">
+                        <a href='#1' class='ll_ref'>
                             <i></i>
                             <span>团队简介</span>
                         </a>
                     </li>
                     <li class='ll'>
-                        <a href='Institutional_profile.html' class='ll_ref'>
-                            <i></i>
-                            <span>机构简介</span>
-                        </a>
-                    </li>
-                    <li class='ll'>
-                        <a href='project_brief.html' class='ll_ref'>
+                        <a href='#2' class='ll_ref'>
                             <i></i>
                             <span>项目简介</span>
                         </a>
                     </li>
-
                 </ul>
 
             </div>
             <div class="middle_r">
                 <div class="crumb">
                     <ul id="crumbs">
-                        <li><a href="index.html">首页</a></li>
+                        <li><a href="/index.html">首页</a></li>
                         <li><span>&nbsp;/&nbsp;</span></li>
-                        <li><a href="./Team_introduction.html">实验室概况</a></li>
-                        <li><span>&nbsp;/&nbsp;</span></li>
-                        <li><a href="./Team_introduction.html">团队简介</a></li>
+                        <li><a href="Team_introduction#1.html">实验室概况</a></li>
+                        <li></li>
+                        <li></li>
                     </ul>
                 </div>
                 <!--实验室简介-->
-                <div id="document-preview" style="max-width: 800px;"></div>
+                <div id="document-preview" style="max-width: 800px;border-style: groove;"></div>
 
             </div>
+
+        </div>
+        <div style="margin-top: 50px;">
+            <hr style="height:1px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/>
         </div>
     </div>
 </div>
 <div class="public-footer" th:include="template/footer_template :: footer_template"></div>
 <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
-        th:src="@{/home/js/jquery-1.12.4.min.js}"></script>
+    th:src="@{home/js/jquery-1.12.4.min.js}"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        th:src="@{https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    th:src="@{https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 <script type="text/javascript" src="../../static/home/js/common.js"
-        th:src="@{/home/js/common.js}"></script>
+    th:src="@{/home/js/common.js}"></script>
 </body>
 <!--二级菜单栏-->
 <script>
     $(function () {
-        $(".public-nav li:has(ul)").hover(function () {
-            $(this).find("a:first").css("background-color", "#00428f");
-            $(this).find(".subnav").css("display", "block");
 
-        }, function () {
-            $(this).find("a:first").css("background-color", "#035ba6");
-            $(this).find(".subnav").css("display", "none");
-        })
+        // 监听请求更改--左侧导航栏
+        $("a.ll_ref").click(function(){
+            var index = $(this).parent().index();//获取li的索引
+            //加载对应页面
+            initTeamList(index);
+        });
+
+//        //实验室概况点击跳转
+//        $("#crumbs").find('li').eq(2).click(function(){
+//            initTeamList(1);
+//        });
+
+        $('.public-nav').find('li.item').eq(1).find('a.hon').click(function(){
+            initTeamList(1);
+        });
+        $('.public-nav').find('li.item').eq(1).find('a.hon1').click(function(){
+            var index = $(this).parent().index()+1;
+            initTeamList(index);
+        });
     });
 </script>
 
 <!--请求js-->
 <script>
     $(document).ready(function () {
-        //获取document对应的内容信息
-        var urlGetDocumentById="/document/getDocumentById";
-        var document = getDocumentById(2,urlGetDocumentById);
-        var content = document.content;
-        if(content==null||content==undefined)content="未获取到简介！请检查数据！";
-        $("#document-preview").html(document.content);
+        //获取document对应的内容信息，初始化
+        var url = location.href;
+        url = url.split("#");
+        var url1 = url[1].split(".");
+        var index = parseInt(url1[0]);
+        if(index == undefined || index== null)index=1;
+        initTeamList(index);
     });
+
+    //加载实验室概况页面内容
+    function initTeamList(index){
+        var urlGetDocumentById="/document/getDocumentById";
+        var document = getDocumentById(index,urlGetDocumentById);
+        var content = document.content;
+        var crumbsSpan = '';
+        var crumbsCon = '';
+        if(content==null||content==undefined)alert("未获取到简介！请检查数据！");
+        $("#document-preview").html(document.content);
+
+        //改变上方链接指示
+        $("#crumbs").find('li').eq(3).html("");
+        crumbsSpan+='<span>&nbsp;/&nbsp;</span>';
+        $("#crumbs").find('li').eq(3).append(crumbsSpan);
+        $("#crumbs").find('li').eq(4).html("");
+        crumbsCon+='<a href="#'+index+'">'+$('#resultType').find('span').eq(index).html()+'</a>';
+        $("#crumbs").find('li').eq(4).append(crumbsCon);
+        // $("#crumbs").append(crumbsCon);
+        //改变左侧高亮提示
+        $('#resultType').find('a.ll_ref').eq(index-1).css('background', '#6ad').parent().siblings().find("a").css('background', '#f3f2f2');
+    }
 </script>
+
 
 
 

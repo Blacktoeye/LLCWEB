@@ -62,16 +62,12 @@ public class ActivityServiceImpl implements ActivityService {
                 }
                 //传进来的起时间为时间上限，查询起始时间都在其后的活动
                 if(activity.getStartDate()!=null){
-                    Predicate like=cb.greaterThanOrEqualTo(root.get("startDate"),"%"+activity.getStartDate()+"%");
-                    predicates.add(like);
-                    like=cb.greaterThanOrEqualTo(root.get("endDate"),"%"+activity.getEndDate()+"%");
+                    Predicate like=cb.greaterThanOrEqualTo(root.get("startDate"),activity.getStartDate());
                     predicates.add(like);
                 }
                 //传进来的终时间为时间下限，查询起始时间都较其早的活动
                 if(activity.getEndDate()!=null){
-                    Predicate like=cb.lessThanOrEqualTo(root.get("endDate"),"%"+activity.getEndDate()+"%");
-                    predicates.add(like);
-                    like=cb.lessThanOrEqualTo(root.get("endDate"),"%"+activity.getEndDate()+"%");
+                    Predicate like=cb.lessThanOrEqualTo(root.get("endDate"),activity.getEndDate());
                     predicates.add(like);
                 }
                 //将List转换为数组
@@ -83,5 +79,19 @@ public class ActivityServiceImpl implements ActivityService {
         Pageable pageable=new PageRequest(pageNum,pageSize,Sort.Direction.DESC,"startDate");
         //查询
         return activityRepository.findAll(specification,pageable);
+    }
+
+    @Override
+    public Page<Activity> getPage(String activityType, int pageNum, int pageSize) {
+        //按时间排序
+        Pageable pageable=new PageRequest(pageNum,pageSize, Sort.Direction.DESC,"startDate");
+        Page<Activity> projectPage=null;
+
+        if(StringUtil.isNull(activityType) ||"all".equals(activityType)){
+            projectPage = activityRepository.findAll(pageable);
+        }else{
+            projectPage = activityRepository.findByActivityType(activityType,pageable);
+        }
+        return projectPage;
     }
 }

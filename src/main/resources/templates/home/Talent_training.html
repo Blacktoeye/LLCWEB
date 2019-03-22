@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <!--<title>LLC实验室网站</title>-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
-
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
     <link rel="stylesheet" href="../../static/home/css/reset.css" type="text/css"
           th:href="@{/home/css/reset.css}">
     <link rel="stylesheet" href="../../static/home/css/public.css" type="text/css"
           th:href="@{/home/css/public.css}">
     <link rel="stylesheet" href="../../static/home/css/index.css" type="text/css"
           th:href="@{/home/css/index.css}">
-    <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
-            th:src="@{home/js/jquery-1.12.4.min.js}"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    ></script>
     <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
     <meta name="keywords" content="jquery, plugin, pagination, fancy"/>
     <title>人才培养——广东省信息物理融合系统重点实验室</title>
@@ -32,7 +27,7 @@
     <link rel="stylesheet" href="../../static/home/css/papers.css" type="text/css"
           th:href="@{/home/css/papers.css}"/>
     <link rel="stylesheet" href="../../static/home/css/team.css" th:href="@{/home/css/team.css}">
-    <script src="../../static/home/Scripts/jquery.paginate.js" th:href="@{/Scripts/jquery.paginate.js}"></script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -46,22 +41,35 @@
                 <!-- <h1><span>机构概况</span></h1> -->
                 <ul id='resultType' class="tmo_list2">
                     <li class="ll first"><span>人才培养</span></li>
-                    <li class='ll'>
-                        <a href='postdoctor.html' class='ll_ref'>
+                    <li id="博士后-1" class='ll'>
+                        <a  href="/Talent_training.html?position=博士后&grade=-1" class='ll_ref'>
                             <i></i>
                             <span>博士后</span>
                         </a>
                     </li>
-                    <li class='ll'>
-                        <a href='doctor.html' class='ll_ref'>
+
+                    <li id="博士0" class='ll'>
+                        <a href="/Talent_training.html?position=博士&grade=0" class='ll_ref'>
                             <i></i>
                             <span>博士</span>
                         </a>
                     </li>
-                    <li class='ll'>
-                        <a href='graduate.html' class='ll_ref'>
+                    <li id="研究生2016" class='ll'>
+                        <a href="/Talent_training.html?position=研究生&grade=2016" class='ll_ref'>
                             <i></i>
-                            <span>研究生</span>
+                            <span>研三</span>
+                        </a>
+                    </li>
+                    <li id="研究生2017" class='ll'>
+                        <a href="/Talent_training.html?position=研究生&grade=2017" class='ll_ref'>
+                            <i></i>
+                            <span>研二</span>
+                        </a>
+                    </li>
+                    <li id="研究生2018" class='ll'>
+                        <a href="/Talent_training.html?position=研究生&grade=2018" class='ll_ref'>
+                            <i></i>
+                            <span>研一</span>
                         </a>
                     </li>
                 </ul>
@@ -72,92 +80,63 @@
                     <ul id="crumbs">
                         <li><a href="index.html">首页</a></li>
                         <li><span>&nbsp;/&nbsp;</span></li>
-                        <li><a href="Talent_training.html">人才培养</a></li>
-                    </ul>
-                </div>
-
-                <div id="postdoctor" class="team_group">
-                    <div class="team_head">
-                        <div class="team_circle">»</div>
-                        <div class="team_line" style="width:100px;"></div>
-                        <span>博士后</span>
-                        <div class="team_line" style="width:500px;"></div>
-                        <a href="postdoctor.html">»更多</a>
-                    </div>
-                    <!--图片、老师名称、链接需要改变 -->
-                    <ul class="team_content" style="overflow:hidden;">
-                        <li>
-                            <a href="postdoctor.html"><img src="../../static/home/images/rencai.jpg" th:src="@{/home/images/rencai.jpg}" alt="博士后A" width="120"></a>
-                            <a href="postdoctor.html" class="team_name"><h4>博士后A</h4></a>
+                        <li><a href="/Talent_training.html?position=博士后&grade=-1">人才培养</a></li>
+                        <li><span>&nbsp;/&nbsp;</span></li>
+                        <li><a href="#"
+                               th:text="${position} eq '研究生' ? ${position+grade+'级'} : ${position}">
+                            </a>
                         </li>
                     </ul>
                 </div>
 
-                <div id="doctor" class="team_group">
-                    <div class="team_head">
-                        <div class="team_circle">»</div>
-                        <div class="team_line" style="width:100px;"></div>
-                        <span>博士</span>
-                        <div class="team_line" style="width:500px;"></div>
-                        <a href="doctor.html">»更多</a>
-                    </div>
-                    <!--图片、老师名称、链接需要改变 -->
-                    <ul class="team_content" style="overflow:hidden;">
-                        <li>
-                            <a href="doctor.html"><img src="../../static/home/images/rencai.jpg" th:src="@{/home/images/rencai.jpg}" alt="博士A" width="120"></a>
-                            <a href="doctor.html" class="team_name"><h4>博士A</h4></a>
+                <div class="main-student">
+                    <ul >
+                        <li th:each="people,iterStat : ${peopleList}">
+                            <ul>
+                                <li><a target="_blank" th:href="${'/Talent/graduate_demo.html?id='+people.id}">
+                                    <img src="/custom/images/person-img.jpg" th:src="${'/image/getPath?id='+people.portrait}"/>
+                                </a>
+
+                                <li th:text="${people.name}" style="margin-top: -5px;">name</li>
+                                <li th:text="${people.researchField}" style="margin-top: -10px;"></li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="doctor.html"><img src="../../static/home/images/rencai.jpg" th:src="@{/home/images/rencai.jpg}" alt="博士B" width="120"></a>
-                            <a href="doctor.html" class="team_name"><h4>博士B</h4></a>
-                        </li>
+
                     </ul>
                 </div>
-
-                <div id="graduate" class="team_group">
-                    <div class="team_head">
-                        <div class="team_circle">»</div>
-                        <div class="team_line" style="width:100px;"></div>
-                        <span>研究生</span>
-                        <div class="team_line" style="width:500px;"></div>
-                        <a href="graduate.html">»更多</a>
-                    </div>
-                    <!--图片、老师名称、链接需要改变 -->
-                    <ul class="team_content" style="overflow:hidden;">
-                        <li>
-                            <a href="graduate.html"><img src="../../static/home/images/rencai.jpg" th:src="@{/home/images/rencai.jpg}" alt="研究生A" width="120"></a>
-                            <a href="graduate.html" class="team_name"><h4>研究生A</h4></a>
-                        </li>
-                        <li>
-                            <a href="graduate.html"><img src="../../static/home/images/rencai.jpg" th:src="@{/home/images/rencai.jpg}" alt="研究生B" width="120"></a>
-                            <a href="graduate.html" class="team_name"><h4>研究生B</h4></a>
-                        </li>
-                        <li>
-                            <a href="graduate.html"><img src="../../static/home/images/rencai.jpg" th:src="@{/home/images/rencai.jpg}" alt="研究生C" width="120"></a>
-                            <a href="graduate.html" class="team_name"><h4>研究生C</h4></a>
-                        </li>
-                    </ul>
-                </div>
-
             </div>
+        </div>
+        <div style="margin-top: 50px;">
+            <hr style="height:1px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/>
         </div>
     </div>
 </div>
-<div th:include="template/footer_template :: footer_template">
+<div th:include="template/footer_template :: footer_template"></div>
 
-</div>
+<script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
+        th:src="@{/home/js/jquery-1.12.4.min.js}"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+></script>
+<script type="text/javascript" src="../../static/home/js/common.js"
+        th:src="@{/home/js/common.js}"></script>
+<script src="../../static/home/Scripts/jquery.paginate.js" th:src="@{/home/Scripts/jquery.paginate.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    //拿到模型列表
+    var position = /*[[${position}]]*/ 2;
+    var grade = /*[[${grade}]]*/ 2;
+    var liId = "#"+position+grade;
+    /*]]>*/
+</script>
+<script>
+
+    $(document).ready(function() {
+        //$(liId).css("background-color","yellow");
+
+        $("#博士0").css("background-color","blue");
+        document.getElementById('博士0').style.backgroundColor="red";
+    });
+
+</script>
 </body>
-    <!--二级菜单栏-->
-    <script>
-     $(function(){
-             $(".public-nav li:has(ul)").hover(function() {
-             $(this).find("a:first").css("background-color","#00428f");
-                 $(this).find(".subnav").css("display","block");
-
-         },function() {
-             $(this).find("a:first").css("background-color","#035ba6");
-             $(this).find(".subnav").css("display","none");
-         })
-     });
-    </script>
 </html>

@@ -1,35 +1,27 @@
 package llcweb.com.controller.admin;
 
+import llcweb.com.dao.repository.PatentRepository;
+import llcweb.com.domain.entities.PageInfo;
+import llcweb.com.domain.entity.UsefulPatent;
+import llcweb.com.domain.models.Patent;
+import llcweb.com.service.PatentService;
+import llcweb.com.service.UsersService;
+import llcweb.com.tools.UsefulTools;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import llcweb.com.dao.repository.PatentRepository;
-import llcweb.com.domain.entity.UsefulPatent;
-import llcweb.com.domain.models.Patent;
-import llcweb.com.domain.models.Patent;
-import llcweb.com.domain.models.Project;
-import llcweb.com.service.PatentService;
-import llcweb.com.service.UsersService;
 
 /**
  * @author tong
@@ -38,7 +30,7 @@ import llcweb.com.service.UsersService;
  *
  */
 
-@Controller
+@RestController
 @RequestMapping("/patent")
 public class PatentController {
 	private org.slf4j.Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -56,6 +48,30 @@ public class PatentController {
 	    dateFormat.setLenient(false);
 	    binder.registerCustomEditor(Date.class, new CustomDateEditor(
 	            dateFormat, false));
+	}
+
+	/**
+	 * @Author haien
+	 * @Description 获取最新的几条专利
+	 * @Date 2018/10/9
+	 * @Param [count]
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
+	@RequestMapping("/getLatest")
+	@ResponseBody
+	public Map<String,Object> getLatest(@RequestParam("count")Integer count){
+		Map<String,Object> map=new HashMap<>();
+		if(count==null||count.equals("")||count<=0){
+			map.put("result", 0);
+			map.put("message", "请正确指定读取数目！");
+		}else{
+			List<Patent> patents=patentRepository.getLatest(count);
+
+			map.put("result", 1);
+			map.put("message", "获取记录成功！");
+			map.put("data",UsefulTools.patentToProductInfo(patents));
+		}
+		return map;
 	}
 	
 	/*
@@ -153,7 +169,8 @@ public class PatentController {
     	Date appliDate = new SimpleDateFormat("yyyy-MM-dd").parse(aDate);
     	String pDate = request.getParameter("publicDate");
     	Date publicDate = new SimpleDateFormat("yyyy-MM-dd").parse(pDate);
-        String introduction = request.getParameter("introduction");
+        String introd = request.getParameter("introduction");
+        int introduction = Integer.parseInt(introd);
         String authorList = request.getParameter("authorList");
         String originalLink = request.getParameter("originalLink");
         String belongProject = request.getParameter("belongProject");
@@ -183,7 +200,7 @@ public class PatentController {
         	//patent.setId(Integer.parseInt(id));
         	patent.setTitle(title);
         	patent.setAppliDate(appliDate);
-        	patent.setIntroduction(introduction);
+        	patent.setIntroduction(introd);
         	patent.setAuthorList(authorList);
         	patent.setOriginalLink(originalLink);
         	patent.setBelongProject(belongProject);
@@ -227,17 +244,39 @@ public class PatentController {
     	patentRepository.save(patent);
     	
     	Patent newPatent = patentRepository.findOne(patent.getId());
-    	
-    	if(newPatent == null){
-        map.put("result", 1);
-        map.put("message", "成功保存项目！");
-        logger.info("成功保存项目！");
-    }else{
-        map.put("result", 0);
-        map.put("message", "保存项目失败！");
-        logger.error("保存项目失败！");
+
+		if(newPatent == null){
+			map.put("result", 1);
+			map.put("message", "成功保存项目！");
+			logger.info("成功保存项目！");
+		}else{
+			map.put("result", 0);
+			map.put("message", "保存项目失败！");
+			logger.error("保存项目失败！");
+		}
+		map.put("data",patent);
+		return map;
     }
-    map.put("data",patent);
-    return map;
-}
+	/**
+	 * @Author ricardo
+	 * @Description 分组获取项目
+	 * @Date 2018/10/10
+	 * @Param [count]
+	 * @return java.util.Map<java.lang.String,java.lang.Object>
+	 **/
+	@RequestMapping("/getPage")
+	@ResponseBody
+	public Map<String,Object> getPage(@RequestParam("pageNum")int pageNum,@RequestParam("pageSize")int pageSize){
+		Map<String,Object> map=new HashMap<>();
+		logger.info(",pageNum="+pageNum+",pageSize="+pageSize);
+
+		Page<Patent> projectPage = patentService.getPage(pageNum-1,pageSize);
+		PageInfo pageInfo = new PageInfo(0,UsefulTools.patentToProductInfo(projectPage.getContent()),projectPage.getNumberOfElements());
+		pageInfo.setTotalPages(projectPage.getTotalPages());
+
+		map.put("result", 1);
+		map.put("message", "获取记录成功！");
+		map.put("data",pageInfo);
+		return map;
+	}
 }

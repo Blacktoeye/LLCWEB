@@ -1,21 +1,21 @@
 package llcweb.com.dao.repository;
 
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import llcweb.com.domain.models.Patent;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -80,4 +80,41 @@ public class ProjectRepositoryTest1 {
 	        Assert.assertThat(projectList.getTotalElements(),is(12L));
 	    }
 */
+
+	@Test
+	public void getSoftwaresTest(){
+		//按时间排序
+		Pageable pageable=new PageRequest(0,10, Sort.Direction.DESC,"startDate");
+		Page<Project> softwares=projectRepository.findByTeam("太赫兹组",pageable);
+		Assert.assertThat(softwares.getTotalElements(),greaterThan(0L));
+
+//		System.out.println("size="+softwares.getTotalElements());
+//		for (Project software:softwares.getContent()){
+//			System.out.println("id="+software.getId());
+//			System.out.println(software.getProjectName());
+//		}
+//
+//		System.out.println("网络组");
+//		softwares=projectRepository.findByTeam("网络组",pageable);
+//		Assert.assertThat(softwares.getTotalElements(),greaterThan(0L));
+//		System.out.println("size="+softwares.getTotalElements());
+//		for (Project software:softwares.getContent()){
+//
+//			System.out.println("id="+software.getId());
+//			System.out.println(software.getProjectName());
+//		}
+//		System.out.println("all");
+//		softwares=projectRepository.findAll(pageable);
+//		Assert.assertThat(softwares.getTotalElements(),greaterThan(0L));
+//		System.out.println("size="+softwares.getTotalElements());
+//		for (int i =0 ;i <softwares.getContent().size();i++){
+//			System.out.println("i="+i);
+//			System.out.println("id="+softwares.getContent().get(i).getProjectName());
+//		}
+
+
+		Project project = projectRepository.findOne(1);
+		System.out.println(project.getProjectName());
+	}
+
 }

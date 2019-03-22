@@ -91,7 +91,7 @@ $(document).ready(function () {
                     {
                         data: "path",
                         render: function (data, type, row, meta) {
-                            return (data===null||data==undefined)?'<span class="text-danger">数据错误！</span>':'<a href="/'+data+'">'+data+'</a>';
+                            return (data===null||data==undefined)?'<span class="text-danger">数据错误！</span>':'<a href="/'+data+'">/'+data+'</a>';
                         }
                     },
                     {

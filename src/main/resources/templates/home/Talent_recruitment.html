@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <!--<title>LLC实验室网站</title>-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
-
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
     <link rel="stylesheet" href="../../static/home/css/reset.css" type="text/css"
           th:href="@{/home/css/reset.css}">
     <link rel="stylesheet" href="../../static/home/css/public.css" type="text/css"
           th:href="@{/home/css/public.css}">
     <link rel="stylesheet" href="../../static/home/css/index.css" type="text/css"
           th:href="@{/home/css/index.css}">
-    <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
-            th:src="@{home/js/jquery-1.12.4.min.js}"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    ></script>
     <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
     <meta name="keywords" content="jquery, plugin, pagination, fancy"/>
     <title>人才招聘——广东省信息物理融合系统重点实验室</title>
@@ -31,33 +26,33 @@
           th:href="@{/home/css/style.css}"/>
     <link rel="stylesheet" href="../../static/home/css/papers.css" type="text/css"
           th:href="@{/home/css/papers.css}"/>
-
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
 </head>
 <body>
 <div class="public-header" th:include="template/header_template :: header_template"></div>
 <div class="meetingpage">
-     <div class="container middle_container">
+    <div class="container middle_container">
         <div class="middle_content" style="margin-bottom: 40px;">
             <div class="middle_l" id="temlate_middle">
                 <!-- <h1><span>机构概况</span></h1> -->
                 <ul id="resultType" class="tmo_list2">
                     <li class="ll first"><span>人才招聘</span></li>
                     <li class="ll" id="base">
-                        <a href="Talent_recruitment.html" class="ll_ref" style="background:#6ad;">
+                        <a id="btn-1" href="Talent_recruitment.html" class="ll_ref active-left">
                             <i></i>
-                            <span>实验室助理</span>
+                            <span>团队助理招聘</span>
                         </a>
                     </li>
                     <li class="ll">
-                        <a href="Talent_recruitment1.html" class="ll_ref" >
+                        <a id="btn-2" href="Talent_recruitment1.html" class="ll_ref">
                             <i></i>
-                            <span>博士后</span>
+                            <span>博士后招聘</span>
                         </a>
                     </li>
                     <li class=" ll">
-                        <a href="Talent_recruitment2.html" class="ll_ref">
+                        <a id="btn-3" href="Talent_recruitment2.html" class="ll_ref">
                             <i></i>
-                            <span>实验室助理</span>
+                            <span>教师招聘</span>
                         </a>
                     </li>
                 </ul>
@@ -71,161 +66,80 @@
                     </ul>
                 </div>
                 <div class="outline_r">
-
                     <div class="project_content">
                         <div class="main-right">
-
-            <!--ke-tit-->
-            <div class="right-nr">
-
-
-    <div class="view-title">
-        <h1></h1>
-    </div>
-    <div class="view-cnt">
-        <table style="width:790px;" width="95%" cellspacing="1" cellpadding="5" border="1" align="center">
-    <tbody>
-        <tr>
-            <td style="width: 100px;" height="22" align="center">职位名称：</td>
-            <td colspan="3">&nbsp;实验室助理</td>
-
-        </tr>
-        <tr>
-            <td height="22" align="center">工作地点：</td>
-            <td colspan="3">&nbsp;广东工业大学</td>
-        </tr>
-        <tr>
-            <td height="22" align="center">工资待遇：</td>
-            <td>&nbsp;面谈</td>
-            <td align="center">发布日期：</td>
-            <td>&nbsp;2018/9/1</td>
-        </tr>
-        <tr>
-            <td height="26" align="center">需求人数：</td>
-            <td align="center">
-            <div align="left">&nbsp;1-2人</div>
-            </td>
-            <td align="center">有效期限：</td>
-            <td align="center">
-            <div align="left">&nbsp;120天</div>
-            </td>
-        </tr>
-        <tr>
-            <td height="26" align="center">具体要求：</td>
-            <td colspan="3" align="center">
-            <table width="100%" cellspacing="0" cellpadding="5" border="0">
-                <tbody>
-                    <tr>
-                        <td>&nbsp;
-                        <p align="left"><strong>&nbsp;&nbsp;&nbsp; 广东工业大学某实验室招聘实验室助理</strong></p>
-
-                        <p align="left">&nbsp; &nbsp; &nbsp; &nbsp;作为中国教育部“985工程”二期建设的研究实体先进材料平台，面对能源短缺的世界性严峻形势，整合复旦大学在新能源材料、储能材料和催化材料等多学科领域的研究力量，于2008年10月在复旦大学江湾校区成立了新能源研究院，旨在加快推进太阳能、生物质能等新型能源的开发利用，成为我国节能减排领域的原创性研究基地。研究院以新能源材料研究为切入点，重点开展高效储能材料、太阳能材料、化石能源新技术、生物质能、节能技术等五个方面的研究。新能源研究院采用了国际化研究单位PI模式进行运行与管理，为聘用人员提供优厚的薪酬、经费与优良的科研环境以及生活待遇。</p>
-
-                        <p align="left">&nbsp; &nbsp; &nbsp; &nbsp;欢迎任何有志于高效储能材料、太阳能材料、化石能源新技术、生物质能、节能技术等等研究领域的高级人才的加盟。</p>
-
-                        <p align="left">&nbsp;</p>
-
-                        <p align="left"><strong>一、招聘岗位：</strong></p>
-
-                        <p align="left">实验室助理</p>
-
-                        <p align="left">&nbsp;</p>
-
-                        <p align="left"><strong>二、招聘要求</strong></p>
-
-                        <p style="margin-left:15.75pt;">1、具有博士学位，在国内外学术界有较大影响，并有能力领导研究团队从事本领域的国际前沿研究工作。</p>
-
-                        <p style="margin-left:15.75pt;">2、主持过或主要参加过重大科研计划和项目、大型国际合作项目，在相关学术领域已取得了被国内外同行专家公认的突出成果。</p>
-
-                        <p style="margin-left:15.75pt;">3、在本专业领域SCI刊物上发表过对本领域发展具有重要影响力并被同行认可的学术论文。</p>
-
-                        <p style="margin-left:15.75pt;">4、已获得或有潜力获得教育部长江特聘教授或国家杰出青年基金获得者优先考虑。</p>
-
-                        <p style="margin-left:15.75pt;">5、身体健康，具有良好的品德、学术与科研道德，以及团队合作精神；应聘者国籍不限，年工作时间全聘9个月或以上，分时3个月以上。</p>
-
-                        <p style="margin-left:15.75pt;">&nbsp;</p>
-
-                        <p align="left"><strong>三、工资和住房待遇</strong></p>
-
-                        <p align="left">根据应聘岗位，提供优厚的具有竞争力的薪酬、福利与住房待遇。</p>
-
-                        <p align="left">&nbsp;</p>
-
-                        <p align="left"><strong>四、材料递交</strong></p>
-
-                        <p align="left">应聘者向研究院行政办公室递交申请书及相关材料，包括<br>
-                        （1）应聘申请书，包括本人意愿、工作设想及预期目标；<br>
-                        （2）本人中英文简历；<br>
-                        （3）充分反映本人学术水平的有关材料，包括：论著目录、近五年来公开发表的论文及被收录和引用情况、获奖情况和主持完成的研究项目等；<br>
-                        （4）三位以上本学科领域国际知名同行专家学者的推荐信及相关证明材料。&nbsp;</p>
-
-                        <p align="left">&nbsp;</p>
-
-                        <p align="left">联系人：程良伦</p>
-
-                        <p align="left">电子邮件：<a href="mailto:shnl@fudan.edu.cn">lgdut@gdut.edu.cn</a></p>
-
-                        <p align="left">电话：+86-21-51630210</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-        <div id="Pagination" style="padding-left: 200px; margin-top: 10px;">
-        </div>
-        <div class="clearfix">
-        </div>
-    </div>
-
-
-            </div>
-        </div>
+                            <!--ke-tit-->
+                            <div class="right-nr">
+                                <div id="div-title" class="view-title" style="text-align: center;">
+                                    <h1>团队助理招聘</h1>
+                                </div>
+                                <div class="view-cnt">
+                                    <div style="margin-top:30px; width: 800px;height: 800px;" id="example1"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </div>
         </div>
+
+        <div style="margin-top: 50px;">
+            <hr style="height:1px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/>
+        </div>
     </div>
 </div>
 
 
-
-
-
-
-
-
-
 <div class="clearfix"></div>
-<!--<div class="public-friendlinks">
-        <div class="public-container">
-        <p class="title">友情链接:</p>
-        <p class="links">
-            <a href="http://www.gdut.edu.cn/">广东工业大学</a>
-            <a href="http://www.gdut.edu.cn/">广东工业大学</a>
-        </p>
-        </div>
-    </div>-->
+
 <div class="public-footer" th:include="template/footer_template"></div>
 
+<script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
+        th:src="@{home/js/jquery-1.12.4.min.js}"></script>
+<script type="text/javascript" src="../../static/home/js/pdfobject.min.js"
+        th:src="@{/home/js/pdfobject.min.js}"></script>
 
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/home/js/common.js"
+        th:src="@{/home/js/common.js}"></script>
+<script>
 
+    $(document).ready(function () {
+
+        //获取document对应的内容信息，初始化
+//        var url = location.href;
+//        url = url.split("#");
+//        var url1 = url[1].split(".");
+//        var index = parseInt(url1[0]);
+//
+//        if(index == 1)   loadActivity(1);
+//        else if(index == 2)   loadActivity(2);
+//        else if(index == 3)   loadActivity(3);
+//        else loadActivity(1);
+//        loadActivity(1);
+//        $("#btn-1").click(function () {
+//            $("#btn-1").addClass("active-left");
+//            $("#btn-2").removeClass("active-left");
+//            $("#btn-3").removeClass("active-left");
+//            loadActivity(1);
+//        });
+//        $("#btn-2").click(function () {
+//            $("#btn-2").addClass("active-left");
+//            $("#btn-3").removeClass("active-left");
+//            $("#btn-1").removeClass("active-left");
+//            loadActivity(2);
+//        });
+//        $("#btn-1").click(function () {
+//            $("#btn-3").addClass("active-left");
+//            $("#btn-2").removeClass("active-left");
+//            $("#btn-1").removeClass("active-left");
+//            loadActivity(3);
+//        });
+        loadActivity(1);
+    });
+
+</script>
 </body>
-	<script>
-     $(function(){
-             $(".public-nav li:has(ul)").hover(function() {
-             $(this).find("a:first").css("background-color","#00428f");
-                 $(this).find(".subnav").css("display","block");
-
-         },function() {
-             $(this).find("a:first").css("background-color","#035ba6");
-             $(this).find(".subnav").css("display","none");
-         })
-     });
-    </script>
 
 </html>

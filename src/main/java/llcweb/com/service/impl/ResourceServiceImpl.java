@@ -10,6 +10,7 @@ import llcweb.com.exception.BusinessException;
 import llcweb.com.exception.ReturnCode;
 import llcweb.com.service.ResourceService;
 import llcweb.com.tools.StringUtil;
+import llcweb.com.tools.UUIDUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -48,7 +49,7 @@ public class ResourceServiceImpl<T> implements ResourceService<T> {
                 List<Predicate> predicates = new ArrayList<>();
                 //添加断言
                 if (!StringUtil.isNull(resource.getAuthor())) {
-                    Predicate like = cb.like(root.get("author").as(String.class),"%"+resource.getAuthor()+"%");
+                    Predicate like = cb.equal(root.get("author").as(String.class),resource.getAuthor());
                     predicates.add(like);
                 }
                 if (resource.getFirstDate() != null) {
@@ -125,7 +126,9 @@ public class ResourceServiceImpl<T> implements ResourceService<T> {
         }
 
         //普通用户查找编辑过的文档
+        System.out.println("user = "+user.getUsername());
         resources=resourceRepository.findByAuthorId(user.getId(),page);
+        System.out.println("find number = "+resources.getTotalElements());
         return resources;
     }
 
@@ -140,15 +143,14 @@ public class ResourceServiceImpl<T> implements ResourceService<T> {
     public String saveResource(MultipartFile multipartFile, Resource resource) throws BusinessException {
 
         String originalFileName=multipartFile.getOriginalFilename();
-        String suffix=originalFileName.substring(originalFileName.lastIndexOf(".")+1);
-        String fileName=resource.getId()+resource.getModel()+resource.getAuthorId()+"."+suffix;
+        String suffix=originalFileName.substring(originalFileName.lastIndexOf("."));
         //选择路径
         String path=filePath;
         if(resource instanceof Image){
             path=imagePath;
         }
         //拼接文件名
-        String filePath=path+ File.separator+fileName;
+        String filePath=path+"/"+UUIDUtil.getUUID()+suffix;
         try {
             BufferedOutputStream bos=new BufferedOutputStream(new FileOutputStream(filePath));
             //可以直接获取MultipartFile的字节数组，这样就省了先获取InputStream再用一个1024的字节数组去read出来的麻烦

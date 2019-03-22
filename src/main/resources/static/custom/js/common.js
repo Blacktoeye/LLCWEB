@@ -2,6 +2,9 @@
  * Created by ricardo on 2018/8/10.
  * 通用js文件，全局
  */
+
+
+
 //设置cookie
 function setCookie(name, value, day) {
     var date = new Date();
@@ -106,6 +109,8 @@ function dateToString(date) {
 }
 
 $(document).ready(function () {
+    hiddenAll();
+
     $(".dropdown-button").dropdown();
     $("#sideNav").click(function () {
         if ($(this).hasClass('closed')) {
@@ -131,6 +136,8 @@ $(document).ready(function () {
             $('div.sidebar-collapse').removeClass('collapse')
         }
     });
+
+
 });
 
 
@@ -269,4 +276,51 @@ function getAllDocuments(urlGetAllDocuments) {
         }
     });
     return documentList;
+}
+
+
+
+
+//根据获取当前用户是否有某权限
+function isCurrentUserHasRole(urlIsCurrentUserHasRole,role) {
+    var hasRole =0;
+    //设置同步
+    $.ajax({
+        type : "get",
+        url : urlIsCurrentUserHasRole,
+        data :"role="+role,
+        async : false,
+        success : function(data){
+            if(data.result!==1){
+                //$.dialog.tips(data.message);
+            }
+            hasRole = data.data;
+        }
+    });
+    return hasRole;
+}
+function hiddenId(strId) {
+    //先隐藏
+    var progress = document.getElementById(strId);
+    progress.style.display = 'none';
+}
+function hiddenAll() {
+    var hasRole = getCookie("hasRole");
+    if(hasRole === "1"){
+    }else{
+        hiddenId("page-monitor");
+        hiddenId("page-job");
+        hiddenId("page-manage");
+        hiddenId("page-achievement");
+        //hiddenId("page-monitor");
+    }
+}
+function drawModel(model) {
+    if(model === 0)return "无";
+    else if(model === 2)return "数据组";
+    else if(model === 3)return "网络组";
+    else if(model === 4)return "机器人组";
+    else if(model === 5)return "太赫兹组";
+    else if(model === 6)return "高分高性能组";
+    else return "";
 }

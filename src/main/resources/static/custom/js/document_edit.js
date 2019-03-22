@@ -17,10 +17,10 @@ $(document).ready(function () {
     $('#summernote-div').summernote({
         lang: 'zh-CN',
         height: 500,                 // set editor height
-        width: 1100,
+        width: 800,
         //minHeight: 100,             // set minimum height of editor
         maxHeight: 800,             // set maximum height of editor
-        maxWidth: 1105,
+        maxWidth: 805,
         focus: true                  // set focus to editable area after initializing summernote
     });
     $('#summernote-div').summernote('code', content);
@@ -56,7 +56,7 @@ var documentManage = {
         document.infor= $("#edit-infor").val();
         document.group= $("#edit-group").val();
 
-        saveFun(urlSave,document);
+        saveDocument(urlSave,document);
     },
     editDocument: function (item) {
         $.dialog.tips("edit test");
@@ -66,3 +66,20 @@ var documentManage = {
         $.dialog.tips("delete test");
     }
 };
+
+//保存通用函数
+function saveDocument(urlSave, myData) {
+    $.ajax({
+        type: "post",
+        url: urlSave,
+        data: myData,
+        async: false,
+        success: function (data) {
+            $.dialog.tips(data.message);
+            if(data.result===1)window.location.href='/admin/edit.html?id='+data.data.id;
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            $.dialog.alert("保存失败！");
+        }
+    });
+}

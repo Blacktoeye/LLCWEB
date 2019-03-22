@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <!--<title>LLC实验室网站</title>-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
-
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
     <link rel="stylesheet" href="../../static/home/css/reset.css" type="text/css"
           th:href="@{/home/css/reset.css}">
     <link rel="stylesheet" href="../../static/home/css/public.css" type="text/css"
           th:href="@{/home/css/public.css}">
     <link rel="stylesheet" href="../../static/home/css/index.css" type="text/css"
           th:href="@{/home/css/index.css}">
-    <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
-            th:src="@{home/js/jquery-1.12.4.min.js}"></script>
-    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    ></script>
     <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
     <meta name="keywords" content="jquery, plugin, pagination, fancy"/>
     <title>人才培养——广东省信息物理融合系统重点实验室</title>
@@ -32,7 +27,7 @@
     <link rel="stylesheet" href="../../static/home/css/papers.css" type="text/css"
           th:href="@{/home/css/papers.css}"/>
     <link rel="stylesheet" href="../../static/home/css/team.css" th:href="@{/home/css/team.css}">
-    <script src="../../static/home/Scripts/jquery.paginate.js" th:href="@{/Scripts/jquery.paginate.js}"></script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -48,8 +43,8 @@
                         <li><a href="index.html">首页</a></li>
                         <li><span>&nbsp;/&nbsp;</span></li>
                         <li><a href="Talent_training.html">人才培养</a></li>
-                        <li><span>&nbsp;/&nbsp;</span></li>
-                        <li><a href="postdoctor.html">博士后</a></li>
+                        <li><!-- <span>&nbsp;/&nbsp;</span> --></li>
+                        <li><!-- <a href="postdoctor#1.html">博士后</a> --></li>
                         <li style="float:right;">
                             <a href="Talent_training.html" style="font-size:12px;color:#2c76c7;">«返回</a>
                         </li>
@@ -64,34 +59,62 @@
                     </div> -->
                     <!--图片、老师名称、链接需要改变 -->
                     <ul class="team_content" style="overflow:hidden;">
-                        <li>
+<!--                         <li>
                             <a href="Talent/post_demo.html">
                                 <img src="../../static/home/images/rencai.jpg" th:src="@{/home/images/rencai.jpg}" alt="博士后A" width="120">
                             </a>
                             <a href="Talent/post_demo.html" class="team_name"><h4>博士A</h4></a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div th:include="template/footer_template :: footer_template">
+<div th:include="template/footer_template :: footer_template"></div>
+<script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
+        th:src="@{home/js/jquery-1.12.4.min.js}"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+></script>
+<script src="../../static/home/Scripts/jquery.paginate.js" th:src="@{home/Scripts/jquery.paginate.js}"></script>
+<script type="text/javascript" src="../../static/home/js/common.js"
+    th:src="@{/home/js/common.js}"></script>
+<script>
+    $(document).ready(function () {
+        //初始化页面
+        var urlGetPeopleByPosition="/people/getByPosition";
+        var position = '';
+        //获取document对应的内容信息，初始化
+        var url = location.href;
+        url = url.split("#");
+        var url1 = url[1].split(".");
+        var index = parseInt(url1[0]);
 
-</div>
+        if(index == 1)    position = '博士后';
+        else if(index == 2)    position = '博士';
+        else if(index == 3)    position = '研究生';
+        initPeopleList(position,urlGetPeopleByPosition,'Talent/post_demo.html');
 
+        // 监听请求更改--左侧导航栏
+        $("a.ll_ref").click(function(){
+            var index = $(this).parent().index();//获取li的索引
+            //加载对应页面
+            if(index == 1)    position = '博士后';
+            else if(index == 2)    position = '博士';
+            else if(index == 3)    position = '研究生';
+            initPeopleList(position,urlGetPeopleByPosition,'Talent/post_demo.html');
+        });
+
+        //监听请求更改--二级菜单
+        $('.public-nav').find('li.item').eq(6).find('a.hon1').click(function(){
+            var index = $(this).parent().index()+1;
+            //加载对应页面
+            if(index == 1)    position = '博士后';
+            else if(index == 2)    position = '博士';
+            else if(index == 3)    position = '研究生';
+            initPeopleList(position,urlGetPeopleByPosition,'Talent/post_demo.html');
+        });
+    });
+</script>
 </body>
-    <!--二级菜单栏-->
-    <script>
-     $(function(){
-             $(".public-nav li:has(ul)").hover(function() {
-             $(this).find("a:first").css("background-color","#00428f");
-                 $(this).find(".subnav").css("display","block");
-
-         },function() {
-             $(this).find("a:first").css("background-color","#035ba6");
-             $(this).find(".subnav").css("display","none");
-         })
-     });
-    </script>
 </html>

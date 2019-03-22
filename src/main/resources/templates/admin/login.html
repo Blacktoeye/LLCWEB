@@ -19,23 +19,23 @@
 
     <!-- start: CSS -->
     <!-- Bootstrap Styles-->
-    <link href="../../static/assets/css/bootstrap.css"
-          th:href="@{/assets/css/bootstrap.css}" rel="stylesheet"/>
+    <link href="../../static/assetss/css/bootstrap.css"
+          th:href="@{/assetss/css/bootstrap.css}" rel="stylesheet"/>
     <!-- FontAwesome Styles-->
-    <link href="../../static/assets/font-awesome-4.7.0/css/font-awesome.css"
-          th:href="@{/assets/font-awesome-4.7.0/css/font-awesome.css}" rel="stylesheet"/>
+    <link href="../../static/assetss/font-awesome-4.7.0/css/font-awesome.css"
+          th:href="@{/assetss/font-awesome-4.7.0/css/font-awesome.css}" rel="stylesheet"/>
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans'
           th:href="@{http://fonts.googleapis.com/css?family=Open+Sans}" rel='stylesheet' type='text/css'/>
     <!-- end: CSS -->
     <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="../../static/assets/js/html5shiv.js"
-            th:src="@{/assets/js/html5shiv.js}"></script>
-    <script src="../../static/assets/js/respond.min.js"
-            th:src="@{/assets/js/respond.min.js}"></script>
-    <link id="ie-style" href="../../static/assets/css/ie.css"
-          th:href="@{/assets/css/ie.css}" rel="stylesheet">
+    <script src="../../static/assetss/js/html5shiv.js"
+    th:src="@{/assetss/js/html5shiv.js}"></script>
+    <script src="../../static/assetss/js/respond.min.js"
+            th:src="@{/assetss/js/respond.min.js}"></script>
+    <link id="ie-style" href="../../static/assetss/css/ie.css"
+          th:href="@{/assetss/css/ie.css}" rel="stylesheet">
     <![endif]-->
 
     <!--page custom files-->
@@ -53,13 +53,15 @@
         <div class="col-md-2">
             <div class="login-box">
                 <div class="logo">
-                    <img src="../../static/custom/images/logo.png" th:src="@{/custom/images/logo.jpg}">
+                    <img src="../../static/custom/images/logo.jpg" th:src="@{/custom/images/logo.jpg}">
                 </div>
                 <h1 style="padding-left: 30px;">LLCWEB管理平台</h1>
                 <h3>账号登录</h3>
                 <div style="padding: 10px 30px 10px;">
+
                     <!--使用spring security的form控件必须这么定义？input的name必须为username和password-->
-                    <form action="/login" th:action="@{/login}" method="post">
+                    <!--th:action="@{enLogin()}"-->
+                    <form id="my-form" th:action="@{/login}" method="post">
                         <div class="input-group margin-bottom-sm">
                             <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
                             <input id="username" name="username" class="form-control" type="text" placeholder="账号">
@@ -68,13 +70,28 @@
                             <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
                             <input id="password" name="password" class="form-control" type="password" placeholder="密码">
                         </div>
+
+                        <div class="row" style="padding-top: 10px;">
+                            <div class="col-xs-6 pull_left">
+                                <div class="form-group">
+                                    <input class="form-control" type="tel" id="verify_input" placeholder="请输入验证码" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="col-xs-1 pull_left" id="icon-i">
+                            </div>
+                            <div class="col-xs-5 pull_left">
+                                <a href="javascript:void(0);" title="点击更换验证码">
+                                    <img id="imgVerify" src="/getVerify"th:src="@{/getVerify?}" alt="更换验证码" style="height: 36px;width: 120px;" onclick="getVerify(this);">
+                                </a>
+                            </div>
+                        </div>
+
                         <p th:if="${param.logout}" class="error-code">已成功注销!</p>
                         <p th:if="${param.error}" class="error-code">用户名或密码错误!</p>
                         <div style="padding-top: 40px;text-align: center;">
-                            <button id="login" style="width: 100px;" type="submit" class="btn btn-info">登录</button>
+                            <button id="login" style="width: 100px;" type="submit" class="btn btn-info" disabled="disabled">登录</button>
                         </div>
                     </form>
-
                 </div>
             </div><!--/span-->
         </div>
@@ -88,18 +105,89 @@
 
 <!-- start: JavaScript-->
 <!-- jQuery Js -->
-<script src="../../static/assets/js/jquery-1.10.2.js"
-        th:src="@{assets/js/jquery-1.10.2.js}"></script>
+<script src="../../static/assetss/js/jquery-1.10.2.js"
+        th:src="@{assetss/js/jquery-1.10.2.js}"></script>
 <!-- Bootstrap Js -->
-<script src="../../static/assets/js/bootstrap.min.js"
-        th:src="@{assets/js/bootstrap.min.js}"></script>
-<script src="../../static/assets/plugins/lhgdialog/lhgdialog.min.js"
-        th:src="@{assets/plugins/lhgdialog/lhgdialog.min.js}"></script>
+<script src="../../static/assetss/js/bootstrap.min.js"
+        th:src="@{assetss/js/bootstrap.min.js}"></script>
+<script src="../../static/assetss/plugins/lhgdialog/lhgdialog.min.js"
+        th:src="@{assetss/plugins/lhgdialog/lhgdialog.min.js}"></script>
+
+
 
 <!--page custom files-->
 <script src="../../static/custom/js/page-login.js"
         th:src="@{custom/js/page-login.js}"></script>
 <!-- end: JavaScript-->
+<script>
+    $(document).ready(function () {
 
+        //禁用回车键表单提交
+        $("#my-form").keypress(function(e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+        //获取对应的内容信息
+        //获取验证码
+        var img = $("#imgVerify");
+        getVerify(img);
+        var myicon = $('#icon-i');
+        $('#verify_input').on('input propertychange', function() {
+
+            var code = $('#verify_input').val();
+            console.log(code);
+            myicon.empty();
+
+            //对比成功
+            if(getIfCode(code)){
+
+                var str= "<i style='color: #238b0c' class=\"fa fa-check-circle fa-lg\"></i>";
+                myicon.append(str);
+                $("#my-form").keypress(function(e) {
+                    if (e.which == 13) {
+                        return true;
+                    }
+                });
+                $("#login").attr('disabled',false);
+            }
+            else{
+                var str= "<i style='color: #e1261a' class=\"fa fa-close fa-lg\"></i>";
+                myicon.append(str);
+                $("#my-form").keypress(function(e) {
+                    if (e.which == 13) {
+                        return false;
+                    }
+                });
+                $("#login").attr('disabled',true);
+            }
+        });
+    });
+    function getVerify(obj){
+        obj.src = "/getVerify?"+Math.random();
+        $("#my-form").keypress(function(e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+        $("#login").attr('disabled',true);
+    }
+    //根据获取code
+    function getIfCode(code) {
+        var isRight =false;
+        //设置同步
+        $.ajax({
+            type : "post",
+            url : "/checkVerify",
+            data :{'inputStr':code},
+            async : false,
+            success : function(data){
+                isRight =  data;
+            }
+        });
+        return isRight;
+    }
+    /*禁用回车和启用回车还存在问题*/
+</script>
 </body>
 </html>

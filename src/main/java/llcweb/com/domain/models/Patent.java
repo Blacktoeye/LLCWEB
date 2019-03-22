@@ -1,12 +1,7 @@
 package llcweb.com.domain.models;
 
-import java.util.*;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -18,57 +13,74 @@ import javax.persistence.Table;
 public class Patent {
     @Id
     @GeneratedValue
-    public Integer id;
+    private Integer id;
 
     //专利标题
-    @Column(name = "title", length = 64)
-    public String title;
+    private String title;
 
     //申请日期
-    @Column(name = "application_date")
-    public Date appliDate;
+    private Date appliDate;
 
     //文章简介
-    @Column(name = "introduction", length = 255)
-    public String introduction;
+    private String introduction;
 
     //发明人，作者姓名列表，对应people表的姓名，也可以是外面合作人员
-    @Column(name = "author_list", length = 128)
-    public String authorList;
+    private String authorList;
 
     //原文链接
-    @Column(name = "original_link", length = 64)
     public String originalLink;
 
-    //所属项目id
-    @Column(name = "belong_project", length = 11)
-    public String belongProject;
+    //所属项目
+    private String belongProject;
 
     //专利申请号
-    @Column(name = "appli_num", length = 11)
-    public String appliNum;
+    private String appliNum;
 
     //专利公开号
-    @Column(name = "public_num", length = 11)
-    public String publicNum;
+    private String publicNum;
 
     //公开日期
-    @Column(name = "public_date")
-    public Date publicDate;
+    private Date publicDate;
 
     //代理机构
-    @Column(name = "agency", length = 128)
-    public String agency;
+    private String agency;
 
     //申请人（一般为广东工业大学）
-    @Column(name = "appli_people", length = 64)
-    public String appliPeople;
+    private String appliPeople;
 
-    private String state;
+    //授权日期
+    private Date authorizationDate;
+
     private int sourceFile;
+    //状态
+    private String state;
 
     public Patent() {
 
+    }
+
+    public int getSourceFile() {
+        return sourceFile;
+    }
+
+    public void setSourceFile(int sourceFile) {
+        this.sourceFile = sourceFile;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public Date getAuthorizationDate() {
+        return authorizationDate;
+    }
+
+    public void setAuthorizationDate(Date authorizationDate) {
+        this.authorizationDate = authorizationDate;
     }
 
     public Integer getId() {
@@ -93,14 +105,6 @@ public class Patent {
 
     public void setAppliDate(Date appliDate) {
         this.appliDate = appliDate;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
     }
 
     public String getAuthorList() {
@@ -166,13 +170,6 @@ public class Patent {
     public void setAppliPeople(String appliPeople) {
         this.appliPeople = appliPeople;
     }
-    public int getSourceFile() {
-        return sourceFile;
-    }
-
-    public void setSourceFile(int sourceFile) {
-        this.sourceFile = sourceFile;
-    }
 
     public String getState() {
         return state;
@@ -189,6 +186,4 @@ public class Patent {
                 + ", appliNum=" + appliNum + ", publicNum=" + publicNum + ", publicDate=" + publicDate + ", agency="
                 + agency + ", appliPeople=" + appliPeople + "]";
     }
-
-
 }

@@ -205,27 +205,28 @@
     width:10px;
     height:10px;
 }
+
 .index-col-3 .index-col-title .title-left{
     width: auto;
     height: 35px;
-    line-height: 35px;
+    /*line-height: 35px;*/
     padding-left: 20px;
-    color: #fff;
+    /*color: #010101;*/
     float: left;
-    background: url("../images/title-bg.png");
+    /*background: url("../images/title-bg.png");*/
 }
 .index-col-3 .index-col-title .title-right{
     float:right;
     margin-top:5px;
-    width:25px;
+    width:40px;
     height:25px;
     margin-right:10px;
 }
 .index-col-3 .index-col-title .title-right i{
     display:inline-block;
     height:20px;
-    width:20px;
-    background:url("../images/arrow-red-right.png");
+    width:40px;
+    /*background:url("../images/arrow-red-right.png");*/
 }
 .index-col-3 .index-col-list{
     margin-top:10px;
@@ -236,15 +237,22 @@
     padding-left:10px;
     position:relative;
 }
-.index-col-3 .list1 .item i{
-    background:url("../images/list-icon-1.png");
+#paper i{
+    background:url("../images/list-icon-3.png");
 }
+#patent i{
+    background:url("../images/list-icon-4.png");
+}
+#copyright i{
+    background:url("../images/list-icon-5.png");
+}
+/*影响li列表中的标题显示字符数量*/
 .index-col-3 .index-col-list .item a{
     display:inline-block;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-	width: 55%
+	width: 70%
 }
 .index-col-3 .index-col-list .item .item-time{
     position:absolute;
@@ -278,9 +286,10 @@
     height:73px;
     line-height:73px;
     margin:0 5px 0 5px;
-    background:url("../images/menu-bg.png");
+    /*background:url("../images/menu-bg.png");*/
     display:inline-block;
     position:relative;
+    border-radius: 5px;
 }
 .index-menu .item i{
     display: inline-block;
@@ -294,20 +303,20 @@
     position:absolute;
     left:65px;
     font-size:18px;
-    color:#035ba6;
+    color: #ffffff;
     font-weight:bold;
 }
 .index-menu .item .people{
-    background: url("../images/book.png");
+    background: url("../images/new-search.png");
 }
 .index-menu .item .file{
-    background:url("../images/bk.png");
+    background:url("../images/newbook.png");
 }
 .index-menu .item .char{
-    background:url("../images/study.png");
+    background:url("../images/new-panel.png");
 }
 .index-menu .item .cg{
-    background:url("../images/char.png");
+    background:url("../images/new-home.png");
 }
 .index-contact{
     height:74px;
@@ -315,16 +324,17 @@
 }
 .contact-text{
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 112px;
 }
 .index-contact i{
     display: inline-block;
-    width: 74px;
-    height: 74px;
-    margin-left: 20px;
-    margin-top: 10px;
-    background: url("../images/connect.png");
+    width: 100%;
+    height: 100%;
+    margin-left: 60px;
+    margin-top: 30px;
+    background-image: url("../images/phone-call.png");
+    background-repeat:no-repeat ;
 }
 .index-contact p{
     display:inline-block;
@@ -340,19 +350,18 @@
     height:46px;
     line-height:46px;
 }
-.fun-article-title .title-left i{
+.fun-article-title i{
     display: inline-block;
     width: 20px;
     height: 20px;
     position:absolute;
     top:10px;
     left:10px;
-    background: url('../images/arrow-red-right.png');
+    /*background: url('../images/arrow-red-right.png');*/
 }
 .fun-article-title .title-left span{
     position:absolute;
-    left:40px;
-    color:#bc0e05;
+    left:5px;
 }
 .title-bg{
     position:absolute;
@@ -371,7 +380,7 @@
     display:inline-block;
     width:10px;
     height:10px;
-    background:url("../images/list-icon-2.png");
+    /*background:url("../images/list-icon-2.png");*/
 	margin-bottom: 12px;
 }
 .index-fun-list .item a{
@@ -379,7 +388,8 @@
 	text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    width: 55%;
+    /*影响字符数量*/
+    width: 70%;
 }
 .index-fun-list .item .item-time{
     position:absolute;
@@ -418,10 +428,10 @@
 }
 .index-category-new .index-col-3 .col-more{
     height: 20px;
-    width: 20px;
+    width: 40px;
     margin: 7px 10px 0 auto;
     display: inline-block;
-    background: url("../images/arrow-red-right.png");
+    /*background: url("../images/arrow-red-right.png");*/
 }
 /*科研项目*/
 /*开放课题*/
@@ -431,23 +441,23 @@
     /*padding: 5px;*/
 }
 .index-col-3 .lately-date{
-    width: 60px;
-    height: 60px;
-    margin-top: 10px;
-    margin-left:7px;
-    border-right: 2px solid #bc0e05;
+    width: 50px;
+    height: 55px;
+    /*margin-top: 10px;*/
+    /*margin-left:7px;*/
+    /*border-right: 2px solid #bc0e05;*/
 }
 .index-col-3 .lately-date .date-day{
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
-    color: #bc0e05;
+    color: #ffffff;
 }
 .index-col-3 .lately-date .date-other{
     font-size: 12px;
-    color: #bc0e05;
+    color: #ffffff;
 }
 .index-col-3 .lately-cont{
-    margin-left: 85px;
+    margin-left: 60px;
     margin-top: 10px;
 }
 .index-col-3 .lately-title{
@@ -517,6 +527,10 @@
     display: inline-block;
     margin-left: 10px;
     color: #666666;
+}
+.links a img{
+    width: 500px;
+    height: 70px;
 }
 /*友情链接*/
 /*中间列表*/
@@ -626,13 +640,11 @@ ul li item:hover{
 
 }
 
-.five{
-    padding-left:5px;
-    font-size: 16px;
-    font-weight: 400px;
-}
-
-.bg6{ background:#6ad; }
+/*.five{*/
+    /*padding-left:5px;*/
+    /*font-size: 16px;*/
+    /*font-weight: 400px;*/
+/*}*/
 
 
 .leftnav_input_sub{
@@ -647,4 +659,14 @@ line-height: 1.42857143;
 text-align: center;
 border: 1px solid transparent;
 border-radius: 3px;
+}
+
+.item1{
+    text-decoration:none;
+    min-width:1px;
+}
+
+.products{
+    /*height:280px; */
+    border-top: 3px solid #bc0e05;border-radius: 5px;
 }

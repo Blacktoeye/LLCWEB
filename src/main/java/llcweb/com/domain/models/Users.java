@@ -57,7 +57,15 @@ public class Users implements Serializable,UserDetails {
    }
    public Users(){
    }
-
+   public Users(Users users){
+      this.id = users.id;
+      this.username = users.username;
+      this.password = users.password;
+      this.updateTime = users.updateTime;
+      this.peopleId = users.peopleId;
+      this.team = users.team;
+      this.roles = users.roles;
+   }
    public Users(int id,String username,String password,Date updateTime,int peopleId,String team, 
                 List<Roles> roles){
       this.id = id;

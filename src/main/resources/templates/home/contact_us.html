@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <!--<title>LLC实验室网站</title>-->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="../../static/home/images/bitbug_favicon.ico"
-          th:href="@{/home/images/bitbug_favicon.ico}"/>
+    <link rel="shortcut icon" href="../../static/home/images/favicon.ico"
+          th:href="@{/home/images/favicon.ico}"/>
     <link href="../../static/home/css/reset.css" rel="stylesheet"
           th:href="@{/home/css/reset.css}">
     <link href="../../static/home/css/public.css" rel="stylesheet"
           th:href="@{/home/css/public.css}">
     <link href="../../static/home/css/index.css" rel="stylesheet"
           th:href="@{/home/css/index.css}">
-    <script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
-            th:src="@{home/js/jquery-1.12.4.min.js}"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="description" content="jPaginate - jQuery Pagination Plugin"/>
     <meta name="keywords" content="jquery, plugin, pagination, fancy"/>
     <title>联系我们——广东省信息物理融合系统重点实验室</title>
@@ -29,7 +26,6 @@
           th:href="@{/home/css/style.css}"/>
     <link rel="stylesheet" href="../../static/home/css/papers.css" type="text/css"
           th:href="@{/home/css/papers.css}"/>
-
     <!--引用百度地图API-->
     <style type="text/css">
         html,body{margin:0;padding:0;}
@@ -38,7 +34,7 @@
         .anchorBL{display:none;}
 
     </style>
-
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66189406" charset="UTF-8"></script>
 </head>
 <body>
 <div th:include="template/header_template :: header_template"></div>
@@ -49,16 +45,14 @@
                 <!-- <h1><span>机构概况</span></h1> -->
             </div>
             <div class="middle_r">
-
-
 				<div class="connetion">
-					<img src="../../static/home/images/995743fc870c576.jpg" th:src="@{home/images/995743fc870c576.jpg}"  style="width: 40px;margin-top: 0px;">
+					<img src="../../static/home/images/email-logo.jpg" th:src="@{home/images/email-logo.jpg}" style="width: 40px;margin-top: 0px;">
 					<span style="font-size: 20px;font-weight: bold;">联系我们</span>
 					<div class='wrap info' style="margin-top: 25px;margin-left: 0px; width: 900px;">
                     <label>地址：</label>
-                    <span>广州市番禺区广州大学城外环西路100号广东工业大学工学二号馆303-305</span>
+                    <span>广州市番禺区广州大学城外环西路100号广东工业大学工学二号馆303室</span>
 					<br><label>邮编：</label>
-                    <span>51006</span>
+                    <span>510006</span>
                     <br><label>邮箱：</label>
                     <span>llcheng@gdut.edu.cn</span>
                     <br><label>联系人：</label>
@@ -66,43 +60,74 @@
                     <br><label>电话：</label>
                     <span>+86-20-39322465</span>
 					</div>
-					<img src="../../static/home/images/images.png" th:src="@{home/images/images.png}" style="width: 70px;margin-left: 519px;margin-top: -53px;">
+					<img src="../../static/home/images/images.png" th:src="@{/home/images/images.png}" style="width: 70px;margin-left: 519px;margin-top: -53px;">
 				</div>
-
-
-				<div style="margin-bottom: 60px;">
-					<div style="margin-top: 80px;margin-left: 230px;">留言板</div>
-					<textarea style="resize:none;width: 645px;height: 114px;" id="message" type="text"></textarea><br/>
-        			<div id="display_area"></div>
-        			<input value="提交" type="button" id="btn" />
-
+                <div style="margin-bottom: 60px;">
+                    <div style="margin-top: 80px;margin-left: 230px;">访客留言：</div>
+                    <textarea style="resize:none;width: 645px;height: 114px;" id="message" type="text"></textarea><br/>
+                    <input value="提交" type="button" id="btn" data-toggle="modal" data-target="#myModal" />
                 </div>
             </div>
         </div>
     </div>
+    <div style="margin-top: 1px;">
+        <hr style="height:1px;border:0px;background-color:#D5D5D5;color:#b7b7b7;"/>
+    </div>
 </div>
 
-
 <div th:include="template/footer_template :: footer_template"></div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="resultHead"></h4>
+            </div>
+            <div class="modal-body" id="resultBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript" src="../../static/home/js/jquery-1.12.4.min.js"
+        th:src="@{home/js/jquery-1.12.4.min.js}"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/home/js/common.js"
+    th:src="@{/home/js/common.js}"></script>
+
+
+<script>
+    var urlPostComment = "/comments/add";
+    $(document).ready(function () {
+        $("#btn").click(function () {
+            var comment = $("#message").val();
+            //alert(comment);
+            summitComment(comment,urlPostComment);
+        });
+    });
+    //提交留言
+    function summitComment(data,url) {
+        //设置同步
+        $.ajax({
+            type : "post",
+            url : url,
+            data :{"content":data},
+            async : false,
+            success : function(data){
+                $("#resultHead").text(data.message);
+                if(data.result===0){
+                    $("#resultBody").text("对不起，留言失败，您可以再次尝试，或直接邮件联系我们，感谢来访！");
+                }else{
+                    $("#resultBody").text("感谢您的留言！欢迎关注我们！");
+                }
+
+            }
+        });
+    }
+</script>
 
 </body>
-
-    <!--二级菜单栏-->
-    <script>
-     $(function(){
-             $(".public-nav li:has(ul)").hover(function() {
-             $(this).find("a:first").css("background-color","#00428f");
-                 $(this).find(".subnav").css("display","block");
-
-         },function() {
-             $(this).find("a:first").css("background-color","#035ba6");
-             $(this).find(".subnav").css("display","none");
-         })
-     });
-    </script>
-
-
-
-
 
 </html>

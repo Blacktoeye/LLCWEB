@@ -17,10 +17,10 @@ public interface DocumentRepository extends ResourceRepository<Document,Integer>
     /**
      * 模糊查询
      **/
-    @Query("from Document d where d.author like %?1%" +
+    @Query("from Document d where d.model like %?1%" +
             " or d.title like %?1%" +
             " or d.infor like %?1%" +
-            " or d.model like %?1%")
-    Page<Document> fuzzySearch(String key, Pageable pageable);
+            " and d.author like %?2%")
+    Page<Document> fuzzySearch(String key,String userName, Pageable pageable);
 
 }
