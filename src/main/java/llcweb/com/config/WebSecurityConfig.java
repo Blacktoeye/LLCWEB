@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(loginService()).passwordEncoder(passwordEncoder());//添加自定义的userDetailsService认证
+        auth.userDetailsService(loginService());//添加自定义的userDetailsService认证
     }
     @Override
     public void configure(WebSecurity web) throws Exception {
